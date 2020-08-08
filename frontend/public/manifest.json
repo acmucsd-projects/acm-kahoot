@@ -1,0 +1,9 @@
+{
+  "short_name": "ACM Kahoot",
+  "name": "ACM Kahoot Web Game",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
