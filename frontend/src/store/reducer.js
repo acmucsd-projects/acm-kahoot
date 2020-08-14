@@ -1,5 +1,6 @@
-import { combineReducers } from 'redux';
-
-export default combineReducers({
-  // Combine reducers into a main reducer.
-});
+export default (state, action) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+};
