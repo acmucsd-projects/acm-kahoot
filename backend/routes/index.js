@@ -1,0 +1,104 @@
+var express = require('express');
+var path = require('path');
+var router = express.Router();
+const mongoose = require("mongoose");
+var {questionSchema,packSchema} = require("../models/questionSchema");
+
+// name of the collection Pack(s)
+const Pack = mongoose.model("pack", packSchema);
+const Question = mongoose.model("question", questionSchema);
+
+/* GET home page. */
+router.get('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
+
+/* GET names & descriptions (of packs) as an array */
+router.get('/packs/names',  function (req, res) {
+    Pack.find({}, function(err,p) {
+        if (err) {
+            res.status(400).json(err);
+        } 
+        let names = [];
+        for (pac of p) {
+            names.push([pac.name, pac.description]);
+        }
+        res.send(names);
+    })
+});
+
+/* GET pack by id. */
+router.get('/packs',  function (req, res) {
+    let id = req.body._id;
+    Pack.findById(id, function(err,result){
+        if (err) {
+            res.status(400).json(err);
+        } else {
+            res.json(result)
+        }
+    });
+});
+
+/* POST packs. */
+router.post('/packs',  function (req, res) {
+
+    let questionsId = [];
+    // create pack
+    const pack1 = new Pack({
+        name: req.body.name,
+        //questions: req.body.questions,
+        questions: questionsId,
+        description: req.body.description
+    });
+    pack1.save();
+    
+    var question;
+    // create individual questions and save ids
+    for(i of req.body.questions) {
+        question = new Question({
+            name: i.name,
+            question: i.question,
+            answer: i.answer,
+            falseAnswers: i.falseAnswers
+        });
+        Question.create(question, function(err,result) {
+            if(err) return;
+            questionsId.push([result._id]);
+            Pack.updateOne({_id:pack1._id}, { $addToSet: { questions: result._id} }, function(err) {
+                if(err) {
+                    console.log(err);
+                }
+            })
+        })
+    }
+    res.redirect("/");
+});
+
+/* DELETE pack by id. */
+router.delete('/packs',  function (req, res) {
+    let id = req.body._id;
+    console.log(id)
+    Pack.findByIdAndDelete(id, function(err){
+        if (err) {
+            res.status(400).json(err);
+        } else {
+            res.send("success")
+        }
+    });
+});
+
+/* DELETE question by id. */
+router.delete('/packs/questions',  function (req, res) {
+    let id = req.body._id;
+    console.log(id)
+    Question.findByIdAndDelete(id, function(err){
+        if (err) {
+            res.status(400).json(err);
+        } else {
+            res.send("success")
+        }
+    });
+    
+});
+
+
+
+module.exports = router;

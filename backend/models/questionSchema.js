@@ -1,7 +1,6 @@
 var mongoose = require("mongoose");
 
 var questionSchema =  mongoose.Schema({
-    id : { type: Number, required: true, unique: true },
     name: { type: String, required: true },
     question: { type: String, required: true },
     answer: { type: String, required: true },
@@ -9,9 +8,9 @@ var questionSchema =  mongoose.Schema({
   });
 
 var packSchema = mongoose.Schema({
-  id : { type: Number, required: true, unique: true },
   name: { type: String, required: true },
-  questions: [questionSchema],
+  // questions: [questionSchema],
+  questions: [String],
   description: { type: String, required: true },
 });
 
