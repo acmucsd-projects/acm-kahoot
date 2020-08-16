@@ -12,7 +12,12 @@ app.use(bodyParser.json())
 app.use('/', indexRouter);
 
 // if questionDB doesn't exist create it
-mongoose.connect("mongodb://localhost:27017/questionDB", { useNewUrlParser : true , useUnifiedTopology : true});
+
+require('dotenv').config();
+var name = process.env.NAME;
+var dbpswd = process.env.DB_PSW;
+var dbname = process.env.DB_NAME;
+mongoose.connect(`mongodb+srv://${name}:${dbpswd}@cluster0-gzlxs.mongodb.net/${dbname}?retryWrites=true&w=majority` || `mongob://localhost:27017/${dbname}`, { useNewUrlParser: true, useUnifiedTopology:true, useFindAndModify : false});
 
 //gets rid of deprecation warning
 mongoose.set('useCreateIndex', true);
