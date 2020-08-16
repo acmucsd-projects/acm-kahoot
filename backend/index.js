@@ -3,11 +3,58 @@ var {questionSchema,packSchema} = require("./models/questionSchema");
 const mongoose = require("mongoose");
 const express = require("express");
 const bodyParser = require('body-parser');
-const app = express();
+
+const path = require('path');
+const http = require('http');
+const socketio = require('socket.io');
+const {
+  userJoin,
+  userLeave,
+  getRoomUsers
+} = require('./utils/users');
+
 const port = 3000;
+
+const app = express();
+
+
+const server = http.createServer(app);
+const io = socketio(server);
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json())
+
+io.on('connection', socket => {
+  socket.on('joinRoom', ({ username, room }) => {
+    const user = userJoin(socket.id, username, room);
+
+    socket.join(user.room);
+
+    // Send users and room info
+    io.to(user.room).emit('roomUsers', {
+      room: user.room,
+      users: getRoomUsers(user.room)
+    });
+  });
+
+  // Runs when client disconnects
+  socket.on('disconnect', () => {
+    const user = userLeave(socket.id);
+
+    if (user) {
+      // Send users and room info
+      io.to(user.room).emit('roomUsers', {
+        room: user.room,
+        users: getRoomUsers(user.room)
+      });
+    }
+  });
+
+});
+
+
+
+
 
 // if questionDB doesn't exist create it
 mongoose.connect("mongodb://localhost:27017/questionDB", { useNewUrlParser : true , useUnifiedTopology : true});
@@ -20,7 +67,9 @@ const Pack = mongoose.model("pack", packSchema);
 
 const Question = mongoose.model("question", questionSchema);
 
-app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'));
+// Set static folder
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.post('/', function (req, res) {
     console.log("packName " + req.body.packName);
     var falseAnswers1 = [req.body.question1FAnswer1,req.body.question1FAnswer2];
@@ -49,4 +98,5 @@ app.post('/', function (req, res) {
     pack1.save();
     res.redirect("/");
 });
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
+
+server.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
