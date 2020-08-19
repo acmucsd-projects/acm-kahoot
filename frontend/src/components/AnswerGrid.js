@@ -1,11 +1,11 @@
 import React from 'react';
 
-import '../styles/AnswerGrid.css';
+import styles from '../styles/AnswerGrid.module.scss';
 import AnswerCard from '../components/AnswerCard';
 
 function AnswerGrid(props) {
   return (
-    <div className='AnswerGrid'>
+    <div className={styles.AnswerGrid}>
       <AnswerCard shape='triangle' />
       <AnswerCard shape='star' />
       <AnswerCard shape='circle' />

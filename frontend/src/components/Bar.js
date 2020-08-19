@@ -1,12 +1,12 @@
 import React from 'react';
 
-import '../styles/Bar.css';
+import styles from '../styles/Bar.module.scss';
 
 function Bar(props) {
   return (
-    <div className='Bar'>
-      <div>{props.count}</div>
-      <div className={`box ${props.shape}`}></div>
+    <div className={styles.Bar}>
+      <div>{props.count || ''}</div>
+      <div className={`${styles.box} ${styles[props.shape]}`}></div>
     </div>
   );
 }

@@ -1,6 +1,8 @@
 .HostScreen {
+    width: 100%;
     height: 100%;
-    margin: 1vw 2vw;
+    padding: 0 0 1% 0;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -8,20 +10,19 @@
     align-content: flex-start;
 }
 
-.HostScreen>.question-stats {
+.layout {
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-columns: auto 36vw 36vw auto;
-    grid-template-rows: 45% 45%;
+    grid-template-columns: 36vw 36vw;
+    grid-template-rows: 47% 47%;
     grid-template-areas: 
-      ". . stats ."
-      ". answers answers ."
-      ". . . .";
+      ". stats"
+      "answers answers";
     justify-content: center;
     align-content: center;
     justify-items: center;
     align-items: center;
-    column-gap: 50px;
-    row-gap: 44px;
+    column-gap: 3vw;
+    row-gap: 6%;
 }

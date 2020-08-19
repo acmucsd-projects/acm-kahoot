@@ -1,0 +1,39 @@
+@import 'App';
+
+.QuestionCard {
+    // width: 88vw;
+    width: 49vw;
+    height: 38vh;
+    position: absolute;
+    left: 0;
+    top: 8vw;
+    padding: 25px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    background-color: #DEFE47;
+    border-radius: 0 17px 17px 0;
+    font-weight: bold;
+}
+
+.number {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    background-color: $bg-color;
+    color: #fff;
+    display: flex;
+    direction: row;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+.label {
+    color: $bg-color;
+    width: 85%;
+}
