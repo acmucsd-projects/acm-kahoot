@@ -1,3 +1,4 @@
+
 // Kahoot
 var indexRouter = require('./routes/index');
 const mongoose = require("mongoose");
@@ -17,6 +18,7 @@ const port = 3000;
 
 const app = express();
 
+
 // Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -24,12 +26,15 @@ require('dotenv').config();
 var name = process.env.NAME;
 var dbpswd = process.env.DB_PSW;
 var dbname = process.env.DB_NAME;
+
 var mongoURI = name == undefined ? "mongodb://localhost:27017/questionDB" : `mongodb+srv://${name}:${dbpswd}@cluster0-gzlxs.mongodb.net/${dbname}?retryWrites=true&w=majority`;
 
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology:true, useFindAndModify : false});
 
+
 //gets rid of deprecation warning
 mongoose.set('useCreateIndex', true);
+
 
 const server = http.createServer(app);
 const io = socketio(server);
