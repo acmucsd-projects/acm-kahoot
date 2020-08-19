@@ -8,12 +8,13 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.9.28",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "socketio": "^1.0.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index"
+    "start": "node index",
+    "dev": "nodemon index"
   },
   "author": "",
   "license": "ISC"
