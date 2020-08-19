@@ -1,3 +1,5 @@
+@import 'answer';
+
 .Bar {
     width: 6vw;
     height: 100%;
@@ -9,24 +11,8 @@
     align-content: center;
 }
 
-.Bar>.box {
+.box {
     width: 90%; /* dynamically scale this later */
     height: 100%;
     border-radius: 17px;
-}
-
-.triangle {
-    background-color: #F9BD25;
-}
-
-.star {
-    background-color: #2DE2E6;
-}
-
-.circle {
-    background-color: #FF1493;
-}
-
-.square {
-    background-color: #16FFBD;
 }
