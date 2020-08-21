@@ -1,6 +1,6 @@
+@import 'colors';
+
 $font-stack: 'Source Sans Pro', Helvetica, Arial, sans-serif;
-$text-color: #fff;
-$bg-color: #27163F;
 
 .App {
   text-align: center;
@@ -17,4 +17,25 @@ $bg-color: #27163F;
   font-family: $font-stack;
   font-size: 2.3rem;
   background-color: $bg-color;
+}
+
+.glow {
+  // background-image: linear-gradient(180deg, #7f5a83 0%, #0d324d 74%);
+  // background-image: linear-gradient(0deg, #7f5a83, $bg-color 75%);
+  background-image: radial-gradient(ellipse at top, #7f5a83, transparent 50%),
+                    radial-gradient(ellipse at bottom, #7f5a83, $bg-color 50%);
+  background-size: 250% 250%;
+  animation: glow-effect 20s ease-in-out infinite;
+}
+
+@keyframes glow-effect {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

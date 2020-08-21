@@ -1,45 +1,37 @@
-$text-color: #27163F;
-$triangle-color: #f9bd25;
-$star-color: #2de2e6;
-$circle-color: #ff1493;
-$square-color: #16ffbd;
+@import 'colors';
 
 .triangle {
-    color: $text-color;
-    background-color: $triangle-color;
+  color: $text-dark-color;
+  background-color: $triangle-color;
 }
 
 .triangle.disabled {
-    color: $text-color;
-    background-color: rgba(249, 189, 37, 0.75);
+  background-color: $triangle-dark-color;
 }
 
 .star {
-    color: $text-color;
-    background-color: $star-color;
+  color: $text-dark-color;
+  background-color: $star-color;
 }
 
 .star.disabled {
-    color: $text-color;
-    background-color: rgba(45, 226, 230, 0.75);
+  background-color: $star-dark-color;
 }
 
 .circle {
-    color: $text-color;
-    background-color: $circle-color;
+  color: $text-dark-color;
+  background-color: $circle-color;
 }
 
 .circle.disabled {
-    color: $text-color;
-    background-color: rgba(255, 20, 147, 0.75);
+  background-color: $circle-dark-color;
 }
 
 .square {
-    color: $text-color;
-    background-color: $square-color;
+  color: $text-dark-color;
+  background-color: $square-color;
 }
 
 .square.disabled {
-    color: $text-color;
-    background-color: rgba(22, 255, 189, 0.75);
+  background-color: $square-dark-color;
 }

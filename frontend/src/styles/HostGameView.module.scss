@@ -1,0 +1,28 @@
+.HostGameView {
+  width: 100%;
+  height: 100%;
+  padding: 0 0 1% 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: flex-start;
+}
+
+.layout {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 36vw 36vw;
+  grid-template-rows: 47% 47%;
+  grid-template-areas: 
+    ". bargraph"
+    "answers answers";
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  column-gap: 3vw;
+  row-gap: 6%;
+}

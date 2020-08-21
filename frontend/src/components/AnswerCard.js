@@ -15,7 +15,7 @@ const shapeImages = {
 
 function AnswerCard(props) {
   return (
-    <div className={`${styles.AnswerCard} ${styles[props.shape]}`}>
+    <div className={`${styles.AnswerCard} ${styles[props.shape]} ${props.disabled && styles.disabled}`}>
       <img
         className={styles.shape}
         src={shapeImages[props.shape]}
