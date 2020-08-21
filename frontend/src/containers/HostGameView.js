@@ -1,16 +1,16 @@
 import React from 'react';
 
-import styles from '../styles/HostScreen.module.scss';
+import styles from '../styles/HostGameView.module.scss';
 import MatchInfo from '../components/MatchInfo';
 import AnswerGrid from '../components/AnswerGrid';
 import QuestionCard from '../components/QuestionCard';
 import BarGraph from '../components/BarGraph';
 
-function HostScreen() {
+function HostGameView() {
   return (
-    <div className={styles.HostScreen}>
+    <div className={styles.HostGameView}>
       <MatchInfo />
-      <QuestionCard />
+      <QuestionCard shape='' />
       <div className={styles.layout}>
         <BarGraph />
         <AnswerGrid />
@@ -19,4 +19,4 @@ function HostScreen() {
   );
 }
 
-export default HostScreen;
+export default HostGameView;
