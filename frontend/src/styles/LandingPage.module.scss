@@ -1,0 +1,21 @@
+.header {
+    font-family: 'Roboto Condensed', sans-serif;
+    text-shadow: 2px 0 0 #aaaaaa;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.blobright {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+}
+
+.blobleft {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
