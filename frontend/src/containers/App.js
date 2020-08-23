@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 
 import "../styles/App.scss";
@@ -22,6 +23,17 @@ function App() {
 
         <Route path="/" component={UniversalLandingPage} />
       </Switch>
+=======
+import React from 'react';
+import '../styles/App.scss';
+
+import HostGameView from './HostGameView';
+
+function App() {
+  return (
+    <div className='App glow'>
+      <HostGameView />
+>>>>>>> 24d7c9a... Display a mock-up of the Host's in-game view.
     </div>
   );
 }

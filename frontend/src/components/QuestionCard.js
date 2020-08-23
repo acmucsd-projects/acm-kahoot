@@ -16,7 +16,6 @@ const shapeImages = {
 function QuestionCard(props) {
   const [isVisible, setVisible] = useState(true);
   const [isShort, setShort] = useState(false);
-  const [isSliding, setSlide] = useState(false);
 
   let decoration;
   if (props.shape) {
@@ -27,7 +26,7 @@ function QuestionCard(props) {
 
   if (isVisible) {
     return (
-      <div className={`${styles.QuestionCard} ${styles[props.shape] || styles.default} ${isShort && styles.short} ${isSliding && styles.slide}`}
+      <div className={`${styles.QuestionCard} ${styles[props.shape] || styles.default} ${isShort && styles.short}`}
           onClick={() => setShort(true)}
           onAnimationEnd={(event) => setVisible(true)}>
         {decoration}
