@@ -26,13 +26,16 @@ router.get('/packs/names',  function (req, res){
 });
 
 /* GET pack by id. */
-router.get('/packs',  function (req, res){
-    let id = req.body._id;
+router.get('/packs/:_id',  function (req, res){
+    let id = req.params._id;
     Pack.findById(id, function(err,result){
         if (err) {
             res.status(400).json(err);
         } else {
-            res.json(result)
+            if(result != null)
+                res.send(result);
+            else
+                res.send("Invalid"); 
         }
     });
 });
@@ -89,62 +92,83 @@ router.post('/packs',  function (req, res){
     res.redirect("/");
 });
 
+
 /* DELETE pack by id. */
-router.delete('/packs',  function (req, res){
-    let id = req.body._id;
-    //console.log(id)
-    Pack.findByIdAndDelete(id, function(err){
+router.delete('/packs/:_id',  function (req, res){
+    let id = req.params._id;
+    Pack.findById(id,(err,result) => {
         if (err) {
             res.status(400).json(err);
         } else {
-            res.send("success")
+            // if questions are not in more than 1 pack delete them then delete pack
+            deleteQuestions (result.questions, result.questions).then(
+            Pack.findByIdAndDelete(id, function(err){
+                if (err) {
+                    res.status(400).json(err);
+                } else {
+                    if(result == null) 
+                        res.send("pack does not exist")
+                    else {
+                        res.send("success")
+                    }
+                        
+                }
+            }));
         }
     });
 });
+
+// deletes questions if they are in a pack.
+async function deleteQuestions (questions, questionsToDelete) {
+    // filter temp to be only questions not to be deleted
+    let temp  = questions;
+    questionsToDelete.forEach(async (i)=>{
+        temp = temp.filter((question) => {
+            return (question != i);
+        });
+        // go through each question to check if in a separate pack if in more than 1 delete it
+        await Pack.find({questions:{$in:i}},(err,result) => {
+            let cnt = 0;
+            for (pac of result) {
+                cnt++;
+                if(cnt == 2)
+                    break;
+            }
+            if(cnt == 1){
+                Question.findByIdAndDelete(i, function(err){
+                    if (err) {
+                        console.log(err);
+                    } 
+                })
+            }
+        })
+    });
+    return temp;
+}
 
 /* DELETE question by id. */
 router.delete('/packs/questions',  function (req, res){
     
     // find pack
-    Pack.findById(req.body._id, function(err, result){
+    Pack.findById(req.body._id, async function(err, result){
 
         if(result == null){
             res.send("pack does not exist");
             return;
         }
-        // filter temp to be only questions not to be deleted
-        let temp  = result.questions;
-        req.body.questions.forEach(async (i)=>{
-            temp = temp.filter((question) => {
-                return (question != i);
+
+        // delete questions from body and then update pack
+        deleteQuestions(result.questions,req.body.questions).then(function(temp) {
+            // update the questions to not include deleted questions
+            Pack.findOneAndUpdate({_id:req.body._id}, {questions:temp}, function(err){
+                if (err) {
+                    res.status(400).json(err);
+                } else {
+                    res.send("success");
+                }
             });
-            await Pack.find({questions:{$in:i}},(err,result) => {
-                let cnt = 0;
-                for (pac of result) {
-                    cnt++;
-                    if(cnt == 2)
-                        break;
-                }
-                if(cnt == 1){
-                    Question.findByIdAndDelete(i, function(err){
-                        if (err) {
-                            console.log(err);
-                        } 
-                    })
-                }
-            })
-        });
-        //console.log(temp)
-        // update the questions to not include deleted questions
-        Pack.findOneAndUpdate({_id:req.body._id}, {questions:temp}, function(err){
-            if (err) {
-                res.status(400).json(err);
-            } else {
-                res.send("success");
-            }
-        });
-        
-    })
+        }); 
+    });
 });
 
 module.exports = router;
