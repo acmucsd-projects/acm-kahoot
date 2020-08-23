@@ -12,7 +12,7 @@ function MatchInfo(props) {
         <div>Name: {userName}</div>
       </div>
       <div className={styles['info-block']}>
-        Q: # / 20
+        Q: 12 / 20
       </div>
     </div>
   );

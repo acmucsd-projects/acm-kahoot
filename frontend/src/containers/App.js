@@ -1,10 +1,12 @@
 import React from 'react';
-import '../styles/App.css';
+import '../styles/App.scss';
+
+import HostGameView from './HostGameView';
 
 function App() {
   return (
-    <div className="App">
-      
+    <div className='App glow'>
+      <HostGameView />
     </div>
   );
 }
