@@ -1,0 +1,26 @@
+@import 'colors';
+@import 'App';
+
+.QuestionEditHeader {
+    width: 100%;
+    height: 100%;
+    padding: 4vh 1vw;
+    box-sizing: border-box;
+    // background-image: linear-gradient(270deg,
+    // adjust-color(#837cd9, $alpha: -0.4),
+    // adjust-color($accent-2-color, $alpha: -0.4));
+    background-image: linear-gradient(90deg, #9796F0CC 1.19%, #FBC7D4CC 101.19%);
+    // background-color: adjust-color($color: $accent-2-color, $alpha: -0.4);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+}
+
+.titleInput {
+    width: 47%;
+    height: 90%;
+    font-family: $font-stack;
+    font-size: 2.2rem
+}

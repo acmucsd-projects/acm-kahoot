@@ -1,0 +1,28 @@
+$scroll-width: 12px;
+
+.scroller {
+  padding-left: $scroll-width;
+  overflow-y: scroll;
+  color: adjust-color($color: #fff, $alpha: -1.0);
+  transition: color .2s ease;
+}
+
+.scroller:hover {
+  color: adjust-color($color: #fff, $alpha: -0.8);
+}
+
+.scroller::-webkit-scrollbar,
+.scroller::-webkit-scrollbar-thumb {
+  border-radius: 13px;
+  background-clip: padding-box;
+  border: 3px solid transparent;
+  box-shadow: inset 0 0 0 10px;
+}
+
+.scroller::-webkit-scrollbar {
+  width: $scroll-width;
+}
+
+.scroller::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 0 10px;
+}
