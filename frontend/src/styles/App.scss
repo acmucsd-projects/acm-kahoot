@@ -1,0 +1,41 @@
+@import 'colors';
+@import 'fonts';
+
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  padding: 1vw 2vw;
+  overflow: hidden;
+  text-align: center;
+  font-family: $font-text;
+  font-size: 2.3rem;
+  color: $white;
+  background-color: $purple-very-dark;
+  background-image: $grad-purple;
+  background-position: 0% 50%;
+  background-size: 250% 250%;
+}
+
+.App.glow {
+  background-image: $grad-purple-rad;
+  animation: glow-effect 24s ease-in-out infinite;
+}
+
+@keyframes glow-effect {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
