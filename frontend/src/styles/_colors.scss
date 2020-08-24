@@ -1,0 +1,29 @@
+/* Colors */
+$white:             #ffffff;
+$black:             #000000;
+$gray-very-light:   #e0e0e0;
+$gray-light:        #b0b0b0;
+$gray:              #808080;
+$gray-dark:         #606060;
+$gray-very-dark:    #404040;
+$purple-light:      #b76cfd;
+$purple:            #7700a6;
+$purple-very-dark:  #27163f;
+$magenta:           #c20292;
+$red:               #ff0000;
+$green:             #7fff00;
+$neon:              #defe47;
+$neon-a-1:          adjust-color($neon, $alpha: -0.2);
+$orange:            #f9bd25;
+$orange-a-1:        adjust-color($orange, $alpha: -0.25);
+$blue:              #2de2e6;
+$blue-a-1:          adjust-color($blue, $alpha: -0.25);
+$pink:              #ff1493;
+$pink-a-1:          adjust-color($pink, $alpha: -0.25);
+$aqua:              #16ffbd;
+$aqua-a-1:          adjust-color($aqua, $alpha: -0.25);
+/* Gradients */
+$grad-blue:   linear-gradient(0deg, #7f5a83, #0d324d 75%);
+$grad-purple: linear-gradient(0deg, #7f5a83, #27163f 50%);
+$grad-purple-rad: radial-gradient(ellipse at top, #7f5a83, transparent 50%),
+  radial-gradient(ellipse at bottom, #7f5a83, #27163f 50%);
