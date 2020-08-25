@@ -8,7 +8,7 @@ Type show dbs in the terminal running monogo to see the current data being store
 
 ## Testing rooms:
 
-Now run npm start in the main directory and this will log where the server is being run at. 
+Now run npm install in the main directory, then npm start in the main directory and this will log where the server is being run at. 
 You can connect to the server by typing where it is being run into the browser.
 Next you can type a username and id to join a specific room. In a new tab you can connect different users by again typing localhost and you can test rooms in this way.
 
