@@ -1,0 +1,37 @@
+@import 'colors';
+
+.triangle {
+  color: $text-dark-color;
+  background-color: $triangle-color;
+}
+
+.triangle.disabled {
+  background-color: $triangle-dark-color;
+}
+
+.star {
+  color: $text-dark-color;
+  background-color: $star-color;
+}
+
+.star.disabled {
+  background-color: $star-dark-color;
+}
+
+.circle {
+  color: $text-dark-color;
+  background-color: $circle-color;
+}
+
+.circle.disabled {
+  background-color: $circle-dark-color;
+}
+
+.square {
+  color: $text-dark-color;
+  background-color: $square-color;
+}
+
+.square.disabled {
+  background-color: $square-dark-color;
+}
