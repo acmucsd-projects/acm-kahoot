@@ -1,9 +1,10 @@
 import React from 'react';
+import styles from '../styles/Button.module.scss';
 
-function Button() {
+function Button(props) {
   return (
-    <button>
-      
+    <button className={styles[props.variant] || styles.Button}>
+      {props.label}
     </button>
   );
 }
