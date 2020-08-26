@@ -18,6 +18,6 @@ In order to input test values for the DB use postman and copy and paste the exam
 if you copy and paste the yaml file into [swagger](https://editor.swagger.io)
 you can view the API docs.
 
-Now input some command into postman and you can see the changes in the command prompt running mongo by typing show dbs and saying "use questionDB" (if it is present 
+Now input some command into postman (DO POST FIRST in Postman to create data) and you can see the changes in the command prompt running mongo by typing show dbs and saying "use questionDB" (if it is present 
 [should be present after doing a post request]). Now you can type show collections and db.questions.find().pretty() to view questions and
 db.packs.find().pretty to view packs.
