@@ -1,0 +1,144 @@
+.answerButtonBlueStar {
+    position: absolute;
+    width: 500px;
+    height: 300px;
+    left: 745px;
+    top: 125px;
+    background: #01FFF4;
+    border-radius: 17px;
+    color:  #27163F;
+    border-width: 0px;
+}
+
+.answerButtonPinkCircle {
+    position: absolute;
+    width: 500px;
+    height: 300px;
+    left: 195px;
+    top: 475px;
+
+    background: #FF1493;
+    border-radius: 17px;
+    border-width: 0px;
+}
+
+.answerButtonGreenSquare {
+    position: absolute;
+    width: 500px;
+    height: 300px;
+    left: 745px;
+    top: 475px;
+
+    background: #16FFBD;
+    border-radius: 17px;
+    border-width: 0px;
+}
+
+.answerButtonOrangeTriangle {
+    position: absolute;
+    width: 500px;
+    height: 300px;
+    left: 195px;
+    top: 125px;
+
+    background: #F9BD25;
+    border-radius: 17px;
+    border-width: 0px;
+}
+
+.answerButtonBlueStarflex {
+    position: flex;
+    width: 500px;
+    height: 300px;
+  
+    background: #01FFF4;
+    border-radius: 17px;
+    color:  #27163F;
+    border-width: 0px;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    align-content: center;
+    padding: 5px;
+    margin: 10px;
+}
+.answerButtonPinkCircleflex {
+    position: flex;
+    width: 500px;
+    height: 300px;
+
+    background: #FF1493;
+    border-radius: 17px;
+    border-width: 0px;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    align-content: center;
+    padding: 5px;
+    margin: 10px;
+}
+
+.answerButtonGreenSquareflex {
+    position: flex;
+    width: 500px;
+    height: 300px;
+    
+
+    background: #16FFBD;
+    border-radius: 17px;
+    border-width: 0px;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    align-content: center;
+    padding: 5px;
+    margin: 10px;
+}
+
+.answerButtonOrangeTriangleflex {
+    position: flex;
+
+    height: 300px;
+    width: 500px;
+  
+
+    background: #F9BD25;
+    border-radius: 17px;
+    border-width: 0px;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    align-content: center;
+    padding: 5px;
+    margin: 10px;
+}
+
+.AnswerGrid {
+    min-height: 100%;
+    min-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+
+   
+    
+  } 
+
+  .AnswerGrid  > button {
+    display: flex; 
+    flex-basis: calc(50% - 40px);  
+    justify-content: center;
+    flex-direction: column;
+
+  }
+  .AnswerGrid  > button > button {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+
+  }
