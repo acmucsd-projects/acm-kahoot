@@ -4,8 +4,32 @@
         <meta charset="utf-8">
         <title>Quiztime!</title>
     </head>
-    <body>        
+    <body>
         <h1>Join Room Example</h1>
+        <form action="player.html">
+          <div class="form-control">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              placeholder="Enter username..."
+              required
+            />
+          </div>
+          <div class="form-control">
+            <label for="room">Room</label>
+            <input
+              type="text"
+              name="room"
+              id="room"
+              placeholder="Enter Room ID..."
+              required
+            />
+          </div>
+          <button type="submit" class="btn">Join Room</button>
+        </form>
+        <h1>Admin Create Example</h1>
         <form action="room.html">
           <div class="form-control">
             <label for="username">Username</label>

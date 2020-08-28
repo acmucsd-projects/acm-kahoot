@@ -9,9 +9,8 @@ const { username, room } = Qs.parse(location.search, {
 
 const socket = io();
 
-
 // Join chatroom
-socket.emit('joinRoomAdmin', { username, room });
+socket.emit('joinRoomPlayer', { username, room });
 
 // Get room and users
 socket.on('roomUsers', ({ room, users }) => {
@@ -20,7 +19,7 @@ socket.on('roomUsers', ({ room, users }) => {
 });
 
 socket.on('invalid',() => {
-  outputRoomID("ROOM ALREADY EXISTS/HAS ADMIN");
+  outputRoomID("Room DNE");
 
 });
 

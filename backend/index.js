@@ -9,10 +9,13 @@ const path = require('path');
 const http = require('http');
 const socketio = require('socket.io');
 const {
-  userJoin,
-  userLeave,
-  getRoomUsers
-} = require('./utils/users');
+  roomCreate,
+  roomJoin,
+  roomAdminJoin,
+  roomUserLeave,
+  roomDelete,
+  roomUsers
+} = require('./utils/room');
 
 const port = 3000;
 
@@ -44,27 +47,54 @@ app.use(bodyParser.json());
 app.use('/', indexRouter);
 
 io.on('connection', socket => {
-  socket.on('joinRoom', ({ username, room }) => {
-    const user = userJoin(socket.id, username, room);
+  socket.on('joinRoomAdmin', ({ username, room }) => {
+    socket.username = username;
+    socket.room_name = room;
+    const user = roomAdminJoin(socket.id, username, room);
+    if (user === 0) {
+      io.to(socket.id).emit('invalid', {});
+    }
+    else {
+      socket.join(user.room);
 
-    socket.join(user.room);
+      // Send users and room info
+      io.to(user.room).emit('roomUsers', {
+        room: user.room,
+        users: roomUsers(user.room)
+      });
+    }
+  });
 
-    // Send users and room info
-    io.to(user.room).emit('roomUsers', {
-      room: user.room,
-      users: getRoomUsers(user.room)
-    });
+  socket.on('joinRoomPlayer', ({ username, room }) => {
+    socket.username = username;
+    socket.room_name = room;
+    console.log("Player connect: " + username );
+
+    const user = roomJoin(socket.id, username, room);
+    if (user === 0) {
+      io.to(socket.id).emit('invalid', {});
+    }
+    else {
+      socket.join(user.room);
+
+      // Send users and room info
+      io.to(user.room).emit('roomUsers', {
+        room: user.room,
+        users: roomUsers(user.room)
+      });
+    }
   });
 
   // Runs when client disconnects
   socket.on('disconnect', () => {
-    const user = userLeave(socket.id);
-
+    console.log(socket.username + ", " + socket.room_name);
+    const user = roomUserLeave(socket.id, socket.username, socket.room_name);
     if (user) {
+      roomDelete(user.room);
       // Send users and room info
       io.to(user.room).emit('roomUsers', {
         room: user.room,
-        users: getRoomUsers(user.room)
+        users: roomUsers(user.room)
       });
     }
   });
