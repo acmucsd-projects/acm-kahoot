@@ -1,0 +1,30 @@
+@import 'colors';
+@import 'fonts';
+
+.HostRoomView {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  justify-items: flex-end;
+  align-items: center;
+}
+
+.code {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  justify-items: flex-start;
+  align-items: center;
+  font-size: 7rem;
+  text-transform: uppercase;
+}
+
+.accent {
+  margin: 0 24px 0 0;
+  color: $neon;
+}
