@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App glow">
       <Switch>
-        <Route path="/player" />
+        <Route path="/player" component={LandingPage} />
 
         <Route path="/host" />
 
