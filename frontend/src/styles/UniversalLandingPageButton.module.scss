@@ -1,0 +1,35 @@
+.textStyle {
+  font-family: Roboto Condensed;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 64px;
+  line-height: 75px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  color: #27163f;
+  text-shadow: 2px 0 0 #aaaaaa;
+}
+
+.playerButton {
+  position: absolute;
+  width: 321px;
+  height: 100px;
+  left: 559px;
+  top: 500px;
+
+  background: #fffbfb;
+  border-radius: 17px;
+  border-width: 0px;
+}
+
+.hostButton {
+  position: absolute;
+  width: 321px;
+  height: 100px;
+  left: 559px;
+  top: 625px;
+
+  background: #fffbfb;
+  border-radius: 17px;
+  border-width: 0px;
+}
