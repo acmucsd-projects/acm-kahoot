@@ -4,9 +4,7 @@ import styles from '../styles/Title.module.scss';
 
 function Title() {
   return (
-    <div className={styles.Title}>
-      ACM QUIZTIME
-    </div>
+    <div className={styles.Title}>ACM QUIZTIME</div>
   );
 }
 
