@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import styles from '../styles/HostMenuView.module.scss';
 import Button from '../components/Button';
@@ -9,12 +10,16 @@ import BlobRight from '../assets/BlobRight.svg';
 function HostMenuView() {
   return (
     <div className={styles.HostMenuView}>
-      <img className={styles.blobleft} src={BlobLeft} alt="" />
-      <img className={styles.blobright} src={BlobRight} alt="" />
+      <img draggable='false' className={styles.blobleft} src={BlobLeft} alt="" />
+      <img draggable='false' className={styles.blobright} src={BlobRight} alt="" />
       <Title />
       <div className={styles.buttons}>
-        <Button label='CREATE NEW GAME' />
-        <Button label='MY GAMES' />
+        <Link to='/host/edit/new' draggable='false'>
+          <Button label='CREATE NEW GAME' />
+        </Link>
+        <Link to='/host/decks' draggable='false'>
+          <Button label='MY GAMES' />
+        </Link>
       </div>
     </div>
   );
