@@ -8,8 +8,10 @@ $gray-dark:         #606060;
 $gray-very-dark:    #404040;
 $purple-light:      #b76cfd;
 $purple:            #7700a6;
+$purple-dark:       #490066;
 $purple-very-dark:  #27163f;
 $magenta:           #c20292;
+$magenta-dark:      #970272;
 $red:               #ff0000;
 $green:             #7fff00;
 $neon:              #defe47;
@@ -25,5 +27,6 @@ $aqua-a-1:          adjust-color($aqua, $alpha: -0.25);
 /* Gradients */
 $grad-blue:   linear-gradient(0deg, #7f5a83, #0d324d 75%);
 $grad-purple: linear-gradient(0deg, #7f5a83, #27163f 50%);
+$grad-purple-light: linear-gradient(90deg, #9796F0 0%, #FBC7D4 100%);
 $grad-purple-rad: radial-gradient(ellipse at top, #7f5a83, transparent 50%),
   radial-gradient(ellipse at bottom, #7f5a83, #27163f 50%);

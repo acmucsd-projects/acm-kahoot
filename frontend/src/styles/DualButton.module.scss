@@ -1,0 +1,42 @@
+@import 'colors';
+@import 'fonts';
+
+.DualButton {
+  height: 100%;
+  border-radius: 17px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: $purple;
+  text-decoration: none;
+}
+
+.DualButton button {
+  height: 100%;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 17px;
+  color: $white;
+  font-family: $font-header;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  outline: none;
+}
+
+.left {
+  width: 100%;
+  background-color: transparent;
+}
+
+.left:hover:active {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.right {
+  background-color: $magenta;
+}
+
+.right:hover:active {
+  background-color: $magenta-dark;
+}
