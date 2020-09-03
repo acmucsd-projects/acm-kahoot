@@ -21,18 +21,23 @@ function UniversalLandingPage() {
             <div className={landingpagedesign.title }>
                 ACM QUIZTIME
             </div>
+            
             <div className={landingpagedesign.topDesignLove }>
                 <img src={designs.top} alt='top design'/>
             </div>
-            <div>
-            < TheButtons />
-            </div>
+            
+            
               <div className={landingpagedesign.nightlineDesignLeft }>
                 <img src={designs.nightlineLeft} alt='nightlineLeft'/>
             </div>
             <div className={landingpagedesign.nightlineDesignRight }>
                 <img src={designs.nightlineRight} alt='nightlineRightt'/>
             </div>
+
+            <div>
+            < TheButtons />
+            </div>
+
         </div>
   
     );
