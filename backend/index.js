@@ -14,7 +14,14 @@ const {
   roomAdminJoin,
   roomUserLeave,
   roomDelete,
-  roomUsers
+  roomUsers,
+  getQuestion,
+  answerQuestion,
+  getResults,
+  incrementQuestion,
+  getResultsAnswered,
+  roomAdmin,
+  setTime
 } = require('./utils/room');
 
 const port = 3000;
@@ -68,6 +75,8 @@ io.on('connection', socket => {
   socket.on('joinRoomPlayer', ({ username, room }) => {
     socket.username = username;
     socket.room_name = room;
+    socket.score = 0;
+    socket.correct = false;
     console.log("Player connect: " + username );
 
     const user = roomJoin(socket.id, username, room);
@@ -83,6 +92,40 @@ io.on('connection', socket => {
         users: roomUsers(user.room)
       });
     }
+  });
+  
+  socket.on('start', () => {
+    const users = roomUsers(socket.room_name);
+    if(users.length > 0) {
+      setTime(socket.room_name);
+      io.to(users[0].room).emit('sendQuestion', getQuestion(socket.room_name))
+    }
+  });
+  socket.on('nextQuestion', () => {
+    const users = roomUsers(socket.room_name);
+    if(users.length > 0) {
+      incrementQuestion(socket.room_name);
+      setTime(socket.room_name);
+      io.to(users[0].room).emit('sendQuestion', getQuestion(socket.room_name))
+    }
+  });
+  socket.on('answerQuestion', (ans) => {
+    const adminId = roomAdmin(socket.room_name);
+    const result = answerQuestion(socket.room_name, socket.id, ans.answer);
+    console.log(result);
+    socket.score = result.score;
+    socket.correct = result.correct;
+    io.to(adminId).emit('answeredUsers',getResultsAnswered(socket.room_name));
+  });
+
+  socket.on('seeResults', () => {
+    // getResults(socket.room_name);
+    io.to(socket.id).emit('correctUsers',getResults(socket.room_name));
+    io.to(socket.room_name).emit('question_over');
+  });
+
+  socket.on("getPlayerResults", () => {
+    io.to(socket.id).emit("myAnswer", {score : socket.score , correct : socket.correct});
   });
 
   // Runs when client disconnects
