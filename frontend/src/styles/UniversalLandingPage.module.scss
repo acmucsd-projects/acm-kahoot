@@ -1,56 +1,10 @@
 .topDesignLove {
     position: absolute;
     width: 100%;
-    height: 100%;
+    max-height: 30vh;
     left: 0%;
     right: 0%;
     top: 0%;
-    transform: scale(100%, 100%);
-    //fill: none;
-
-
-    // width: 20vh;
-    // display: flex;
-    // justify-items: center;
-    // align-items: flex-start;
-    // justify-content: stretch;
-    // align-content: flex-start;
-    // align-items: flex-start; 
-    // margin:0;
-    // padding:0;
-    // background-position: left top;
-    // position: relative; 
-    // flex: 1;
-
-    // position: absolute;
-    // height: calc(100vh - 40vh);
-    // left: 0%;
-    // top: 0%;
-
-    // width: 100%;
-    // height: 100%;
-    // max-height: 800px;
-    // object-fit: cover;
-    // transition: transform 300ms cubic-bezier(0.2, 0, 0.2, 1);
- 
-    // display: block;
-    // padding-bottom: 10%;
-    // position: absolute;
-    // top: 0;
-    // left: 0;
-    // width: 100%;
-    // height: auto;
-
-    // height: auto;
-    // background-position: center;
-    // background-repeat: no-repeat;
-    // background-size: cover;
-    // margin: 0;
-    // padding: 0;
-    // display: grid;
-    // height: 100%;
-
-    
     
 }
 
@@ -64,20 +18,13 @@
 
 .nightlineDesignLeft {
     position: absolute;
-    //width: 543.62px;
-    //height: 659px;
     left: 0;
-    //top: 65%;
     bottom: -2%;
 }
 
 .nightlineDesignRight {
     position: absolute;
-    //width: 543.62px;
-    //height: 659px;
-   
     right: 0;
-    //top: 65%;
     bottom: -2%;
 
 
@@ -87,10 +34,6 @@
     position: absolute;
     width: 1087px;
     height: 164px;
-    // left: 177px;
-    // top: 320px;
-    // top: 40%;
-    // vertical-align:middle;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

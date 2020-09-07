@@ -18,14 +18,8 @@ const designs = {
 function UniversalLandingPage() {
     return (
         <div>
-            <div className={landingpagedesign.title }>
-                ACM QUIZTIME
-            </div>
-            
-            <div className={landingpagedesign.topDesignLove }>
-                <img src={designs.top} alt='top design'/>
-            </div>
-            
+
+            <img className={landingpagedesign.topDesignLove } src={designs.top} alt='top design'/>
             
               <div className={landingpagedesign.nightlineDesignLeft }>
                 <img src={designs.nightlineLeft} alt='nightlineLeft'/>
@@ -36,6 +30,10 @@ function UniversalLandingPage() {
 
             <div>
             < TheButtons />
+            </div>
+
+            <div className={landingpagedesign.title }>
+                ACM QUIZTIME
             </div>
 
         </div>
