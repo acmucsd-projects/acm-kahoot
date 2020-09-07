@@ -3,20 +3,20 @@
 .landingpagebutton {
     background: #FFFBFB;
     border-radius: 17px;
-    position: absolute;
+
+    position: relative;
     width: 318px;
     height: 100px;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    //width: 17%;
+    //height: 10%;
+    
+    //top: 60%;
+    //top: 30px;
+    //left: 50%;
+    //transform: translateX(-50%);
 
     color: $text-dark-color;
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 64px;
     text-shadow: 4px 0 0 #aaaaaa;
 }
-
-// .yeetbutton{
-//     width: 318px;
-//     height: 100px;
-// }
