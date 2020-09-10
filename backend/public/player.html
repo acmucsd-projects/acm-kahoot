@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Kahoot</title>
+    </head>
+    <body>
+      <h3>Player Screen</h3>
+      <h3><i class="fas fa-comments"></i> Room Name:</h3>
+      <h2 id="room-id">??????</h2>
+      <h2>Current Players</h2>
+      <ul id="users">
+      </ul>
+
+      <p>answer:</p>
+      <select name="answers" id="answers">
+        <option id="answer1" value="no">no</option>
+        <option id="answer2" value="obviously">obviously</option>
+        <option id="answer3" value="maybe">maybe</option>
+        <option id="answer4" value="sorta">Audi</option>
+      </select>
+      <input id="answer" type="button" value="answer!" onclick="answerQuestion();"/>
+
+      <h2 id="responseStatus">Game not started</h2>
+      <h3 id="score">0</h3>
+      <h3 id="correct">N/A</h3>
+
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
+        integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
+        crossorigin="anonymous"
+      ></script>
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="player.js"></script>
+    </body>
+</html>
