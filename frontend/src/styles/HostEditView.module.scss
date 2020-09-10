@@ -1,3 +1,4 @@
+@import 'scroller';
 @import 'colors';
 
 .HostEditView {
@@ -16,7 +17,7 @@
 }
 
 .header {
-  background-color: $accent-2-color;
+  background-color: $grad-purple-light;
 }
 
 .content {
@@ -25,4 +26,8 @@
   display: grid;
   grid-template-columns: 18% 82%;
   grid-template-rows: auto;
+}
+
+.editor {
+  margin: 0 auto;
 }

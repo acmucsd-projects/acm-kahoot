@@ -3,27 +3,27 @@ import { useHistory } from 'react-router-dom';
 
 import styles from '../styles/DualButton.module.scss';
 
-function Button(props) {
+export default function DualButton({ left, leftTo, right, rightTo, large = false }) {
   const history = useHistory();
 
   function handleClickLeft() {
-    if (props.leftTo) history.push(props.leftTo);
+    if (leftTo) history.push(leftTo);
   }
 
   function handleClickRight() {
-    if (props.rightTo) history.push(props.rightTo);
+    if (rightTo) history.push(rightTo);
   }
+
+  const sizeStyle = large ? styles.large : '';
 
   return (
     <div className={styles.DualButton}>
-      <button className={styles.left} onClick={handleClickLeft}>
-        {props.left}
+      <button className={styles.left + ' ' + sizeStyle} onClick={handleClickLeft}>
+        {left}
       </button>
-      <button className={styles.right} onClick={handleClickRight}>
-        {props.right}
+      <button className={styles.right + ' ' + sizeStyle} onClick={handleClickRight}>
+        {right}
       </button>
     </div>
   );
 }
-
-export default Button;

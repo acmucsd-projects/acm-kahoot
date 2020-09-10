@@ -1,0 +1,38 @@
+@import 'fonts';
+@import 'colors';
+
+.triangle {
+  color: $black;
+  background-color: $orange;
+}
+
+.triangle.disabled {
+  background-color: $orange-a-1;
+}
+
+.star {
+  color: $black;
+  background-color: $blue;
+}
+
+.star.disabled {
+  background-color: $blue-a-1;
+}
+
+.circle {
+  color: $black;
+  background-color: $pink;
+}
+
+.circle.disabled {
+  background-color: $pink-a-1;
+}
+
+.square {
+  color: $black;
+  background-color: $aqua;
+}
+
+.square.disabled {
+  background-color: $aqua-a-1;
+}

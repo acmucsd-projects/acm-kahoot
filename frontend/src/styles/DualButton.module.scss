@@ -24,8 +24,15 @@
   outline: none;
 }
 
+.left,
+.right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .left {
-  width: 100%;
+  width: 50%;
   background-color: transparent;
 }
 
@@ -34,9 +41,14 @@
 }
 
 .right {
+  width: 50%;
   background-color: $magenta;
 }
 
 .right:hover:active {
   background-color: $magenta-dark;
+}
+
+.DualButton button.large {
+  font-size: 4.571rem;
 }

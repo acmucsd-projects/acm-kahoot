@@ -1,17 +1,15 @@
 import React from 'react';
 
 import styles from '../styles/QuestionEditHeader.module.scss';
+import DualButton from '../components/DualButton';
 
-function QuestionEditHeader(props) {
+export default function QuestionEditHeader(props) {
   return (
     <div className={styles.QuestionEditHeader}>
       <input className={styles.titleInput} type='input' placeholder='Enter deck title..' />
-      <div>
-        <button>1</button>
-        <button>2</button>
+      <div className={styles.buttons}>
+        <DualButton left='EXIT' leftTo='/' right='FINISH' rightTo='/' large />
       </div>
     </div>
   );
 }
-
-export default QuestionEditHeader;

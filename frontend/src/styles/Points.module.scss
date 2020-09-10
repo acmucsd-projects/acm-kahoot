@@ -1,0 +1,26 @@
+@import 'colors';
+
+.Points {
+  width: 150px;
+  height: 200px;
+}
+
+.choices {
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+}
+
+.choices button.choice {
+  height: 50px;
+  margin: none;
+  padding: none;
+  border: none;
+  outline: none;
+  border-radius: 100%;
+  background-color: $magenta-dark;
+}
+
+.choices button.choice.selected {
+  background-color: $pink;
+}
