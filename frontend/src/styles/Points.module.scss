@@ -1,4 +1,6 @@
 @import 'colors';
+@import 'fonts';
+@import 'input';
 
 .Points {
   width: 150px;
@@ -12,13 +14,13 @@
 }
 
 .choices button.choice {
+  @extend %button;
   height: 50px;
-  margin: none;
-  padding: none;
-  border: none;
-  outline: none;
   border-radius: 100%;
   background-color: $magenta-dark;
+  color: $white;
+  font-family: $font-text;
+  font-size: $font-sm;
 }
 
 .choices button.choice.selected {

@@ -1,8 +1,11 @@
+@import 'input';
 @import 'colors';
 @import 'fonts';
 
 .DualButton {
+  min-width: min-content;
   height: 100%;
+  overflow: hidden;
   border-radius: 17px;
   display: flex;
   flex-direction: row;
@@ -12,27 +15,25 @@
 }
 
 .DualButton button {
+  @extend %button;
+  min-width: min-content;
   height: 100%;
-  padding: 0 16px;
-  border: 0;
-  border-radius: 17px;
   color: $white;
   font-family: $font-header;
   font-size: 1.8rem;
   text-transform: uppercase;
   text-decoration: none;
-  outline: none;
 }
 
 .left,
 .right {
+  width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .left {
-  width: 50%;
   background-color: transparent;
 }
 
@@ -41,7 +42,6 @@
 }
 
 .right {
-  width: 50%;
   background-color: $magenta;
 }
 
@@ -50,5 +50,5 @@
 }
 
 .DualButton button.large {
-  font-size: 4.571rem;
+  font-size: $font-lg;
 }

@@ -1,21 +1,25 @@
 @import 'colors';
+@import 'input';
+
+$card-width: 216px;
+$card-height: 148px;
 
 .QuestionListCard {
-  height: 150px;
-  margin: 10px 10px;
+  width: $card-width;
+  height: $card-height;
   padding: 10px 10px;
   border-radius: 17px;
   color: $black;
   background-color: #fff;
   font-size: 1.2rem;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   justify-items: center;
   align-items: center;
 }
 
 .icons {
+  margin-right: 8px;
   width: 40px;
   height: 80%;
   display: flex;
@@ -25,7 +29,22 @@
   align-items: center;
 }
 
-.label {
-  width: 100%;
+.question {
+  @extend %button;
+  padding: 0;
+  max-width: 160px;
+  flex: 1;
+  height: 100%;
   font-size: 1.2rem;
+  background-color: transparent;
+  white-space: pre-line;
+  overflow: hidden;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+.question:hover {
+  background-color: #00000017;
 }

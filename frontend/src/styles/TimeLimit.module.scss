@@ -1,3 +1,6 @@
+@import 'colors';
+@import 'input';
+
 .container {
   width: 205px;
   height: 150px;
@@ -16,13 +19,17 @@
   width: 100px;
   height: 100px;
   border-radius: 100%;
-  display: flex;
-  justify-content: center;
-  align-content: center;
 }
 
 .time input {
-  background-color: #fff;
-  border: 0;
-  outline: 0;
+  @extend %number;
+  background-color: $white;
+  font-size: $font-md;
+  text-align: center;
+}
+
+.time input::-webkit-outer-spin-button,
+.time input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

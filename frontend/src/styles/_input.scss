@@ -1,0 +1,41 @@
+@import 'colors';
+@import 'fonts';
+
+%button {
+  padding: 0 16px;
+  border: none;
+  outline: none;
+  border-radius: 17px;
+  font-family: $font-text;
+}
+
+%text {
+  padding: 0 16px;
+  outline: none;
+  border: none;
+  font-family: $font-text;
+}
+
+%text-focused {
+  background-color: $white;
+}
+
+%number {
+  padding: 0 16px;
+  outline: none;
+  border: none;
+  font-family: $font-text;
+}
+
+%textarea {
+  padding: 8px 16px;
+  outline: none;
+  border: none;
+  border-radius: 17px;
+  font-family: $font-text;
+  resize: none;
+}
+
+%textarea-focused {
+  background-color: $white;
+}

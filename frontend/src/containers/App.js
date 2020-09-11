@@ -16,6 +16,7 @@ function App() {
         <Route path="/player" />
 
         <Route path="/host/edit/:id" component={HostEditView}/>
+        <Route exact path="/host/edit/" component={HostEditView}/>
         <Route path="/host/decks" component={DecksView}/>
         <Route path="/host/room/:id" />
         <Route path="/host" component={HostMenuView} />
