@@ -1,0 +1,92 @@
+@import '../../../../../../../../styles/colors';
+
+$card-width: 224px;
+$card-height: 323px;
+$card-minwidth: 180px;
+$card-minheight: 250px;
+
+.card {
+  margin: 0 auto 24px 32px;
+  width: $card-width;
+  height: $card-height;
+  border-radius: 17px;
+  overflow: hidden;
+  color: $black;
+  background-color: $neon;
+  font-size: 1.2rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.question {
+  margin: 0 auto;
+  padding: 8px 0;
+  height: $card-height * 0.38;
+}
+
+.answers {
+  height: 200px;
+  border-radius: 17px;
+}
+
+.center {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.orange {
+  height: 200px;
+  border-radius: 17px;
+  background-color: $orange;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.pink {
+  height: $card-height * 0.46;
+  border-radius: 17px;
+  background-color: $pink;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.blue {
+  height: $card-height * 0.31;
+  border-radius: 17px;
+  background-color: $blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.green {
+  height: $card-height * 0.155;
+  border-radius: 17px;
+  background-color: $aqua;
+}
+
+.overlay {
+  top: -50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: $card-width+50;
+  height: $card-height+50;
+  position: relative;
+  background-color: $black;
+  opacity: 0;
+  transition: opacity 0.1s linear;
+}
+
+.overlay:hover {
+  opacity: 0.5;
+  transition: opacity 0.1s linear;
+}

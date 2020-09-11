@@ -1,0 +1,35 @@
+@import '../../../../../../styles/colors';
+@import '../../../../../../styles/input';
+
+.container {
+  width: 205px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}
+
+.time {
+
+}
+
+.timeInput {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+}
+
+.time input {
+  @extend %number;
+  background-color: $white;
+  font-size: $font-md;
+  text-align: center;
+}
+
+.time input::-webkit-outer-spin-button,
+.time input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
