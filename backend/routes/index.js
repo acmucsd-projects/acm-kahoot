@@ -19,7 +19,7 @@ router.get('/packs/names',  function (req, res){
         } 
         let names = [];
         for (pac of p) {
-            names.push([pac.name, pac.description]);
+            names.push([pac.name, pac.description, pac._id]);
         }
         res.send(names);
     })
@@ -42,7 +42,6 @@ router.get('/packs/:_id',  function (req, res){
 
 /* POST packs. */
 router.post('/packs',  function (req, res){
-
     let questionsId = [];
     // create pack
     const pack1 = new Pack({
@@ -89,7 +88,7 @@ router.post('/packs',  function (req, res){
         });
         
     })
-    res.redirect("/");
+    res.json({});
 });
 
 

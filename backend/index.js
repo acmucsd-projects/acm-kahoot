@@ -4,6 +4,7 @@ const indexRouter = require('./routes/index');
 const mongoose = require("mongoose");
 const express = require("express");
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const path = require('path');
 const http = require('http');
@@ -48,6 +49,12 @@ mongoose.set('useCreateIndex', true);
 
 const server = http.createServer(app);
 const io = socketio(server);
+
+app.use(
+  cors({
+    origin: "http://localhost:3001", // restrict calls to those this address
+  })
+);
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());

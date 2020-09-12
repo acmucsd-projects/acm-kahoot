@@ -98,7 +98,7 @@ paths:
             type: "array"
             items:
               "type": "string"
-            example: [["Cat Pack", "this is a cat question pack"],["Dog Pack", "this is a dog question pack"]]
+            example: [["Cat Pack", "this is a cat question pack", "5f5cfd9f06cbba23c81affe3"],["Dog Pack", "this is a dog question pack", "5f5cfd9f06cbba23c81affe5"]]
 
               
         "400":
