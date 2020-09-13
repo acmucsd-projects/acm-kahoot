@@ -22,7 +22,8 @@ const {
   incrementQuestion,
   getResultsAnswered,
   roomAdmin,
-  setTime
+  setTime,
+  setQuestionPack
 } = require('./utils/room');
 
 const port = 3000;
@@ -101,19 +102,29 @@ io.on('connection', socket => {
     }
   });
   
-  socket.on('start', () => {
+  socket.on('start', (pack) => {
     const users = roomUsers(socket.room_name);
-    if(users.length > 0) {
-      setTime(socket.room_name);
-      io.to(users[0].room).emit('sendQuestion', getQuestion(socket.room_name))
-    }
+    const p = pack.q;
+    setQuestionPack(socket.room_name,p).then(()=> {
+        if(users.length > 0) {
+          setTime(socket.room_name);
+          getQuestion(socket.room_name).then((questio)=> {
+            io.to(users[0].room).emit('sendQuestion', questio);
+          });
+        }
+      }
+    )
+    console.log(p)
+    
   });
   socket.on('nextQuestion', () => {
     const users = roomUsers(socket.room_name);
     if(users.length > 0) {
       incrementQuestion(socket.room_name);
       setTime(socket.room_name);
-      io.to(users[0].room).emit('sendQuestion', getQuestion(socket.room_name))
+      getQuestion(socket.room_name).then((questio)=> {
+        io.to(users[0].room).emit('sendQuestion', questio);
+      });
     }
   });
   socket.on('answerQuestion', (ans) => {

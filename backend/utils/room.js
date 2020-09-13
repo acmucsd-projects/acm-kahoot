@@ -1,3 +1,4 @@
+const http = require("http");
 const rooms = [];
 
 // Creates new room
@@ -49,9 +50,14 @@ const roomCreate = (id, username, room) => {
   rooms.push(newroom);
   return rooms;
 }
-
+const setQuestionPack = async (room, questions) => {
+  const index = rooms.findIndex(single_room => single_room.name === room);
+  if(questions.length > 0) {
+    rooms[index].questions = questions;
+  }
+}
 // gets question ret question obj
-const getQuestion = (room) => {
+const getQuestion = async (room) => {
   const index = rooms.findIndex(single_room => single_room.name === room);
   // question is over the amount of questions
   if(rooms[index].questionNum + 1 > rooms[index].questions.length) {
@@ -62,7 +68,27 @@ const getQuestion = (room) => {
     user.correct = false;
     user.answered = false;
   }); 
-  return rooms[index].questions[rooms[index].questionNum];
+  if(rooms[index].questions[rooms[index].questions] != undefined) {
+    return rooms[index].questions[rooms[index].questionNum];
+  }
+  else {
+    const query = rooms[index].questions[rooms[index].questionNum];
+    const url = "http://localhost:3000/questions/" + query;
+    
+    let promise = new Promise((res,rej) => {
+      http.get(url, function(response) {
+        console.log(response.statusCode);
+        response.on("data", function(data) {
+            const questionData = JSON.parse(data);
+            console.log(questionData);
+            rooms[index].questions[0] = questionData;
+            res (questionData);
+        });
+      })
+    });
+    let result = await promise;
+    return result;
+  }
 }
 // gets question ret question obj
 const incrementQuestion = (room) => {
@@ -83,10 +109,8 @@ const answerQuestion = (room,id,answer) => {
   }
 
   const user = rooms[index].users.filter((user)=>user.id==id);
-  user[0].correct = (rooms[index].questions[rooms[index].questionNum].answer == answer);
+  user[0].correct = (rooms[index].questions[0].answer == answer);
   if(user[0].correct) {
-    console.log("room " + rooms[index].startTime);
-    console.log("date " + Date.now());
     user[0].score += rooms[index].totalTime * 1000 - (Date.now() - rooms[index].startTime);
   }
   user[0].answered = true;
@@ -221,5 +245,6 @@ module.exports = {
   incrementQuestion,
   getResultsAnswered,
   roomAdmin,
-  setTime
+  setTime,
+  setQuestionPack
 };

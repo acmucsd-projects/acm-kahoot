@@ -1,6 +1,7 @@
 const userList = document.getElementById('users');
 const correctUserList = document.getElementById('correctUsers');
 const answeredUsersList = document.getElementById('answeredUsers');
+const questionList = document.getElementById('questionList');
 const roomID = document.getElementById('room-id');
 const countdown = document.getElementById('countdown');
 
@@ -10,18 +11,45 @@ const { username, room } = Qs.parse(location.search, {
 
 const socket = io();
 
-function start() {
-  socket.emit('start');
+
+function start(packId) {
+  console.log(packId)
+  async function getData(url = '', data = {}) {
+    // Default options are marked with *
+    const response = await fetch(url);
+    return response.json(); // parses JSON response into native JavaScript objects
+  }
+  
+  let u = 'http://localhost:3000/packs/'+packId;
+  getData(u, { })
+    .then(data => {
+      let q = data.questions
+      socket.emit('start',{q});
+    });
   questionTimer(15);
 }
 function nextQuestion() {
   socket.emit('nextQuestion');
-  //correctUserList.innerHTML = ``;
   answeredUsersList.innerHTML = ``;
+  clearTime();
   questionTimer(15);
 }
 function seeResults() {
   socket.emit('seeResults');
+}
+function getQuestions() {
+  async function getData(url = '', data = {}) {
+    // Default options are marked with *
+    const response = await fetch(url);
+    return response.json(); // parses JSON response into native JavaScript objects
+  }
+  getData('http://localhost:3000/packs/names', { })
+    .then(data => {
+      questionList.innerHTML = `
+        ${data.map(question => `<li>
+        ${question[0]} <input id=${question[0]} type="button" value="Start Game!" onclick="start(\'${question[2]}\');"/>
+        </li>`).join('')}`;
+    });
 }
 
 // Join chatroom
@@ -29,6 +57,7 @@ socket.emit('joinRoomAdmin', { username, room });
 
 // sends question
 socket.on('sendQuestion',(question) => {
+  console.log(question)
   if(question != -1) {
     document.getElementById('question').innerHTML = question.question;
     document.getElementById('answer1').innerHTML = question.answer;
@@ -42,6 +71,7 @@ socket.on('sendQuestion',(question) => {
     document.getElementById('answer2').innerHTML = "";
     document.getElementById('answer3').innerHTML = "";
     document.getElementById('answer4').innerHTML = "";
+    clearTime();
   }
 });
 
@@ -99,4 +129,10 @@ const updateTime = () => {
     clearInterval(timer);
     seeResults();
   }
+}
+
+const clearTime = () => {
+  currTime = 0;
+  countdown.innerHTML = currTime;
+  clearInterval(timer);
 }

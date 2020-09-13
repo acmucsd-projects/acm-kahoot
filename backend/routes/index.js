@@ -40,6 +40,21 @@ router.get('/packs/:_id',  function (req, res){
     });
 });
 
+/* GET question by id. */
+router.get('/questions/:_id',  function (req, res){
+    let id = req.params._id;
+    Question.findById(id, function(err,result){
+        if (err) {
+            res.status(400).json(err);
+        } else {
+            if(result != null)
+                res.send(result);
+            else
+                res.send("Invalid"); 
+        }
+    });
+});
+
 /* POST packs. */
 router.post('/packs',  function (req, res){
     let questionsId = [];
