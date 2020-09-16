@@ -1,9 +1,6 @@
 @import 'colors';
 
 .container {
-    // display: grid;
-    // grid-template-rows: [row0-start] 180% [row1-start] 60% [row2-start] auto [end];
-
     position: absolute;
     top: 35%;
     left: 50%;
@@ -12,8 +9,8 @@
 
 .header {
     font-family: 'Roboto Condensed', sans-serif;
-    font-size: 144px;
-    text-shadow: 10px 0 0 #aaaaaa;
+    font-size: 9rem;
+    text-shadow: 0.625rem 0 0 #aaaaaa;
 
     //position: absolute;
     position: relative;
@@ -24,9 +21,28 @@
     transform: translateX(-50%);
     //transform: translate(-50%, -50%);
     white-space: nowrap;
+}
 
-    //grid-row-start: row1-start;
-    //grid-row-end: row2-start;
+.landingpagebutton {
+    background: #FFFBFB;
+    border-radius: 17px;
+
+    position: relative;
+    width: 19.875rem;
+    height: 6.25rem;
+    //width: 17%;
+    //height: 10%;
+    margin: 50px;
+    
+    //top: 60%;
+    //top: 30px;
+    //left: 50%;
+    //transform: translateX(-50%);
+
+    color: $text-dark-color;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 4rem;
+    text-shadow: 0.25rem 0 0 #aaaaaa;
 }
 
 .blobright {
