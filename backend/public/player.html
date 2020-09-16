@@ -13,13 +13,11 @@
       </ul>
 
       <p>answer:</p>
-      <select name="answers" id="answers">
-        <option id="answer1" value="no">no</option>
-        <option id="answer2" value="obviously">obviously</option>
-        <option id="answer3" value="maybe">maybe</option>
-        <option id="answer4" value="sorta">Audi</option>
-      </select>
-      <input id="answer" type="button" value="answer!" onclick="answerQuestion();"/>
+
+      <button onclick="answerQuestion('0')">Option 1</button>
+      <button onclick="answerQuestion('1')">Option 2</button>
+      <button onclick="answerQuestion('2')">Option 3</button>
+      <button onclick="answerQuestion('3')">Option 4</button>
 
       <h2 id="responseStatus">Game not started</h2>
       <h3 id="score">0</h3>

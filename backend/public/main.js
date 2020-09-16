@@ -11,6 +11,8 @@ const { username, room } = Qs.parse(location.search, {
 
 const socket = io();
 
+let counts = [0, 0, 0, 0];
+
 
 function start(packId) {
   console.log(packId)
@@ -19,7 +21,7 @@ function start(packId) {
     const response = await fetch(url);
     return response.json(); // parses JSON response into native JavaScript objects
   }
-  
+
   let u = 'http://localhost:3000/packs/'+packId;
   getData(u, { })
     .then(data => {
@@ -57,13 +59,18 @@ socket.emit('joinRoomAdmin', { username, room });
 
 // sends question
 socket.on('sendQuestion',(question) => {
-  console.log(question)
+  console.log(question);
   if(question != -1) {
-    document.getElementById('question').innerHTML = question.question;
-    document.getElementById('answer1').innerHTML = question.answer;
-    document.getElementById('answer2').innerHTML = question.falseAnswers[0];
-    document.getElementById('answer3').innerHTML = question.falseAnswers[1];
-    document.getElementById('answer4').innerHTML = question.falseAnswers[2];
+    document.getElementById('question').innerHTML = question.result.question;
+    let wrongAns = 0;
+    for (let i = 0; i < 4; i++) {
+      if (i == question.answerIndex) {
+        document.getElementById('answer' + String(i + 1)).innerHTML = question.result.answer;
+      } else {
+        document.getElementById('answer' + String(i + 1)).innerHTML = question.result.falseAnswers[wrongAns];
+        wrongAns++;
+      }
+    }
   }
   else {
     document.getElementById('question').innerHTML = "out of questions";
@@ -73,6 +80,11 @@ socket.on('sendQuestion',(question) => {
     document.getElementById('answer4').innerHTML = "";
     clearTime();
   }
+  counts = [0, 0, 0, 0];
+  document.getElementById('count1').innerHTML = "Answer 1: 0";
+  document.getElementById('count2').innerHTML = "Answer 2: 0";
+  document.getElementById('count3').innerHTML = "Answer 3: 0";
+  document.getElementById('count4').innerHTML = "Answer 4: 0";
 });
 
 // get correct users
@@ -82,11 +94,19 @@ socket.on('correctUsers',(users) => {
   `;
 });
 // get users who have answered
+
 socket.on('answeredUsers',(users) => {
   answeredUsersList.innerHTML = `
     ${users.map(user => `<li>user:${user.username} score:${user.score}</li>`).join('')}
   `;
   console.log(users + ' hello ')
+});
+
+
+socket.on('singleAnswer', (ans) => {
+  counts[ans]++;
+  let answer = parseInt(ans) + 1;
+  document.getElementById('count' + String(answer)).innerHTML = "Answer " + String(ans) + ": " + counts[ans];
 });
 
 // Get room and users

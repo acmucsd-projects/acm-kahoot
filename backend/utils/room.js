@@ -45,7 +45,8 @@ const roomCreate = (id, username, room) => {
     ],
     "startTime": 0,
     "totalTime": 15, // TODO: MAKE SURE TO SET THIS LATER WITH ADDITIONAL ARG
-    "questionNum": 0 
+    "questionNum": 0,
+    "answerIndex": 0
   };
   rooms.push(newroom);
   return rooms;
@@ -67,14 +68,14 @@ const getQuestion = async (room) => {
   rooms[index].users.forEach((user) => {
     user.correct = false;
     user.answered = false;
-  }); 
+  });
   if(rooms[index].questions[rooms[index].questions] != undefined) {
     return rooms[index].questions[rooms[index].questionNum];
   }
   else {
     const query = rooms[index].questions[rooms[index].questionNum];
     const url = "http://localhost:3000/questions/" + query;
-    
+
     let promise = new Promise((res,rej) => {
       http.get(url, function(response) {
         console.log(response.statusCode);
@@ -87,7 +88,8 @@ const getQuestion = async (room) => {
       })
     });
     let result = await promise;
-    return result;
+    rooms[index].answerIndex = Math.floor(Math.random() * 4);
+    return {answerIndex: rooms[index].answerIndex , result};
   }
 }
 // gets question ret question obj
@@ -109,7 +111,9 @@ const answerQuestion = (room,id,answer) => {
   }
 
   const user = rooms[index].users.filter((user)=>user.id==id);
-  user[0].correct = (rooms[index].questions[0].answer == answer);
+  console.log(answer);
+  console.log(rooms[index].answerIndex);
+  user[0].correct = (rooms[index].answerIndex == parseInt(answer));
   if(user[0].correct) {
     user[0].score += rooms[index].totalTime * 1000 - (Date.now() - rooms[index].startTime);
   }

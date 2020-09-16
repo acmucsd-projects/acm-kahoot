@@ -101,7 +101,7 @@ io.on('connection', socket => {
       });
     }
   });
-  
+
   socket.on('start', (pack) => {
     const users = roomUsers(socket.room_name);
     const p = pack.q;
@@ -115,7 +115,7 @@ io.on('connection', socket => {
       }
     )
     console.log(p)
-    
+
   });
   socket.on('nextQuestion', () => {
     const users = roomUsers(socket.room_name);
@@ -133,6 +133,7 @@ io.on('connection', socket => {
     console.log(result);
     socket.score = result.score;
     socket.correct = result.correct;
+    io.to(adminId).emit("singleAnswer", ans.answer);
     io.to(adminId).emit('answeredUsers',getResultsAnswered(socket.room_name));
   });
 
