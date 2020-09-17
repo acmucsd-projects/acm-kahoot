@@ -28,13 +28,11 @@ function start(packId) {
       let q = data.questions
       socket.emit('start',{q});
     });
-  questionTimer(15);
 }
 function nextQuestion() {
   socket.emit('nextQuestion');
   answeredUsersList.innerHTML = ``;
   clearTime();
-  questionTimer(15);
 }
 function seeResults() {
   socket.emit('seeResults');
@@ -58,26 +56,27 @@ function getQuestions() {
 socket.emit('joinRoomAdmin', { username, room });
 
 // sends question
-socket.on('sendQuestion',(question) => {
-  console.log(question);
+socket.on('sendQuestion',(q) => {
+  console.log(q);
   if(question != -1) {
-    document.getElementById('question').innerHTML = question.result.question;
-    let wrongAns = 0;
-    for (let i = 0; i < 4; i++) {
-      if (i == question.answerIndex) {
-        document.getElementById('answer' + String(i + 1)).innerHTML = question.result.answer;
-      } else {
-        document.getElementById('answer' + String(i + 1)).innerHTML = question.result.falseAnswers[wrongAns];
-        wrongAns++;
-      }
-    }
-  }
-  else {
-    document.getElementById('question').innerHTML = "out of questions";
+    document.getElementById('answer0').innerHTML = "";
     document.getElementById('answer1').innerHTML = "";
     document.getElementById('answer2').innerHTML = "";
     document.getElementById('answer3').innerHTML = "";
-    document.getElementById('answer4').innerHTML = "";
+    document.getElementById('question').innerHTML = q.question;
+  
+    for (let i = 0; i < q.answers.length; i++) {
+        document.getElementById('answer' + String(i)).innerHTML = q.answers[i].answer;
+    }
+    questionTimer(q.time);
+    socket.emit('startTime');
+  }
+  else {
+    document.getElementById('question').innerHTML = "out of questions";
+    document.getElementById('answer0').innerHTML = "";
+    document.getElementById('answer1').innerHTML = "";
+    document.getElementById('answer2').innerHTML = "";
+    document.getElementById('answer3').innerHTML = "";
     clearTime();
   }
   counts = [0, 0, 0, 0];

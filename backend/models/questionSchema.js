@@ -1,13 +1,18 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-var questionSchema =  mongoose.Schema({
+
+const questionSchema =  mongoose.Schema({
     name: { type: String, required: true },
     question: { type: String, required: true },
-    answer: { type: String, required: true },
-    falseAnswers : [String]
+    answers: [{
+      answer: String,
+      correct: Boolean
+    }],
+    points: {type: Number, required: true},
+    time: {type: Number, required: true}
   });
 
-var packSchema = mongoose.Schema({
+const packSchema = mongoose.Schema({
   name: { type: String, required: true },
   // questions: [questionSchema],
   questions: [String],

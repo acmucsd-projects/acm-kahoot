@@ -77,8 +77,9 @@ router.post('/packs',  function (req, res){
                 question = new Question({
                     name: i.name,
                     question: i.question,
-                    answer: i.answer,
-                    falseAnswers: i.falseAnswers
+                    answers: i.answers,
+                    points: i.points,
+                    time: i.time
                 });
                 Question.create(question, function(err,result){
                     if(err) return;

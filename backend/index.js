@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 const express = require("express");
 const bodyParser = require('body-parser');
 const cors = require('cors');
-
 const path = require('path');
 const http = require('http');
 const socketio = require('socket.io');
@@ -61,6 +60,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use('/', indexRouter);
 
+// initial connection, join room
 io.on('connection', socket => {
   socket.on('joinRoomAdmin', ({ username, room }) => {
     socket.username = username;
@@ -107,7 +107,6 @@ io.on('connection', socket => {
     const p = pack.q;
     setQuestionPack(socket.room_name,p).then(()=> {
         if(users.length > 0) {
-          setTime(socket.room_name);
           getQuestion(socket.room_name).then((questio)=> {
             io.to(users[0].room).emit('sendQuestion', questio);
           });
@@ -121,12 +120,16 @@ io.on('connection', socket => {
     const users = roomUsers(socket.room_name);
     if(users.length > 0) {
       incrementQuestion(socket.room_name);
-      setTime(socket.room_name);
       getQuestion(socket.room_name).then((questio)=> {
         io.to(users[0].room).emit('sendQuestion', questio);
       });
     }
   });
+
+  socket.on('startTime', () =>{
+    setTime(socket.room_name);
+  });
+
   socket.on('answerQuestion', (ans) => {
     const adminId = roomAdmin(socket.room_name);
     const result = answerQuestion(socket.room_name, socket.id, ans.answer);

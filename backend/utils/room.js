@@ -1,7 +1,7 @@
 const http = require("http");
 const rooms = [];
-
-// Creates new room
+const grace = 4000;
+// Creates new room and room vars
 const roomCreate = (id, username, room) => {
   newroom = {
     "count": 1,
@@ -11,42 +11,10 @@ const roomCreate = (id, username, room) => {
       "username": username
     },
     "users":[],
-    "questions": [
-      {
-        "name": "question1",
-        "question": "are cats evil?",
-        "answer": "no",
-        "falseAnswers": [
-          "obviously",
-          "maybe",
-          "sorta"
-        ]
-      },
-      {
-        "name": "question2",
-        "question": "are cats amazing?",
-        "answer": "obviously",
-        "falseAnswers": [
-          "nope",
-          "haha, no way!",
-          "no"
-        ]
-      },
-      {
-        "name": "question3",
-        "question": "how are you doing today?",
-        "answer": "well",
-        "falseAnswers": [
-          "yes",
-          "no!",
-          "haha"
-        ]
-      }
-    ],
+    "questions": [],
     "startTime": 0,
-    "totalTime": 15, // TODO: MAKE SURE TO SET THIS LATER WITH ADDITIONAL ARG
+    //"totalTime": 15, Will be set during pack creation
     "questionNum": 0,
-    "answerIndex": 0
   };
   rooms.push(newroom);
   return rooms;
@@ -69,28 +37,24 @@ const getQuestion = async (room) => {
     user.correct = false;
     user.answered = false;
   });
-  if(rooms[index].questions[rooms[index].questions] != undefined) {
-    return rooms[index].questions[rooms[index].questionNum];
-  }
-  else {
-    const query = rooms[index].questions[rooms[index].questionNum];
-    const url = "http://localhost:3000/questions/" + query;
+  const query = rooms[index].questions[rooms[index].questionNum];
+  const url = "http://localhost:3000/questions/" + query;
 
-    let promise = new Promise((res,rej) => {
-      http.get(url, function(response) {
-        console.log(response.statusCode);
-        response.on("data", function(data) {
-            const questionData = JSON.parse(data);
-            console.log(questionData);
-            rooms[index].questions[0] = questionData;
-            res (questionData);
-        });
-      })
-    });
+  let promise = new Promise((res,rej) => {
+    http.get(url, function(response) {
+      console.log(response.statusCode);
+      response.on("data", function(data) {
+          const questionData = JSON.parse(data);
+          console.log(questionData);
+          rooms[index].questions[0] = questionData;
+          res (questionData);
+      });
+    })
+  });
     let result = await promise;
-    rooms[index].answerIndex = Math.floor(Math.random() * 4);
-    return {answerIndex: rooms[index].answerIndex , result};
-  }
+    // shuffle array  
+    result.answers.sort(() => Math.random() - 0.5);
+    return result;
 }
 // gets question ret question obj
 const incrementQuestion = (room) => {
@@ -111,11 +75,15 @@ const answerQuestion = (room,id,answer) => {
   }
 
   const user = rooms[index].users.filter((user)=>user.id==id);
-  console.log(answer);
-  console.log(rooms[index].answerIndex);
-  user[0].correct = (rooms[index].answerIndex == parseInt(answer));
+  user[0].correct = (rooms[index].questions[0].answers[parseInt(answer)].correct == true);
   if(user[0].correct) {
-    user[0].score += rooms[index].totalTime * 1000 - (Date.now() - rooms[index].startTime);
+    let scaledTime = (Date.now() - rooms[index].startTime - grace) / (rooms[index].questions[0].time * 1000);
+    if (scaledTime < 0) {
+      user[0].score += rooms[index].questions[0].points;
+    }
+    else {
+      user[0].score += Math.floor(rooms[index].questions[0].points * (1 - scaledTime));
+    }
   }
   user[0].answered = true;
   return {correct: user[0].correct, score: user[0].score};
@@ -129,9 +97,10 @@ const getResults = (room) => {
   usersA.sort((a, b) => {
     return b.score - a.score;
   });
-  // reset correct
+  // reset correct & answered
   for(users in rooms[index]) {
     users.correct = false;
+    users.answered = false;
   }
   return usersA;
 }
