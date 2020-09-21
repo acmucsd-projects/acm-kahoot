@@ -1,8 +1,8 @@
-var express = require('express');
-var path = require('path');
-var router = express.Router();
+const express = require('express');
+const path = require('path');
+const router = express.Router();
 const mongoose = require("mongoose");
-var {questionSchema,packSchema} = require("../models/questionSchema");
+const {questionSchema,packSchema} = require("../models/questionSchema");
 
 // name of the collection Pack(s)
 const Pack = mongoose.model("pack", packSchema);
@@ -22,6 +22,18 @@ router.get('/packs/names',  function (req, res){
             names.push([pac.name, pac.description, pac._id]);
         }
         res.send(names);
+    })
+});
+
+/* GET names of questions as an array */
+router.get('/questions',  function (req, res){
+    Question.find({}, function(err,p) {
+        if (err) {
+            res.status(400).json(err);
+        } 
+        else {
+            res.send(p);
+        }
     })
 });
 

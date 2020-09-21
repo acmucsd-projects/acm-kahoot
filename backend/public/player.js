@@ -2,6 +2,7 @@ const userList = document.getElementById('users');
 const roomID = document.getElementById('room-id');
 const score = document.getElementById('score');
 const correct = document.getElementById('correct');
+const difference = document.getElementById('difference');
 const response = document.getElementById('responseStatus');
 
 const { username, room } = Qs.parse(location.search, {
@@ -9,6 +10,7 @@ const { username, room } = Qs.parse(location.search, {
 });
 
 const socket = io();
+let currentPoints = 0;
 
 // answer
 const answerQuestion = (answer) => {
@@ -24,7 +26,10 @@ socket.on('question_over', () => {
 
 socket.on('myAnswer', (data) => {
   correct.innerHTML = data.correct;
+  difference.innerHTML = data.score - currentPoints;
   score.innerHTML = data.score;
+
+  currentPoints = data.score;
 });
 
 // answers question

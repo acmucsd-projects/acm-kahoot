@@ -148,6 +148,7 @@ io.on('connection', socket => {
 
   socket.on("getPlayerResults", () => {
     io.to(socket.id).emit("myAnswer", {score : socket.score , correct : socket.correct});
+    socket.correct = false;
   });
 
   // Runs when client disconnects

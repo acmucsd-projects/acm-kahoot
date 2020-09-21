@@ -11,6 +11,10 @@ const { username, room } = Qs.parse(location.search, {
 
 const socket = io();
 
+let answerCount = 0;
+let playerCount = 0;
+
+
 let counts = [0, 0, 0, 0];
 
 
@@ -32,9 +36,9 @@ function start(packId) {
 function nextQuestion() {
   socket.emit('nextQuestion');
   answeredUsersList.innerHTML = ``;
-  clearTime();
 }
 function seeResults() {
+  clearTime();
   socket.emit('seeResults');
 }
 function getQuestions() {
@@ -57,6 +61,9 @@ socket.emit('joinRoomAdmin', { username, room });
 
 // sends question
 socket.on('sendQuestion',(q) => {
+  answerCount = 0;
+  document.getElementById('userCount').innerHTML = "Number of Answers Recieved: " + String(answerCount);
+
   console.log(q);
   if(question != -1) {
     document.getElementById('answer0').innerHTML = "";
@@ -101,15 +108,21 @@ socket.on('answeredUsers',(users) => {
   console.log(users + ' hello ')
 });
 
-
 socket.on('singleAnswer', (ans) => {
   counts[ans]++;
+  answerCount++;
+  document.getElementById('userCount').innerHTML = "Number of Answers Recieved: " + String(answerCount);
+  if (answerCount == playerCount) {
+    seeResults();
+  }
+
   let answer = parseInt(ans) + 1;
-  document.getElementById('count' + String(answer)).innerHTML = "Answer " + String(ans) + ": " + counts[ans];
+  document.getElementById('count' + String(answer)).innerHTML = "Answer " + String(parseInt(ans) + 1) + ": " + counts[ans];
 });
 
 // Get room and users
 socket.on('roomUsers', ({ room, users }) => {
+  playerCount = users.length;
   outputRoomID(room);
   outputUsers(users);
 });
