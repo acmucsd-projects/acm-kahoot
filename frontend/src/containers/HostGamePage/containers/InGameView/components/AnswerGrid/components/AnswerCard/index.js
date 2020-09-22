@@ -1,10 +1,10 @@
 import React from 'react';
 
-import styles from '../styles/AnswerCard.module.scss';
-import triangleImg from '../assets/triangle.svg';
-import starImg from '../assets/star.svg';
-import squareImg from '../assets/square.svg';
-import circleImg from '../assets/circle.svg';
+import styles from './styles.module.scss';
+import triangleImg from '../../../../../../assets/triangle.svg';
+import starImg from '../../../../../../assets/star.svg';
+import squareImg from '../../../../../../assets/square.svg';
+import circleImg from '../../../../../../assets/circle.svg';
 
 const shapeImages = {
   triangle: triangleImg,
@@ -13,7 +13,7 @@ const shapeImages = {
   circle: circleImg,
 }
 
-function AnswerCard(props) {
+export default function AnswerCard(props) {
   return (
     <div className={`${styles.AnswerCard} ${styles[props.shape]} ${props.disabled && styles.disabled}`}>
       <img
@@ -27,5 +27,3 @@ function AnswerCard(props) {
     </div>
   );
 }
-
-export default AnswerCard;

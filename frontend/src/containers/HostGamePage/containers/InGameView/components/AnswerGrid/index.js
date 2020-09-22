@@ -1,9 +1,9 @@
 import React from 'react';
 
-import styles from '../styles/AnswerGrid.module.scss';
-import AnswerCard from '../components/AnswerCard';
+import styles from './styles.module.scss';
+import AnswerCard from './components/AnswerCard';
 
-function AnswerGrid(props) {
+export default function AnswerGrid() {
   return (
     <div className={styles.AnswerGrid}>
       <AnswerCard shape='triangle' />
@@ -13,5 +13,3 @@ function AnswerGrid(props) {
     </div>
   );
 }
-
-export default AnswerGrid;

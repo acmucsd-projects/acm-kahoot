@@ -1,5 +1,5 @@
-@import 'colors';
-@import 'answer';
+@import '../../../../styles/colors';
+@import '../../../../styles/answer';
 
 .QuestionCard {
   width: 88vw;
@@ -19,14 +19,14 @@
 }
 
 .default {
-  background-color: $accent-color;
+  background-color: $neon;
 }
 
 .number {
   width: 100px;
   height: 100px;
   border-radius: 100%;
-  background-color: $bg-color;
+  background-color: $purple-very-dark;
   color: #fff;
   display: flex;
   flex-direction: row;
@@ -37,7 +37,7 @@
 }
 
 .label {
-  color: $bg-color;
+  color: $purple-very-dark;
   width: 85%;
 }
 

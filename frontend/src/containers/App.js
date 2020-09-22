@@ -8,7 +8,6 @@ import DecksView from "./DecksView";
 import HostGamePage from "./HostGamePage";
 
 import { Route, Switch } from "react-router-dom";
-import HostGameView from "./HostGameView";
 
 function App() {
   return (
@@ -16,14 +15,10 @@ function App() {
       <Switch>
         <Route path="/player" />
 
-<<<<<<< HEAD
         <Route path="/host/edit/:id" />
         <Route path="/host/decks" component={DecksView}/>
         <Route path="/host/room" component={HostGamePage} />
         <Route path="/host" component={HostMenuView} />
-=======
-        <Route path="/host" component={HostGameView} />
->>>>>>> 257715f... Fix app redirects.
 
         <Route path="/" component={UniversalLandingPage} />
       </Switch>

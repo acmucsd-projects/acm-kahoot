@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-import styles from '../styles/QuestionCard.module.scss';
-import triangleImg from '../assets/triangle.svg';
-import starImg from '../assets/star.svg';
-import squareImg from '../assets/square.svg';
-import circleImg from '../assets/circle.svg';
+import styles from './styles.module.scss';
+import triangleImg from '../../../../assets/triangle.svg';
+import starImg from '../../../../assets/star.svg';
+import squareImg from '../../../../assets/square.svg';
+import circleImg from '../../../../assets/circle.svg';
 
 const shapeImages = {
   triangle: triangleImg,
@@ -13,7 +13,7 @@ const shapeImages = {
   circle: circleImg,
 }
 
-function QuestionCard(props) {
+export default function QuestionCard(props) {
   const [isVisible, setVisible] = useState(true);
   const [isShort, setShort] = useState(false);
 
@@ -37,5 +37,3 @@ function QuestionCard(props) {
 
   return null;
 }
-
-export default QuestionCard;

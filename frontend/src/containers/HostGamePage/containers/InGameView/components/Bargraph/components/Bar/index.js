@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from '../styles/Bar.module.scss';
+import styles from './styles.module.scss';
 
 function Bar(props) {
   return (

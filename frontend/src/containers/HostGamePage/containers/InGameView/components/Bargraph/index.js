@@ -1,9 +1,9 @@
 import React from 'react';
 
-import styles from '../styles/BarGraph.module.scss';
-import Bar from './Bar';
+import styles from './styles.module.scss';
+import Bar from './components/Bar';
 
-function BarGraph(props) {
+export default function BarGraph() {
   return (
     <div className={styles.BarGraph}>
       <Bar shape='triangle' count='20' />
@@ -13,5 +13,3 @@ function BarGraph(props) {
     </div>
   );
 }
-
-export default BarGraph;
