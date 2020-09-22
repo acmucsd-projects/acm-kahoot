@@ -12,7 +12,7 @@ function LandingPage() {
             <img className={styles.blobright} src={BlobRight} alt="" />
             <div className={styles.container}>
                 <div className={styles.header}>ACM QUIZTIME</div>
-                <Button variant="landingpagebutton" label='PLAY' />
+                <Button variant={styles.landingpagebutton} label='PLAY' />
             </div>
         </div>
     );
