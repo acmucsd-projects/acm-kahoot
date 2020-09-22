@@ -1,7 +1,7 @@
 import React from 'react';
 
-import styles from '../styles/DeckList.module.scss';
-import DeckCard from './DeckCard';
+import styles from './styles.module.scss';
+import DeckCard from './components/DeckCard';
 
 export default function DeckList({ packs = [] }) {
   return (

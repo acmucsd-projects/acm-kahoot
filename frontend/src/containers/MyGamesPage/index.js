@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-import styles from '../styles/DecksView.module.scss';
-import { getPacks } from '../util/api';
-import DeckList from '../components/DeckList';
+import styles from './styles.module.scss';
+import { getPacks } from '../../util/api';
+import DeckList from './components/DeckList';
 
-export default function DecksView() {
+export default function MyGamesPage() {
   const [packs, setPacks] = useState([]);
 
   useEffect(() => {

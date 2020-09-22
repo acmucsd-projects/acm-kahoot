@@ -1,7 +1,7 @@
 import React from 'react';
 
-import styles from '../styles/DeckCard.module.scss';
-import DualButton from '../components/DualButton';
+import styles from './styles.module.scss';
+import DualButton from '../../../../../../components/DualButton';
 
 export default function DeckCard({ id, name }) {
   return (
