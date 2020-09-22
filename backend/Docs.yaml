@@ -1,0 +1,236 @@
+swagger: "2.0"
+info:
+  description: "API for ACM Quiztime Questions."
+  version: "1.0.0"
+  title: "ACM Quiztime"
+host: "url"
+basePath: "/url"
+tags:
+- name: "Questions"
+  description: "Example questions"
+# - name: "store"
+#   description: "Access to Petstore orders"
+schemes:
+- "https"
+- "http"
+paths:
+  /packs/{id}:
+    get:
+      tags:
+      - "Questions"
+      summary: "Returns specific pack name and description"
+      description: "Returns pack names and descriptions"
+      operationId: "getPack"
+      produces:
+      - "application/json"
+      parameters: 
+        - name: "id"
+          in: "path"
+          description: "ID of the pack that needs to be got"
+          required: true
+          type: "integer"
+          minimum: 1.0
+          format: "int64"
+      responses:
+        "200":
+          description: "successful operation *returns json model of pack"
+          schema:
+            type: object
+            properties:
+              questions:
+                type: "array"
+                items:
+                  "type": "string"
+                example: ["5f41bfab5665df30f03026b3", "5f41bfab5665df30f03026b2", "5f41bfab5665df30f03026b1"]
+              _id:
+                type: "string"
+                example: "5f41bfab5665df30f03026b0"
+              name:
+                type: "string"
+                example: "Specifically Cat Questions"
+              description:
+                type: "string"
+                example: "this is a cat question pack"
+              __v:
+                type: "integer"
+                example: 0
+        "400":
+          description: "Invalid"
+    delete:
+      tags:
+      - "Questions"
+      summary: "Deletes the pack"
+      description: "Deletes the pack, checks if any questions in the pack are being referenced by other packs, if not they will be deleted as well."
+      operationId: "deletePack"
+      produces:
+      - "application/json"
+      parameters: 
+        - name: "id"
+          in: "path"
+          description: "ID of the pack that needs to be got"
+          required: true
+          type: "integer"
+          minimum: 1.0
+          format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          # schema:
+          #   type: object
+          #   properties:
+          #     _id:
+          #       type: "string"
+          #       example: "5f41bfab5665df30f03026b0"
+        "400":
+          description: "Invalid"
+  /packs/names:
+    get:
+      tags:
+      - "Questions"
+      summary: "Returns all pack names & descriptions"
+      description: "Returns all pack names & description"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              "type": "string"
+            example: [["Cat Pack", "this is a cat question pack"],["Dog Pack", "this is a dog question pack"]]
+
+              
+        "400":
+          description: "Invalid"
+
+  /packs:
+    post:
+      tags:
+      - "Questions"
+      summary: "Creates a question Pack"
+      description: "Provide the "
+      operationId: "getInventory"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "successful operation - either 'success' or 'packs does not exist'"
+          schema:
+            type: object
+            properties:
+              name:
+                type: "string"
+                example: "Cats?"
+              description:
+                type: "string"
+                example: "meow!"
+              questions:
+                type: "array"
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: "string"
+                    question:
+                      type: "string"
+                    answer:
+                      type: "string"
+                    falseAnswers:
+                      type: "array"
+                      items:
+                        "type": "string"
+                example:
+                  - name: "question1"
+                    question: "are cats evil?"
+                    answer: "no"
+                    falseAnswers: ["obviously", "maybe", "sorta"]
+                  - name: "question2"
+                    question: "are cats amazing?"
+                    answer: "obviously"
+                    falseAnswers: ["nope", "haha, no way!", "no"]
+    delete:
+      tags:
+      - "Questions"
+      summary: "Deletes questions within a pack"
+      description: "Deletes the question reference in the pack and if no other packs reference it, it will be deleted. Below shows the model of what to send in the request body."
+      operationId: "deleteQuestionInPack"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: object
+            properties:
+              _id:
+                type: "string"
+                example: "5f41bfab5665df30f03026b0"
+              questions:
+                type: "array"
+                items:
+                  "type": "string"
+                example: ["5f41bfab5665df30f03026b3", "5f41bfab5665df30f03026b2", "5f41bfab5665df30f03026b1"]
+        "400":
+          description: "Invalid"
+                        
+securityDefinitions:
+  petstore_auth:
+    type: "oauth2"
+    authorizationUrl: "http://petstore.swagger.io/oauth/dialog"
+    flow: "implicit"
+    scopes:
+      write:pets: "modify pets in your account"
+      read:pets: "read your pets"
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+definitions:
+  questionSchema:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      question:
+        type: "string"
+      answer:
+        type: "string"
+      falseAnswers:
+        type: array
+        items:
+          type: "string"
+    required:           
+      - name
+      - question
+      - answer
+    xml: 
+      name: "questionSchema"
+  packSchema:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      questions:
+        type: "array"
+        items:
+          type: "string"
+      description:
+        type: "string"
+
+    xml:
+      name: "packSchema"
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      type:
+        type: "string"
+      message:
+        type: "string"
+# externalDocs:
+#   description: "Find out more about Swagger"
+#   url: "http://swagger.io"
