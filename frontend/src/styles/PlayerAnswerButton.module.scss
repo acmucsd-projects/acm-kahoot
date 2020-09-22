@@ -1,55 +1,7 @@
-.answerButtonBlueStar {
-    position: absolute;
-    width: 500px;
-    height: 300px;
-    left: 745px;
-    top: 125px;
-    background: #01FFF4;
-    border-radius: 17px;
-    color:  #27163F;
-    border-width: 0px;
-}
-
-.answerButtonPinkCircle {
-    position: absolute;
-    width: 500px;
-    height: 300px;
-    left: 195px;
-    top: 475px;
-
-    background: #FF1493;
-    border-radius: 17px;
-    border-width: 0px;
-}
-
-.answerButtonGreenSquare {
-    position: absolute;
-    width: 500px;
-    height: 300px;
-    left: 745px;
-    top: 475px;
-
-    background: #16FFBD;
-    border-radius: 17px;
-    border-width: 0px;
-}
-
-.answerButtonOrangeTriangle {
-    position: absolute;
-    width: 500px;
-    height: 300px;
-    left: 195px;
-    top: 125px;
-
-    background: #F9BD25;
-    border-radius: 17px;
-    border-width: 0px;
-}
-
 .answerButtonBlueStarflex {
     position: flex;
-    width: 500px;
-    height: 300px;
+    width: 35vw;
+    height: 35vh;
   
     background: #01FFF4;
     border-radius: 17px;
@@ -65,8 +17,8 @@
 }
 .answerButtonPinkCircleflex {
     position: flex;
-    width: 500px;
-    height: 300px;
+    width: 35vw;
+    height: 35vh;
 
     background: #FF1493;
     border-radius: 17px;
@@ -82,8 +34,8 @@
 
 .answerButtonGreenSquareflex {
     position: flex;
-    width: 500px;
-    height: 300px;
+    width: 35vw;
+    height: 35vh;
     
 
     background: #16FFBD;
@@ -101,8 +53,8 @@
 .answerButtonOrangeTriangleflex {
     position: flex;
 
-    height: 300px;
-    width: 500px;
+    height: 35vh;
+    width: 35vw;
   
 
     background: #F9BD25;

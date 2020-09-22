@@ -6,6 +6,8 @@ import starImg from '../assets/star.svg';
 import squareImg from '../assets/square.svg';
 import circleImg from '../assets/circle.svg';
 
+import { Link } from 'react-router-dom';
+
 
 const shapeImages = {
     triangle: triangleImg,
@@ -15,23 +17,39 @@ const shapeImages = {
   };
 
 function PlayerAnswerButton(){
+
+    const setWaitingColor = (color) => {
+        localStorage.setItem("answerColor", color)
+        
+    }
+
     return (
         <div className={styles.AnswerGrid}> 
-            <button className={styles.answerButtonBlueStarflex } >
-                <img src={shapeImages.star} alt='star'  />
-            </button>
 
-            <button className={styles.answerButtonPinkCircleflex } >
-                <img src={shapeImages.circle} alt='circle'  />
-            </button>
+            <Link to="/answered">
+                <button className={styles.answerButtonBlueStarflex } onClick={() => setWaitingColor("blue")} >
+                    <img src={shapeImages.star} alt='star'  />
+                </button>
+            </Link>
 
-            <button className={styles.answerButtonGreenSquareflex } >
-                <img src={shapeImages.square} alt='square'  />
-            </button>
+            <Link to="/answered">
+                <button className={styles.answerButtonPinkCircleflex } onClick={() => setWaitingColor("pink")} >
+                    <img src={shapeImages.circle} alt='circle'  />
+                </button>
+            </Link>
 
-            <button className={styles.answerButtonOrangeTriangleflex } >
-                <img src={shapeImages.triangle} alt='triangle'  />
-            </button>
+            <Link to="/answered">
+                <button className={styles.answerButtonGreenSquareflex } onClick={() => setWaitingColor("green")} >
+                    <img src={shapeImages.square} alt='square'  />
+                </button>
+            </Link>
+
+            <Link to="/answered">
+                <button className={styles.answerButtonOrangeTriangleflex } onClick={() => setWaitingColor("orange")} >
+                    <img src={shapeImages.triangle} alt='triangle'  />
+                </button>
+
+            </Link>
        </div> 
 
     )

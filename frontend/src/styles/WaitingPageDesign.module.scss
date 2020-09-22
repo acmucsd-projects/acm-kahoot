@@ -1,0 +1,31 @@
+.centercontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.waitingAsset{
+
+    position: absolute;
+    width: 31.25rem;
+    height: 41.938rem;
+    bottom: -10%;
+
+    //background: #F9BD25;
+    border-radius: 17px;
+
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 48px;
+    line-height: 60px;
+    text-align: center;
+    letter-spacing: 0.1em;
+
+    color: #27163F;
+    padding: 4.375rem;
+
+}
+
+.shapefix{
+    margin: 1.875rem;
+}
