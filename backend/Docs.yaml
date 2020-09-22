@@ -14,6 +14,57 @@ schemes:
 - "https"
 - "http"
 paths:
+  /questions:
+    get:
+      tags:
+      - "Questions"
+      summary: "Returns all questions"
+      description: "Returns all questions with ids, answers, points and time"
+      operationId: "getQuestion"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation *returns json model of pack"
+          schema:
+            type: object
+            properties:
+              answers:
+                type: "array"
+                items:
+                  type: object
+                  properties:
+                    answer:
+                      type: "string"
+                    _id:
+                      type: "string"
+                    correct:
+                      type: "boolean"
+              _id:
+                type: "string"
+              name:
+                type: "string"
+              __v:
+                type: "integer"
+              points:
+                type: "integer"
+              time:
+                type: "integer"
+                
+            example:
+              - name: "question1"
+                question: "are cats evil?"
+                answers: [{"answer":"no","correct":"true"},{"answer":"yes","correct":"false"}]
+                points: 1000
+                time: 20
+                
+              - name: "question2"
+                question: "are cats amazing?"
+                answers: [{"answer":"no","correct":"false"},{"answer":"yes","correct":"true"}]
+                points: 1000
+                time: 20
+        "400":
+          description: "Invalid"
   /packs/{id}:
     get:
       tags:
