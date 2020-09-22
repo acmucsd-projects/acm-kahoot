@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/App.scss';
-import styles from '../styles/LandingPage.module.scss';
+import styles from '../styles/PlayerLandingPage.module.scss';
 import BlobLeft from '../assets/BlobLeft.svg';
 import BlobRight from '../assets/BlobRight.svg';
 import Button from '../components/Button';
