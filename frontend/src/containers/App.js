@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react";
 
 import "../styles/App.scss";
@@ -9,6 +8,7 @@ import DecksView from "./DecksView";
 import HostGamePage from "./HostGamePage";
 
 import { Route, Switch } from "react-router-dom";
+import HostGameView from "./HostGameView";
 
 function App() {
   return (
@@ -16,24 +16,17 @@ function App() {
       <Switch>
         <Route path="/player" />
 
+<<<<<<< HEAD
         <Route path="/host/edit/:id" />
         <Route path="/host/decks" component={DecksView}/>
         <Route path="/host/room" component={HostGamePage} />
         <Route path="/host" component={HostMenuView} />
+=======
+        <Route path="/host" component={HostGameView} />
+>>>>>>> 257715f... Fix app redirects.
 
         <Route path="/" component={UniversalLandingPage} />
       </Switch>
-=======
-import React from 'react';
-import '../styles/App.scss';
-
-import HostGameView from './HostGameView';
-
-function App() {
-  return (
-    <div className='App glow'>
-      <HostGameView />
->>>>>>> 24d7c9a... Display a mock-up of the Host's in-game view.
     </div>
   );
 }
