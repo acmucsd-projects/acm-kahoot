@@ -17,7 +17,7 @@ function App() {
 
         <Route path="/host/edit/:id" />
         <Route path="/host/decks" component={DecksView}/>
-        <Route path="/host/room" component={HostGamePage} />
+        <Route path="/host/room/:id" component={HostGamePage} />
         <Route path="/host" component={HostMenuView} />
 
         <Route path="/" component={UniversalLandingPage} />

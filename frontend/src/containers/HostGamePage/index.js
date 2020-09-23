@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import socketIO from 'socket.io-client';
 
 import styles from './styles.module.scss';
@@ -6,7 +7,6 @@ import LobbyView from './containers/LobbyView';
 import InGameView from './containers/InGameView';
 
 const ENDPOINT = 'http://localhost:3000';
-const INVALID_ROOM = 'already in-use';
 const GameState = {
   Loading: 0,
   Waiting: 1,
@@ -18,7 +18,7 @@ const GameState = {
 let socket;
 
 export default function HostGamePage({ pack = {} }) {
-  const [roomID, setRoomID] = useState(String(Math.floor(Math.random() * 100000)));
+  const { id } = useParams();
   const [users, setUsers] = useState([]);
   const [gameState, setGameState] = useState(GameState.Loading);
 
@@ -27,26 +27,25 @@ export default function HostGamePage({ pack = {} }) {
     socket = socket || socketIO(ENDPOINT);
 
     socket.on('roomUsers', (data) => {
-      setRoomID(data.room);
       setUsers(data.users);
     });
 
     socket.on('invalid', () => {
-      setRoomID(INVALID_ROOM);
+      
     });
 
-    createRoom(roomID);
+    createRoom(id);
     setGameState(GameState.Waiting);
 
     return () => socket.disconnect();
-  }, []);
+  }, [id]);
 
   let content = null;
   switch (gameState) {
     case GameState.Loading:
       break;
     case GameState.Waiting:
-      content = <LobbyView roomID={roomID} users={users} onStartGame={() => startGame(pack)} />;
+      content = <LobbyView roomID={id} users={users} onStartGame={() => startGame(pack)} />;
       break;
     case GameState.Playing:
       content = <InGameView />;
