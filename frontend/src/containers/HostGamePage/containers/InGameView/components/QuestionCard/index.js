@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
 import styles from './styles.module.scss';
-import triangleImg from '../../../../assets/triangle.svg';
-import starImg from '../../../../assets/star.svg';
-import squareImg from '../../../../assets/square.svg';
-import circleImg from '../../../../assets/circle.svg';
+import triangleImg from '../../../../../../assets/triangle.svg';
+import starImg from '../../../../../../assets/star.svg';
+import squareImg from '../../../../../../assets/square.svg';
+import circleImg from '../../../../../../assets/circle.svg';
 
 const shapeImages = {
   triangle: triangleImg,
