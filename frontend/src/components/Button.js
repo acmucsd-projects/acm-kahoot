@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../styles/EnterNicknamePage.module.scss';
 import styles from '../styles/GameCodePage.module.scss';
 
 function Button(props) {

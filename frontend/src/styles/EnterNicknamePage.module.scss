@@ -1,0 +1,73 @@
+@import 'colors';
+
+.leftbox {
+    position: absolute;
+    top: 4%;
+    left: 3%;
+
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 3rem;
+    color: $white;
+}
+
+.rightbox {
+    position: absolute;
+    top: 4%;
+    right: 3%;
+
+    font-family: Roboto Condensed;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 3rem;
+    color: $white;
+}
+
+.container {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+.header {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 6rem;
+    color: $neon;
+
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+.enternicknamepagebutton {
+    background: $purple;
+    border-radius: 17px;
+    border: none;
+
+    position: relative;
+    width: 39.75rem;
+    height: 6.25rem;
+    margin-top: 50px;
+
+    color: $white;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 4rem;
+}
+
+input {
+    background-color: #eee;
+    border: none;
+    color: rebeccapurple;
+    font-size: 4rem;
+    width: 39.75rem;
+    height: 9.9375rem;
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 17px;
+
+    position: relative;
+    margin-top: 100px;
+  }
