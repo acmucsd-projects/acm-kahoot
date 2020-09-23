@@ -1,33 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
-import { getPackByID, postDeck, getQuestions } from '../../util/api';
-import { unpackDeck, packDeck, unpackQuestion } from '../../util/deckTransform';
+import { getQuestions, getPackByID, postPack } from '../../util/api';
 
 import styles from './styles.module.scss';
 import QuestionEditHeader from './containers/Header';
 import QuestionSidebar from './containers/Sidebar';
 import QuestionEditor from './containers/QuestionEditor';
-import MoreQuestions from './containers/Overlay';
+import Overlay from './containers/Overlay';
 import LoadingView from '../LoadingView';
 
-const defaultQuestion = {
-  name: 'Default Question',
-  question: 'New Question',
-  answer: '',
-  falseAnswers: ['', '', ''],
-  // non-standard items
-  time: 20,
-  points: 1000,
-};
-
-const defaultDeck = {
-  name: 'New Deck',
-  description: 'No description.',
-  questions: [
-    {...defaultQuestion},
-  ],
-};
+function getDefaultDeck() {
+  const defaultDeck = {
+    name: 'New Deck',
+    description: 'No description.',
+    questions: [
+      {
+        name: 'Default Question',
+        question: 'New Question',
+        answers: [
+          {
+            answer: '',
+            correct: true,
+          },
+          {
+            answer: '',
+            correct: false,
+          },
+          {
+            answer: '',
+            correct: false,
+          },
+          {
+            answer: '',
+            correct: false,
+          },
+        ],
+        points: 1000,
+        time: 20,
+      },
+    ],
+  };
+  return defaultDeck;
+}
 
 export default function HostEditView() {
   const { id } = useParams();
@@ -35,41 +50,37 @@ export default function HostEditView() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(null);
 
-  const [curDeck, setDeck] = useState({...unpackDeck(defaultDeck)});
+  const [hasOverlay, setOverlay] = useState(false);
+  const [curDeck, setDeck] = useState(getDefaultDeck());
   const [curQuestions, setQuestions] = useState(curDeck.questions);
   const [curQuestion, setQuestion] = useState(curDeck.questions[0]);
-  const [hasOverlay, setOverlay] = useState(false);
   // const [questions, setQuestions] = useState([]);
   const [moreQuestions, setMoreQuestions] = useState(curDeck.questions);
 
   // Fetch curDeck info if we're editing an existing curDeck.
   useEffect(() => {
     if (parseInt(id) >= 0) {
-      getPackByID(id)
-        .then((result) => {
-          setIsLoaded(true);
-          unpackDeck(result);
-          setDeck(result);
-          setQuestion(result.questions[0]);
-        }).catch((err) => {
-          setIsLoaded(true);
-          setError(err);
-        });
+      getPackByID(id).then((result) => {
+        setIsLoaded(true);
+        setDeck(result);
+        setQuestion(result.questions[0]);
+      }).catch((err) => {
+        setIsLoaded(true);
+        setError(err);
+      });
     } else {
       setIsLoaded(true);
     }
 
-    // getQuestions().then((res) => {
-    //   setMoreQuestions(res);
-    // });
+    getQuestions().then((questions) => {
+      setMoreQuestions(questions);
+    });
   }, [id]);
 
   const handleDeckConfirm = () => {
-    packDeck(curDeck);
-
     console.log('Posted a pack.', curDeck);
 
-    postDeck(curDeck).catch((err) => {
+    postPack(curDeck).catch((err) => {
       console.log(err);
     }).then(() => {
       history.push('/host/decks');
@@ -85,14 +96,61 @@ export default function HostEditView() {
   };
 
   const handleNewQuestion = () => {
-    const newQuestion = unpackQuestion({...defaultQuestion});
-    curDeck.questions.push(newQuestion);
+    const defaultQuestion = {
+      name: 'Default Question',
+      question: 'New Question',
+      answers: [
+        {
+          answer: '',
+          correct: true,
+        },
+        {
+          answer: '',
+          correct: false,
+        },
+        {
+          answer: '',
+          correct: false,
+        },
+        {
+          answer: '',
+          correct: false,
+        },
+      ],
+      points: 1000,
+      time: 20,
+    };
+    curDeck.questions.push({...defaultQuestion});
     setQuestions(curDeck.questions);
     setQuestion(curDeck.questions[curDeck.questions.length-1]);
   };
 
   const handleAddExistingQuestion = (question) => {
-    curDeck.questions.push(question);
+    const copyQuestion = {
+      name: question.name,
+      question: question.question,
+      answers: [
+        {
+          answer: question.answers[0].answer,
+          correct: question.answers[0].correct,
+        },
+        {
+          answer: question.answers[1].answer,
+          correct: question.answers[1].correct,
+        },
+        {
+          answer: question.answers[2].answer,
+          correct: question.answers[2].correct,
+        },
+        {
+          answer: question.answers[3].answer,
+          correct: question.answers[3].correct,
+        },
+      ],
+      points: question.points,
+      time: question.time,
+    };
+    curDeck.questions.push(copyQuestion);
     setQuestion(curDeck.questions[curDeck.questions.length-1]);
   }
 
@@ -112,7 +170,7 @@ export default function HostEditView() {
         </div>
         <div className={`${styles.editor}`}>
           {hasOverlay ?
-            <MoreQuestions questions={moreQuestions} onAdd={handleAddExistingQuestion} />
+            <Overlay questions={moreQuestions} onAdd={handleAddExistingQuestion} />
             : <QuestionEditor question={curQuestion} />}
         </div>
       </div>

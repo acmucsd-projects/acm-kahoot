@@ -19,18 +19,18 @@ export default function AnswerEditCard({ shape, answer }) {
   const [isCorrect, setCorrect] = useState(false);
 
   useEffect(() => {
-    setText(answer.text);
-    setCorrect(answer.isCorrect);
+    setText(answer.answer);
+    setCorrect(answer.correct);
   }, [answer]);
 
   const handleChangeText = (e) => {
     setText(e.target.value);
-    answer.text = e.target.value;
+    answer.answer = e.target.value;
   };
 
   const handleChangeCorrect = (isCorrect) => {
     setCorrect(isCorrect);
-    answer.isCorrect = isCorrect;
+    answer.correct = isCorrect;
   };
 
   return (
