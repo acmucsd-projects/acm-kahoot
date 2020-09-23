@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import socketIO from 'socket.io-client';
 
-import styles from '../styles/HostRoomView.module.scss';
-import PlayerList from '../components/PlayerList';
-import Button from '../components/Button';
+import styles from './styles.module.scss';
+import PlayerList from './components/PlayerList';
 
 const ENDPOINT = 'http://localhost:3000';
 const INVALID_ROOM = 'already in-use';
