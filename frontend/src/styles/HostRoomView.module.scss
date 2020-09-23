@@ -28,3 +28,17 @@
   margin: 0 24px 0 0;
   color: $neon;
 }
+
+.start {
+  margin-bottom: -50px;
+  padding: 0 20px;
+  width: 343px;
+  height: 100px;
+  position: relative;
+  border-radius: 17px;
+  background: $purple;
+  color: $white;
+  font-family: $font-text;
+  font-size: 4.2rem;
+  outline: none;
+}
