@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
-import { getQuestions, getPackByID, postPack } from '../../util/api';
+import { getQuestions, getPackByID, postPack, getQuestionByID } from '../../util/api';
 
 import styles from './styles.module.scss';
 import QuestionEditHeader from './containers/Header';
@@ -61,12 +61,16 @@ export default function HostEditView() {
   useEffect(() => {
     if (parseInt(id) >= 0) {
       getPackByID(id).then((result) => {
-        setIsLoaded(true);
+        const questionIDs = result.answers;
+        Promise.all(questionIDs.map(id => getQuestionByID(id)), (questions) => {
+          result.questions = questions;
+        });
         setDeck(result);
         setQuestion(result.questions[0]);
-      }).catch((err) => {
         setIsLoaded(true);
+      }).catch((err) => {
         setError(err);
+        setIsLoaded(true);
       });
     } else {
       setIsLoaded(true);
