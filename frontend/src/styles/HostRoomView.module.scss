@@ -9,12 +9,12 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  justify-items: flex-end;
+  justify-content: flex-start;
   align-items: center;
 }
 
 .code {
+  margin: 48px 0 96px 0;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;

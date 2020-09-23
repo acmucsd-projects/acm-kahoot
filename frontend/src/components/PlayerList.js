@@ -1,17 +1,17 @@
 import React from 'react';
 
 import styles from '../styles/PlayerList.module.scss';
-import List from './List';
 
-export default function PlayerList(props) {
-  const players = [];
-  for (const p of players) {
-    players.push(<div className={styles.player}>{p.username}</div>);
-  }
-
+export default function PlayerList({ players = [] }) {
   return (
-    <List>
-      {players}
-    </List>
+    <div className={styles.container}>
+      <div className={styles.title}>
+        PLAYERS: {players.length}
+      </div>
+      <div className={`${styles.players} ${styles.scroller}`}>
+        {players.map((p, idx) => <div key={idx} className={styles.player}>{p.username}</div>)}
+        {/* {players.map(p => p.username)} */}
+      </div>
+    </div>
   );
 }
