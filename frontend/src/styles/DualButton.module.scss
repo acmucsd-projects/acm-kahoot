@@ -16,6 +16,7 @@
 
 .DualButton button {
   @extend %button;
+  width: 100%;
   min-width: min-content;
   height: 100%;
   color: $white;
@@ -23,6 +24,12 @@
   font-size: 1.8rem;
   text-transform: uppercase;
   text-decoration: none;
+}
+
+.DualButton.vertical {
+  flex-direction: column;
+  justify-content: stretch;
+  white-space: nowrap;
 }
 
 .left,

@@ -1,12 +1,16 @@
-@import '../../../../../../../../styles/colors';
+@import '../../../../../../styles/colors';
 
 $card-width: 224px;
 $card-height: 323px;
 $card-minwidth: 180px;
 $card-minheight: 250px;
 
+.hidden {
+  visibility: collapse;
+}
+
 .card {
-  margin: 0 auto 24px 32px;
+  margin: 6px 16px;
   width: $card-width;
   height: $card-height;
   border-radius: 17px;
@@ -81,12 +85,17 @@ $card-minheight: 250px;
   width: $card-width+50;
   height: $card-height+50;
   position: relative;
-  background-color: $black;
+  background-color: #00000088;
   opacity: 0;
   transition: opacity 0.1s linear;
 }
 
 .overlay:hover {
-  opacity: 0.5;
+  opacity: 1;
   transition: opacity 0.1s linear;
+}
+
+button.addButton {
+  position: relative;
+  top: 50%;
 }
