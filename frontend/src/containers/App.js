@@ -15,8 +15,8 @@ function App() {
         <Route path="/host" />
 
         <Route path="/enter-code" component={GameCodePage}/>
-        
-        <Route path="/enter-nickname" component={EnterNicknamePage}/>
+
+        <Route path="/enter-nickname/:code" component={EnterNicknamePage}/>
 
         <Route path="/" component={UniversalLandingPage} />
       </Switch>

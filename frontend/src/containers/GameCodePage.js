@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/App.scss';
 import styles from '../styles/GameCodePage.module.scss';
 import BlobTopLeft from '../assets/Blob_TopLeft.svg';
@@ -6,8 +6,17 @@ import BlobTopRight from '../assets/Blob_TopRight.svg';
 import BlobBottomLeft from '../assets/Blob_BottomLeft.svg';
 import BlobBottomRight from '../assets/Blob_BottomRight.svg';
 import Button from '../components/Button';
+import { Link } from 'react-router-dom';
 
 function GameCodePage() {
+
+    const [code, setCode] = useState(0);
+
+    let handleChange = event => {
+        setCode(event.target.value);
+        //alert(code);
+    };
+
     return(
         <div>
             <img className={styles.blobtopleft} src={BlobTopLeft} alt="" />
@@ -29,8 +38,19 @@ function GameCodePage() {
                         <input type="text" />
                     </label>
                 </form> */}
-                <input type="text" placeholder="Game Code" size="7=8"></input>
-                <Button variant={styles.gamecodepagebutton} label='ENTER' />
+                <input
+                    type="text"
+                    placeholder="Game Code"
+                    size="7=8"
+                    //onChange={() => setCode(event.target.value)}
+                    onChange={handleChange}>
+                </input>
+                <Link to={"/enter-nickname/" + code}>
+                    <Button
+                        variant={styles.gamecodepagebutton}
+                        label='ENTER'  
+                    />
+                </Link>
             </div>
         </div>
     );
