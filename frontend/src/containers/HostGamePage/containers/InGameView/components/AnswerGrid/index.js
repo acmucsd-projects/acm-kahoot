@@ -6,10 +6,10 @@ import AnswerCard from './components/AnswerCard';
 export default function AnswerGrid({ answers, showAnswer = false }) {
   return (
     <div className={styles.AnswerGrid}>
-      <AnswerCard shape='triangle' label={answers[0].name} />
-      <AnswerCard shape='star' label={answers[1].name} />
-      <AnswerCard shape='circle' label={answers[2].name} />
-      <AnswerCard shape='square' label={answers[3].name} />
+      {!showAnswer || answers[0].correct ? <AnswerCard shape='triangle' label={answers[0].answer} /> : <AnswerCard shape='triangle' label={answers[0].answer} disabled />}
+      {!showAnswer || answers[1].correct ? <AnswerCard shape='star' label={answers[1].answer} /> : <AnswerCard shape='star' label={answers[1].answer} disabled />}
+      {!showAnswer || answers[2].correct ? <AnswerCard shape='circle' label={answers[2].answer} /> : <AnswerCard shape='circle' label={answers[2].answer} disabled />}
+      {!showAnswer || answers[3].correct ? <AnswerCard shape='square' label={answers[3].answer} /> : <AnswerCard shape='square' label={answers[3].answer} disabled />}
     </div>
   );
 }

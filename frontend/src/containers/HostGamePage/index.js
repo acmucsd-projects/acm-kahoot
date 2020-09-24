@@ -18,11 +18,42 @@ const GameState = {
 
 let socket;
 
-export default function HostGamePage({ pack = {} }) {
+const demoPack = {
+  "_id": "5f699637c6f9b141900e0367",
+  "name": "wowiwe",
+  "description": "No description.",
+  "questions": [
+    {
+      "name": "Default Question",
+      "question": "Do you like apples?",
+      "answers": [
+        {
+          'answer': 'Answer 1',
+          'correct': false,
+        },
+        {
+          'answer': 'Answer 2',
+          'correct': true,
+        },
+        {
+          'answer': 'Answer 3',
+          'correct': false,
+        },
+        {
+          'answer': 'Answer 4',
+          'correct': false,
+        },
+      ],
+    },
+  ],
+};
+
+export default function HostGamePage({ pack = demoPack }) {
   const { id } = useParams();
   const [users, setUsers] = useState([]);
   const [gameState, setGameState] = useState(GameState.Loading);
-  const [curQuestion, setQuestion] = useState({});
+  const [countdown, setCountdown] = useState(0);
+  const [curQuestion, setQuestion] = useState(pack.questions[0] || {});
   const [answerData, setAnswerData] = useState([]);
   const [correctAns, setCorrectAns] = useState(0);
 
@@ -47,6 +78,8 @@ export default function HostGamePage({ pack = {} }) {
       const answerData = question.answers.map(ans => 0);
       answerData.push(0);
       setAnswerData(answerData);
+      setCountdown(question.time);
+      const timer = setInterval(updateTime, 1000, [timer]);
       setQuestion(question);
       setGameState(GameState.Playing);
     });
@@ -54,6 +87,9 @@ export default function HostGamePage({ pack = {} }) {
     socket.on('singleAnswer', (numAnswer) => {
       answerData[0]++;  // Increase number of total answers
       answerData[numAnswer]++;
+      if (answerData[0] == users.length) {
+        endQuestion();
+      }
     });
 
     createRoom(id);
@@ -62,9 +98,18 @@ export default function HostGamePage({ pack = {} }) {
     return () => socket.disconnect();
   }, [id]);
 
+  function updateTime(timer) {
+    setCountdown(countdown - 1);
+    if (countdown <= 0) {
+      clearInterval(timer);
+      endQuestion();
+    }
+  }
+
   const handleStartGame = () => {
     startGame(pack);
-    setGameState(GameState.Loading);
+    // setGameState(GameState.Loading);
+    setGameState(GameState.Playing);
   };
 
   const handleEndQuestion = () => {
@@ -89,10 +134,10 @@ export default function HostGamePage({ pack = {} }) {
       content = <LobbyView roomID={id} users={users} onStartGame={handleStartGame} />;
       break;
     case GameState.Playing:
-      content = <InGameView question={curQuestion} answer={correctAns} stats={answerData} onAction={handleEndQuestion} />;
+      content = <InGameView question={curQuestion} answer={correctAns} time={countdown} stats={answerData} onAction={handleEndQuestion} />;
       break;
     case GameState.Answer:
-      content = <InGameView question={curQuestion} answer={correctAns} stats={answerData} onAction={handleNextAnswer} showAnswer />;
+      content = <InGameView question={curQuestion} answer={correctAns} time={countdown} stats={answerData} onAction={handleNextAnswer} showAnswer />;
       break;
     case GameState.Results:
       break;
