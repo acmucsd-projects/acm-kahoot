@@ -10,7 +10,14 @@
   align-content: flex-start;
 }
 
-.layout {
+.main {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.grid {
   width: 100%;
   height: 100%;
   display: grid;

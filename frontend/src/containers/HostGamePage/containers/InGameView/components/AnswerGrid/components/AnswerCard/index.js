@@ -13,17 +13,19 @@ const shapeImages = {
   circle: circleImg,
 }
 
-export default function AnswerCard(props) {
+export default function AnswerCard({ shape, label, disabled }) {
   return (
-    <div className={`${styles.AnswerCard} ${styles[props.shape]} ${props.disabled && styles.disabled}`}>
+    <div className={`${styles.AnswerCard} ${styles[shape]} ${disabled && styles.disabled}`}>
       <img
         className={styles.shape}
-        src={shapeImages[props.shape]}
+        src={shapeImages[shape]}
         alt=''
         height='100'
         width='100'
       />
-      <div className={styles.label}>This is an answer.</div>
+      <div className={styles.label}>
+        {label}
+      </div>
     </div>
   );
 }

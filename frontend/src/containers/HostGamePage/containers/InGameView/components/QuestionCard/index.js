@@ -13,24 +13,26 @@ const shapeImages = {
   circle: circleImg,
 }
 
-export default function QuestionCard(props) {
+export default function QuestionCard({ shape, question }) {
   const [isVisible, setVisible] = useState(true);
   const [isShort, setShort] = useState(false);
 
   let decoration;
-  if (props.shape) {
-    decoration = <img className={styles.shape} src={shapeImages[props.shape]} alt='' height='100' width='100' />;
+  if (shape) {
+    decoration = <img className={styles.shape} src={shapeImages[shape]} alt='' height='100' width='100' />;
   } else {
     decoration = <div className={styles.number}><div>12</div></div>;
   }
 
   if (isVisible) {
     return (
-      <div className={`${styles.QuestionCard} ${styles[props.shape] || styles.default} ${isShort && styles.short}`}
+      <div className={`${styles.QuestionCard} ${styles[shape] || styles.default} ${isShort && styles.short}`}
           onClick={() => setShort(true)}
           onAnimationEnd={(event) => setVisible(true)}>
         {decoration}
-        <div className={styles.label}>This is the question.</div>
+        <div className={styles.label}>
+          {question || 'Sample Question'}
+        </div>
       </div>
     );
   }

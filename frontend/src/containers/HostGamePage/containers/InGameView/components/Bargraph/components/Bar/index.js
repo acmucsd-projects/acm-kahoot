@@ -2,11 +2,11 @@ import React from 'react';
 
 import styles from './styles.module.scss';
 
-function Bar(props) {
+function Bar({ shape, count = 0, height }) {
   return (
     <div className={styles.Bar}>
-      <div>{props.count || ''}</div>
-      <div className={`${styles.box} ${styles[props.shape]}`}></div>
+      <div>{count || ''}</div>
+      <div className={`${styles.box} ${styles[shape]}`}></div>
     </div>
   );
 }
