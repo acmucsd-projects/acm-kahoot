@@ -5,6 +5,7 @@ import "../styles/App.scss";
 import UniversalLandingPage from "../containers/UniversalLandingPage.js";
 import EnterNicknamePage from "../containers/EnterNicknamePage.js";
 import GameCodePage from "../containers/GameCodePage.js";
+import Scorebaord from "../containers/Scoreboard.js";
 
 import { Route, Switch } from "react-router-dom";
 
@@ -19,6 +20,8 @@ function App() {
         <Route path="/enter-nickname" component={EnterNicknamePage}/>
 
         <Route path="/enter-code" component={GameCodePage}/>
+
+        <Route path="/scoreboard" component={Scorebaord}/>
 
         <Route path="/" component={UniversalLandingPage} />
       </Switch>

@@ -11,7 +11,7 @@ function EnterNicknamePage(){
             <div className={styles.container}>
                 <div className={styles.header}>QUIZ NAME</div>
                 <input type="text" placeholder="ENTER NICKNAME" size="7=8"></input>
-                <Button variant="enternicknamepagebutton" label="LET'S GO" />
+                <Button variant={styles.enternicknamepagebutton} label="LET'S GO" />
             </div>
         </div>
     );

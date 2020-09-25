@@ -30,7 +30,7 @@ function GameCodePage() {
                     </label>
                 </form> */}
                 <input type="text" placeholder="Game Code" size="7=8"></input>
-                <Button variant="gamecodepagebutton" label='ENTER' />
+                <Button variant={styles.gamecodepagebutton} label='ENTER' />
             </div>
         </div>
     );

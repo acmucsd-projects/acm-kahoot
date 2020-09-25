@@ -1,0 +1,72 @@
+@import 'colors';
+
+.header {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 96px;
+    color: $white;
+
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+.board {
+    position: absolute;
+    width: 813px;
+    height: 682px;
+    bottom: -1%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background: linear-gradient(90deg, #9796F0 0%, #FBC7D4 100%);
+    border-radius: 17px;
+}
+
+.nextbutton {
+    position: relative;
+    width: 150px;
+    height: 100px;
+    transform: translateY(-50%);
+    // left: 50%;
+    // transform: translateX(-50%);
+
+    background: $green;
+    border-radius: 17px;
+    border: none;
+
+    font-family: sans-serif;
+    font-size: 48px;
+}
+
+.entry {
+    display: flex;
+    justify-content: space-evenly;
+
+    position: relative;
+}
+
+.ranking {
+    font-family: sans-serif;
+    font-size: 72px;
+    color: $white;
+
+    
+}
+
+.name {
+    font-family: sans-serif;
+    font-size: 48px;
+    color: $purple-very-dark;
+
+    transform: translateY(15%);
+}
+
+.score {
+    font-family: sans-serif;
+    font-size: 36px;
+    color: $purple-very-dark;
+
+    transform: translateY(25%);
+}
