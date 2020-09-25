@@ -4,14 +4,14 @@ import styles from './styles.module.scss';
 import Bar from './components/Bar';
 
 const maxHeight = 200;
+const shapes = ['triangle', 'star', 'circle', 'square'];
 
 export default function BarGraph({ stats = [] }) {
+  const bars = stats.counts.map((count, idx) => <Bar key={idx} shape={shapes[idx]} count={count} height={(count / stats.total) * maxHeight} />);
+
   return (
-    <div className={styles.BarGraph}>
-      <Bar shape='triangle' count={stats[1]} height={maxHeight / stats[1]} />
-      <Bar shape='star' count={stats[2]} height={maxHeight / stats[2]} />
-      <Bar shape='circle' count={stats[3]} height={maxHeight / stats[3]} />
-      <Bar shape='square' count={stats[4]} height={maxHeight / stats[4]} />
+    <div className={styles.container}>
+      {bars}
     </div>
   );
 }

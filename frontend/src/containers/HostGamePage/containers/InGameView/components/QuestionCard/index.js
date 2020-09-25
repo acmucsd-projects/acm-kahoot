@@ -13,7 +13,7 @@ const shapeImages = {
   circle: circleImg,
 }
 
-export default function QuestionCard({ shape, time, question, short }) {
+export default function QuestionCard({ shape, time, question, showAnswer }) {
   let decoration;
   if (shape) {
     decoration = <img className={styles.shape} src={shapeImages[shape]} alt='' height='100' width='100' />;
@@ -22,7 +22,7 @@ export default function QuestionCard({ shape, time, question, short }) {
   }
 
   return (
-    <div className={`${styles.QuestionCard} ${styles[shape] || styles.default} ${short && styles.short}`}>
+    <div className={`${styles.QuestionCard} ${styles[shape] || styles.default} ${showAnswer && styles.short}`}>
       {decoration}
       <div className={styles.label}>
         {question}
