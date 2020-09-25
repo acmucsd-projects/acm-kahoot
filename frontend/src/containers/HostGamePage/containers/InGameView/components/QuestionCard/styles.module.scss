@@ -2,11 +2,11 @@
 @import '../../../../../../styles/answer';
 
 .QuestionCard {
-  width: 88vw;
+  width: 83vw;
   height: 38vh;
   position: absolute;
   left: 0;
-  top: 8vw;
+  top: calc(80px + 1vw);
   padding: 25px;
   box-sizing: border-box;
   display: flex;
@@ -16,6 +16,11 @@
   align-items: center;
   border-radius: 0 17px 17px 0;
   font-weight: bold;
+}
+
+.QuestionCard.short {
+  width: 45vw;
+  transition: width 0.2s ease-out;
 }
 
 .default {
@@ -39,11 +44,6 @@
 .label {
   color: $purple-very-dark;
   width: 85%;
-}
-
-.QuestionCard.short {
-  width: 49vw;
-  transition: width 0.2s ease-out;
 }
 
 .slide {

@@ -21,15 +21,19 @@
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 36vw 36vw;
+  grid-template-columns: auto 36vw 36vw auto;
   grid-template-rows: 47% 47%;
   grid-template-areas: 
-    ". bargraph"
-    "answers answers";
+    ". . bargraph side"
+    ". answers answers .";
   justify-content: center;
   align-content: center;
   justify-items: center;
   align-items: center;
   column-gap: 3vw;
   row-gap: 6%;
+}
+
+.side {
+  grid-area: side;
 }

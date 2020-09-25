@@ -17,10 +17,10 @@ export default function InGameView({ roomID, questionState, time, stats, onActio
         <div className={styles.grid}>
           <BarGraph stats={stats} />
           {showAnswer ? <AnswerGrid answers={questionState.question.answers} showAnswer /> : <AnswerGrid answers={questionState.question.answers} />}
-        </div>
-        <div className={styles.side}>
-          <PlayerCounter count={stats.total} />
-          {showAnswer ? <ActionButton label='next' onClick={onAction} color='green' /> : <ActionButton label='skip' onClick={onAction} color='red' />}
+          <div className={styles.side}>
+            <PlayerCounter count={stats.total} />
+            {showAnswer ? <ActionButton label='next' onClick={onAction} color='green' /> : <ActionButton label='skip' onClick={onAction} color='red' />}
+          </div>
         </div>
       </div>
     </div>
