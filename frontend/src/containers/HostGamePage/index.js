@@ -102,6 +102,10 @@ export default function HostGamePage({ pack = demoPack }) {
       // }
     });
 
+    socket.on('correctUsers', (results) => {
+      setUsers(results);
+    });
+
     socket.on('question_over', () => {
       setGameState(GameState.Answer);
     });
