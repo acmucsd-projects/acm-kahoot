@@ -1,7 +1,6 @@
 import React from 'react';
 
 import styles from './styles.module.scss';
-
 import MatchInfo from '../../../../components/MatchInfo.js';
 import AnswerCard from './components/AnswerCard';
 

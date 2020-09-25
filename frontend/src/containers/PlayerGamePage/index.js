@@ -31,6 +31,7 @@ export default function PlayerGamePage() {
     socket.on('sendQuestion', (question) => {
       if (question === -1) {
         setGameState(GameState.Finished);
+        return;
       }
 
       setChoice('');
@@ -69,13 +70,13 @@ export default function PlayerGamePage() {
       content = <WaitingView shape={choice} />;
       break;
     case GameState.Playing:
-      content = <ButtonsView onAnswer={handleAnswerClick} />;
+      content = <ButtonsView numAnswers={question.answers.length} onAnswer={handleAnswerClick} />;
       break;
     case GameState.Results:
       content = <AnswerView score={results.score} correct={results.correct} />;
       break;
     case GameState.Finished:
-      content = 'You did it!';
+      content = `Final score: ${results.score}`;
       break;
     default:
       break;
