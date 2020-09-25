@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './styles.module.scss';
 import Bar from './components/Bar';
 
-const maxHeight = 200;
+const maxHeight = 100;
 const shapes = ['triangle', 'star', 'circle', 'square'];
 
 export default function BarGraph({ stats = [] }) {
