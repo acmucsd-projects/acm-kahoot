@@ -149,10 +149,10 @@ export default function HostGamePage({ pack = demoPack }) {
       content = <LobbyView roomID={id} users={users} onStartGame={handleStartGame} />;
       break;
     case GameState.Playing:
-      content = <InGameView questionState={question} answer={correctAns} time={timer} stats={stats} onAction={handleShowAnswer} />;
+      content = <InGameView roomID={id} questionState={question} answer={correctAns} time={timer} stats={stats} onAction={handleShowAnswer} />;
       break;
     case GameState.Answer:
-      content = <InGameView questionState={question} answer={correctAns} time={timer} stats={stats} onAction={handleShowResults} showAnswer />;
+      content = <InGameView roomID={id} questionState={question} answer={correctAns} time={timer} stats={stats} onAction={handleShowResults} showAnswer />;
       break;
     case GameState.Results:
       break;
