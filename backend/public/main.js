@@ -123,6 +123,7 @@ socket.on('singleAnswer', (ans) => {
 // Get room and users
 socket.on('roomUsers', ({ room, users }) => {
   playerCount = users.length;
+
   outputRoomID(room);
   outputUsers(users);
 });
@@ -143,7 +144,6 @@ const outputUsers = (users) => {
 const outputRoomID = (room) => {
   roomID.innerText = room;
 }
-
 
 let timer;
 let currTime;

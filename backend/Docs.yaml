@@ -264,7 +264,6 @@ definitions:
         type: "string"
       time:
         type: "number"      
-        
     required:           
       - name
       - question
