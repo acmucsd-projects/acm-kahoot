@@ -1,0 +1,71 @@
+@import 'colors';
+
+.centercontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.waitingAsset{
+
+    position: absolute;
+    width: 31.25rem;
+    height: 41.938rem;
+    bottom: -10%;
+
+    border-radius: 17px;
+
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 48px;
+    line-height: 60px;
+    text-align: center;
+    letter-spacing: 0.1em;
+
+    font-weight: bold;
+
+    color: #27163F;
+    padding: 4.375rem;
+    display: flex;
+    justify-content: center;
+
+}
+
+
+.CORRECT {
+    background: #7FFF00;
+}
+
+.WRONG {
+    background: #FF184C;
+    ;
+}
+
+.pointBox{
+    position: absolute;
+    width: 373px;
+    height: 113px;
+
+    bottom: 25%;
+
+    background: #DEFE47;
+    border-radius: 17px;
+
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 64px;
+    line-height: 80px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.1em;
+    justify-content: center;
+
+
+
+    color: #27163F;
+
+
+}

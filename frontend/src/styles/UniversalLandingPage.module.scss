@@ -1,0 +1,52 @@
+.topDesignLove {
+    position: absolute;
+    width: 100%;
+    max-height: 30vh;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    
+}
+
+.center-fit {
+    max-width: 100%;
+    max-height: 100vh;
+    margin: auto;
+}
+
+
+
+.nightlineDesignLeft {
+    position: absolute;
+    left: 0;
+    bottom: -2%;
+}
+
+.nightlineDesignRight {
+    position: absolute;
+    right: 0;
+    bottom: -2%;
+
+
+}
+
+.title {
+    position: absolute;
+    width: 1087px;
+    height: 164px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-family: Roboto Condensed;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 144px;
+    line-height: 169px;
+    text-align: center;
+    letter-spacing: 0.1em;
+
+    color: #FFFFFF;
+
+    text-shadow: 10px 0 0 rgba(255, 255, 255, 0.75);;
+}

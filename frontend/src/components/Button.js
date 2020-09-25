@@ -2,7 +2,7 @@ import React from 'react';
 
 function Button() {
   return (
-    <button size="lg">
+    <button>
       
     </button>
   );
