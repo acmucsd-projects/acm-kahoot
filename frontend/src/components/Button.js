@@ -3,7 +3,7 @@ import styles from '../styles/Button.module.scss';
 
 function Button(props) {
   return (
-    <button className={styles[props.variant] || styles.Button}>
+    <button className={props.variant || styles.Button}>
       {props.label}
     </button>
   );
