@@ -6,7 +6,7 @@ import PlayerGamePage from './PlayerGamePage';
 function App() {
   return (
     <div className='App glow'>
-      <PlayerGamePage />
+      
     </div>
   );
 }
