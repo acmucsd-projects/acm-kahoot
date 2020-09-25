@@ -2,7 +2,7 @@
 
 .header {
     font-family: 'Roboto Condensed', sans-serif;
-    font-size: 96px;
+    font-size: 6rem;
     color: $white;
 
     position: absolute;
@@ -14,8 +14,8 @@
 
 .finishbutton {
     position: absolute;
-    width: 191px;
-    height: 100px;
+    width: 11.9375rem;
+    height: 6.25rem;
     top: 25%;
     left: 85%;
 
@@ -24,14 +24,14 @@
     border: none;
 
     font-family: sans-serif;
-    font-size: 48px;
+    font-size: 3rem;
     color: $purple-very-dark;
 }
 
 .firstplace {
     position: absolute;
-    width: 325px;
-    height: 604px;
+    width: 20.3125rem;
+    height: 37.75rem;
     bottom: -2%;
     left: 50%;
     transform: translateX(-50%);
@@ -42,8 +42,8 @@
 
 .secondplace {
     position: absolute;
-    width: 357px;
-    height: 450px;
+    width: 22.3125rem;
+    height: 28.125rem;
     bottom: -2%;
     left: 50%;
     transform: translateX(-140%);
@@ -55,8 +55,8 @@
 
 .thirdplace {
     position: absolute;
-    width: 357px;
-    height: 350px;
+    width: 22.3125rem;
+    height: 21.875rem;
     bottom: -2%;
     left: 50%;
     transform: translateX(40%);
@@ -67,8 +67,8 @@
 }
 
 .purplecircle {
-    height: 100px;
-    width: 100px;
+    height: 6.25rem;
+    width: 6.25rem;
     background-color: $magenta;
     border-radius: 50%;
 
@@ -78,22 +78,22 @@
     top: -5%;
 
     font-family: sans-serif;
-    font-size: 72px;
+    font-size: 4.5rem;
     color: $white;
 }
 
 .name {
     font-family: sans-serif;
-    font-size: 48px;
+    font-size: 3rem;
     color: $white;
 
     position: relative;
-    top: -60px;
+    top: -3.75rem;
 }
 
 .score {
     font-family: sans-serif;
-    font-size: 36px;
+    font-size: 2.25rem;
     color: $purple-very-dark;
 
     position: relative;
@@ -101,7 +101,7 @@
 
 .correctanswers {
     font-family: sans-serif;
-    font-size: 24px;
+    font-size: 1.5rem;
     color: $purple-very-dark;
 
     position: relative;

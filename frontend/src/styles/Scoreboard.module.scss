@@ -2,7 +2,7 @@
 
 .header {
     font-family: 'Roboto Condensed', sans-serif;
-    font-size: 96px;
+    font-size: 6rem;
     color: $white;
 
     position: absolute;
@@ -14,8 +14,8 @@
 
 .board {
     position: absolute;
-    width: 813px;
-    height: 682px;
+    width: 50.8125rem;
+    height: 42.625rem;
     bottom: -1%;
     left: 50%;
     transform: translateX(-50%);
@@ -26,8 +26,8 @@
 
 .nextbutton {
     position: relative;
-    width: 150px;
-    height: 100px;
+    width: 9.375rem;
+    height: 6.25rem;
     transform: translateY(-50%);
     // left: 50%;
     // transform: translateX(-50%);
@@ -37,7 +37,8 @@
     border: none;
 
     font-family: sans-serif;
-    font-size: 48px;
+    font-size: 3rem;
+    color: $purple-very-dark;
 }
 
 .entry {
@@ -49,15 +50,13 @@
 
 .ranking {
     font-family: sans-serif;
-    font-size: 72px;
+    font-size: 4.5rem;
     color: $white;
-
-    
 }
 
 .name {
     font-family: sans-serif;
-    font-size: 48px;
+    font-size: 3rem;
     color: $purple-very-dark;
 
     transform: translateY(15%);
@@ -65,7 +64,7 @@
 
 .score {
     font-family: sans-serif;
-    font-size: 36px;
+    font-size: 2.25rem;
     color: $purple-very-dark;
 
     transform: translateY(25%);
