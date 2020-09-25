@@ -1,0 +1,109 @@
+@import 'colors';
+
+.header {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 96px;
+    color: $white;
+
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+.finishbutton {
+    position: absolute;
+    width: 191px;
+    height: 100px;
+    top: 25%;
+    left: 85%;
+
+    background: $green;
+    border-radius: 17px;
+    border: none;
+
+    font-family: sans-serif;
+    font-size: 48px;
+    color: $purple-very-dark;
+}
+
+.firstplace {
+    position: absolute;
+    width: 325px;
+    height: 604px;
+    bottom: -2%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background: $neon;
+    border-radius: 17px;
+}
+
+.secondplace {
+    position: absolute;
+    width: 357px;
+    height: 450px;
+    bottom: -2%;
+    left: 50%;
+    transform: translateX(-140%);
+
+    background: $neon;
+    opacity: 0.8;
+    border-radius: 17px;
+}
+
+.thirdplace {
+    position: absolute;
+    width: 357px;
+    height: 350px;
+    bottom: -2%;
+    left: 50%;
+    transform: translateX(40%);
+
+    background: $neon;
+    opacity: 0.7;
+    border-radius: 17px;
+}
+
+.purplecircle {
+    height: 100px;
+    width: 100px;
+    background-color: $magenta;
+    border-radius: 50%;
+
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -5%;
+
+    font-family: sans-serif;
+    font-size: 72px;
+    color: $white;
+}
+
+.name {
+    font-family: sans-serif;
+    font-size: 48px;
+    color: $white;
+
+    position: relative;
+    top: -60px;
+}
+
+.score {
+    font-family: sans-serif;
+    font-size: 36px;
+    color: $purple-very-dark;
+
+    position: relative;
+}
+
+.correctanswers {
+    font-family: sans-serif;
+    font-size: 24px;
+    color: $purple-very-dark;
+
+    position: relative;
+    top: 5%;
+}
