@@ -36,7 +36,6 @@
             <input
               type="text"
               name="username"
-              id="username"
               placeholder="Enter username..."
               required
             />
@@ -44,14 +43,16 @@
           <div class="form-control">
             <label for="room">Room</label>
             <input
+              id="roomId"
               type="text"
               name="room"
-              id="room"
               placeholder="Enter Room ID..."
+              maxlength="6"
               required
             />
           </div>
           <button type="submit" class="btn">Join Room</button>
         </form>
+        <script src="index.js"></script>
     </body>
 </html>

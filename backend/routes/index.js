@@ -1,8 +1,8 @@
-var express = require('express');
-var path = require('path');
-var router = express.Router();
+const express = require('express');
+const path = require('path');
+const router = express.Router();
 const mongoose = require("mongoose");
-var {questionSchema,packSchema} = require("../models/questionSchema");
+const {questionSchema,packSchema} = require("../models/questionSchema");
 
 // name of the collection Pack(s)
 const Pack = mongoose.model("pack", packSchema);
@@ -19,9 +19,21 @@ router.get('/packs/names',  function (req, res){
         } 
         let names = [];
         for (pac of p) {
-            names.push([pac.name, pac.description]);
+            names.push([pac.name, pac.description, pac._id]);
         }
         res.send(names);
+    })
+});
+
+/* GET names of questions as an array */
+router.get('/questions',  function (req, res){
+    Question.find({}, function(err,p) {
+        if (err) {
+            res.status(400).json(err);
+        } 
+        else {
+            res.send(p);
+        }
     })
 });
 
@@ -40,9 +52,23 @@ router.get('/packs/:_id',  function (req, res){
     });
 });
 
+/* GET question by id. */
+router.get('/questions/:_id',  function (req, res){
+    let id = req.params._id;
+    Question.findById(id, function(err,result){
+        if (err) {
+            res.status(400).json(err);
+        } else {
+            if(result != null)
+                res.send(result);
+            else
+                res.send("Invalid"); 
+        }
+    });
+});
+
 /* POST packs. */
 router.post('/packs',  function (req, res){
-
     let questionsId = [];
     // create pack
     const pack1 = new Pack({
@@ -63,8 +89,9 @@ router.post('/packs',  function (req, res){
                 question = new Question({
                     name: i.name,
                     question: i.question,
-                    answer: i.answer,
-                    falseAnswers: i.falseAnswers
+                    answers: i.answers,
+                    points: i.points,
+                    time: i.time
                 });
                 Question.create(question, function(err,result){
                     if(err) return;
@@ -89,7 +116,7 @@ router.post('/packs',  function (req, res){
         });
         
     })
-    res.redirect("/");
+    res.json({});
 });
 
 
