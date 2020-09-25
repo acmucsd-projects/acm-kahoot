@@ -1,52 +1,46 @@
 .topDesignLove {
-    position: absolute;
-    width: 100%;
-    max-height: 30vh;
-    left: 0%;
-    right: 0%;
-    top: 0%;
-    
+  justify-items: center;
+  position: absolute;
+  width: 1440;
+  height: 340;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  fill: none;
 }
-
-.center-fit {
-    max-width: 100%;
-    max-height: 100vh;
-    margin: auto;
-}
-
-
 
 .nightlineDesignLeft {
-    position: absolute;
-    left: 0;
-    bottom: -2%;
+  position: absolute;
+  width: 543.62px;
+  height: 659px;
+  left: 0px;
+  top: 500px;
 }
 
 .nightlineDesignRight {
-    position: absolute;
-    right: 0;
-    bottom: -2%;
-
-
+  position: absolute;
+  width: 543.62px;
+  height: 659px;
+  left: 896.38px;
+  top: 500px;
 }
 
 .title {
-    position: absolute;
-    width: 1087px;
-    height: 164px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  width: 1087px;
+  height: 164px;
+  left: 177px;
+  top: 320px;
 
-    font-family: Roboto Condensed;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 144px;
-    line-height: 169px;
-    text-align: center;
-    letter-spacing: 0.1em;
+  font-family: Roboto Condensed;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 144px;
+  line-height: 169px;
+  text-align: center;
+  letter-spacing: 0.1em;
 
-    color: #FFFFFF;
+  color: #ffffff;
 
-    text-shadow: 10px 0 0 rgba(255, 255, 255, 0.75);;
+  text-shadow: 10px 0 0 rgba(255, 255, 255, 0.75);
 }
