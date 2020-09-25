@@ -1,4 +1,5 @@
-@import 'colors';
+@import '../../../../../../styles/colors';
+@import '../../../../../../styles/answer';
 
 .centercontainer{
     display: flex;
@@ -31,20 +32,4 @@
 
 .shapefix{
     margin: 1.875rem;
-}
-
-.blue {
-    background-color: $blue;
-}
-
-.pink {
-    background-color: $pink;
-}
-
-.green {
-    background-color: $aqua;
-}
-
-.orange {
-    background-color: $orange;
 }

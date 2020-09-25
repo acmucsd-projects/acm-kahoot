@@ -1,4 +1,4 @@
-@import 'colors';
+@import '../../../../../../styles/colors';
 
 .centercontainer{
     display: flex;
@@ -32,14 +32,12 @@
 
 }
 
-
-.CORRECT {
-    background: #7FFF00;
+.correct {
+    background-color: $green;
 }
 
-.WRONG {
-    background: #FF184C;
-    ;
+.incorrect {
+    background-color: $red;
 }
 
 .pointBox{
