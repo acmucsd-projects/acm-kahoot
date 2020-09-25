@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import socketIO from 'socket.io-client';
 
 import styles from './styles.module.scss';
@@ -20,6 +21,7 @@ const answerTable = ['triangle', 'star', 'circle', 'square'];
 let socket;
 
 export default function PlayerGamePage() {
+  const { id } = useParams();
   const [gameState, setGameState] = useState(GameState.Joining);
   const [question, setQuestion] = useState({});
   const [choice, setChoice] = useState('');
@@ -48,11 +50,11 @@ export default function PlayerGamePage() {
       setGameState(GameState.Results);
     });
 
-    joinGame('tester1', '873518');
+    joinGame('tester', id);
     setGameState(GameState.Loading);
 
     return () => socket.disconnect();
-  }, []);
+  }, [id]);
 
   const handleAnswerClick = (answerIdx) => {
     setChoice(answerTable[answerIdx]);
