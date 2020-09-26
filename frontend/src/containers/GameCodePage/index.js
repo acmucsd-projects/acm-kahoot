@@ -1,15 +1,15 @@
 
 import React, { useState } from 'react';
-import '../styles/App.scss';
-import styles from '../styles/GameCodePage.module.scss';
-import BlobTopLeft from '../assets/Blob_TopLeft.svg';
-import BlobTopRight from '../assets/Blob_TopRight.svg';
-import BlobBottomLeft from '../assets/Blob_BottomLeft.svg';
-import BlobBottomRight from '../assets/Blob_BottomRight.svg';
-import Button from '../components/Button';
+
+import styles from './styles.module.scss';
+import BlobTopLeft from '../../assets/Blob_TopLeft.svg';
+import BlobTopRight from '../../assets/Blob_TopRight.svg';
+import BlobBottomLeft from '../../assets/Blob_BottomLeft.svg';
+import BlobBottomRight from '../../assets/Blob_BottomRight.svg';
+import Button from '../../components/Button';
 import { Link } from 'react-router-dom';
 
-function GameCodePage() {
+export default function GameCodePage() {
     const [code, setCode] = useState(0);
 
     let handleChange = event => {
@@ -32,7 +32,7 @@ function GameCodePage() {
                     //onChange={() => setCode(event.target.value)}
                     onChange={handleChange}>
                 </input>
-                <Link to={"/enter-nickname/" + code}>
+                <Link to={`/player/room/${code}`}>
                     <Button
                         variant={styles.gamecodepagebutton}
                         label='ENTER'  
@@ -42,5 +42,3 @@ function GameCodePage() {
         </div>
     );
 }
-
-export default GameCodePage;

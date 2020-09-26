@@ -4,7 +4,7 @@ import styles from '../styles/Button.module.scss';
 
 function Button(props) {
   return (
-    <button className={props.variant || styles.Button}>
+    <button className={props.variant || styles.Button} onClick={props.onClick}>
       {props.label}
     </button>
   );

@@ -1,0 +1,15 @@
+@import '../../../../../../../../styles/answer';
+
+.button {
+  padding: 5px;
+  margin: 10px;
+  position: flex;
+  width: 35vw;
+  height: 35vh;
+  border: none;
+  border-radius: 17px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  align-content: center;
+}
