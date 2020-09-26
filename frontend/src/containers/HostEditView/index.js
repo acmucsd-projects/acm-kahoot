@@ -27,14 +27,18 @@ export default function HostEditView() {
   useEffect(() => {
     if (parseInt(id) >= 0) {
       getPackByID(id).then((result) => {
-        const questionIDs = result.answers;
-        Promise.all(questionIDs.map(id => getQuestionByID(id)), (questions) => {
+        const questionIDs = result.questions;
+        Promise.all(questionIDs.map(id => getQuestionByID(id))).then((questions) => {
+          console.log(questions);
           result.questions = questions;
+          bufferPack(result);
+          setDeck(result);
+          setQuestions(result.questions);
+          setQuestion(result.questions[0]);
+          setIsLoaded(true);
         });
-        setDeck(result);
-        setQuestion(result.questions[0]);
-        setIsLoaded(true);
       }).catch((err) => {
+        console.warn(err);
         setError(err);
         setIsLoaded(true);
       });
@@ -50,8 +54,8 @@ export default function HostEditView() {
   }, [id]);
 
   const handleDeckConfirm = () => {
-    console.log('Posted a pack.', curDeck);
-
+    cleanPack(curDeck);
+    console.log('Posting a pack.', curDeck);
     postPack(curDeck).catch((err) => {
       console.warn(err);
     }).then(() => {
@@ -69,7 +73,6 @@ export default function HostEditView() {
 
   const handleNewQuestion = () => {
     curDeck.questions.push(getDefaultQuestion());
-    setQuestions(curDeck.questions);
     setQuestion(curDeck.questions[curDeck.questions.length-1]);
   };
 
@@ -100,6 +103,24 @@ export default function HostEditView() {
       </div>
     </div>
   );
+}
+
+function bufferPack(pack) {
+  for (const q of pack.questions) {
+    while (q.answers.length < 4) {
+      q.answers.push({
+        answer: '',
+        correct: false,
+      });
+    }
+  }
+}
+
+function cleanPack(pack) {
+  for (const q of pack.questions) {
+    q.time = parseInt(q.time);
+    q.answers = q.answers.filter(ans => ans.answer.replace(/\s/g, '') != '');
+  }
 }
 
 function getDefaultDeck() {
@@ -170,20 +191,20 @@ function copyQuestion(question) {
     question: question.question,
     answers: [
       {
-        answer: question.answers[0].answer,
-        correct: question.answers[0].correct,
+        answer: question.answers[0] ? question.answers[0].answer : '',
+        correct: question.answers[0] ? question.answers[0].correct : false,
       },
       {
-        answer: question.answers[1].answer,
-        correct: question.answers[1].correct,
+        answer: question.answers[1] ? question.answers[1].answer :'',
+        correct: question.answers[1] ? question.answers[1].correct : false,
       },
       {
-        answer: question.answers[2].answer,
-        correct: question.answers[2].correct,
+        answer: question.answers[2] ? question.answers[2].answer : '',
+        correct: question.answers[2] ? question.answers[2].correct : false,
       },
       {
-        answer: question.answers[3].answer,
-        correct: question.answers[3].correct,
+        answer: question.answers[3] ? question.answers[3].answer : '',
+        correct: question.answers[3] ? question.answers[3].correct : false,
       },
     ],
     points: question.points,

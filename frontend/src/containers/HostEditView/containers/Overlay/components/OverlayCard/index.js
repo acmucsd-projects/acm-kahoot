@@ -13,13 +13,13 @@ export default function OverlayCard({ question, onClick, hidden = false }) {
         </div>
         <div className={styles.answers}>
           <div className={styles.orange}>
-            <div className={styles.center}>{question.answers ? question.answers[0].answer : ''}</div>
+            <div className={styles.center}>{question.answers[0] ? question.answers[0].answer : ''}</div>
             <div className={styles.pink}>
-              <div className={styles.center}>{question.answers ? question.answers[1].answer : ''}</div>
+              <div className={styles.center}>{question.answers[1] ? question.answers[1].answer : ''}</div>
               <div className={styles.blue}>
-                <div className={styles.center}>{question.answers ? question.answers[2].answer : ''}</div>
+                <div className={styles.center}>{question.answers[2] ? question.answers[2].answer : ''}</div>
                 <div className={styles.green}>
-                  <div className={styles.center}>{question.answers ? question.answers[3].answer : ''}</div>
+                  <div className={styles.center}>{question.answers[3] ? question.answers[3].answer : ''}</div>
                 </div>
               </div>
             </div>
