@@ -9,7 +9,7 @@ import AnswerView from './containers/AnswerView';
 import NicknameView from './containers/NicknameView';
 import LoadingView from '../LoadingView';
 
-const ENDPOINT = 'http://localhost:3000';
+const ENDPOINT = 'https://8081-91891172-3c0c-414b-a09d-1528f4f97306.us-west1.cloudshell.dev/';
 const GameState = {
   Joining: 0,
   Loading: 1,

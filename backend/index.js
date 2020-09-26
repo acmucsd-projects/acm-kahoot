@@ -29,13 +29,14 @@ const {
 
 } = require('./utils/room');
 
-const port = 3000;
+const port = 8081;
 
 const app = express();
 
 
 // Set static folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname,"build")));
+// app.use(express.static(path.join(__dirname, 'public')));
 
 require('dotenv').config();
 const name = process.env.NAME;
@@ -56,7 +57,7 @@ const io = socketio(server);
 
 app.use(
   cors({
-    origin: "http://localhost:3001", // restrict calls to those this address
+    origin: "https://8081-91891172-3c0c-414b-a09d-1528f4f97306.us-west1.cloudshell.dev/", // restrict calls to those this address
   })
 );
 
@@ -106,10 +107,10 @@ io.on('connection', socket => {
     }
   });
 
-  socket.on('start', (pack) => {
+ socket.on('start', (pack) => {
     const users = roomUsers(socket.room_name);
-    const p = pack.q;
-    setQuestionPack(socket.room_name,p).then(()=> {
+      console.log("index js " + pack.roomUrl)
+    setQuestionPack(socket.room_name,pack.q,pack.roomUrl).then(()=> {
         if(users.length > 0) {
           getQuestion(socket.room_name).then((questio)=> {
             io.to(users[0].room).emit('sendQuestion', questio);
@@ -117,9 +118,7 @@ io.on('connection', socket => {
         }
       }
     )
-    console.log(p)
-
-  });
+});
   socket.on('nextQuestion', () => {
     const users = roomUsers(socket.room_name);
     if(users.length > 0) {

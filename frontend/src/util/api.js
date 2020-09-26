@@ -1,4 +1,4 @@
-const apiEndpoint = 'http://localhost:3000';
+const apiEndpoint = 'https://8081-91891172-3c0c-414b-a09d-1528f4f97306.us-west1.cloudshell.dev';
 
 export async function getQuestions() {
   const res = await fetch(`${apiEndpoint}/questions`);

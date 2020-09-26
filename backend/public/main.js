@@ -14,23 +14,22 @@ const socket = io();
 let answerCount = 0;
 let playerCount = 0;
 
-
 let counts = [0, 0, 0, 0];
 
-
 function start(packId) {
-  console.log(packId)
   async function getData(url = '', data = {}) {
     // Default options are marked with *
     const response = await fetch(url);
     return response.json(); // parses JSON response into native JavaScript objects
   }
 
-  let u = 'http://localhost:3000/packs/'+packId;
+  let u = window.location.href.slice(0,window.location.href.substring("room")) +'/packs/'+packId;
+  const roomUrl = window.location.href.substring(0,window.location.href.indexOf("room"));
+  console.log("main js" + roomUrl)
   getData(u, { })
     .then(data => {
       let q = data.questions
-      socket.emit('start',{q});
+      socket.emit('start',{q,roomUrl});
     });
 }
 function nextQuestion() {
@@ -47,7 +46,7 @@ function getQuestions() {
     const response = await fetch(url);
     return response.json(); // parses JSON response into native JavaScript objects
   }
-  getData('http://localhost:3000/packs/names', { })
+  getData(window.location.href.substring(0,window.location.href.indexOf("room")-1) + '/packs/names', { })
     .then(data => {
       questionList.innerHTML = `
         ${data.map(question => `<li>
@@ -63,8 +62,6 @@ socket.emit('joinRoomAdmin', { username, room });
 socket.on('sendQuestion',(q) => {
   answerCount = 0;
   document.getElementById('userCount').innerHTML = "Number of Answers Recieved: " + String(answerCount);
-
-  console.log(q);
   if(question != -1) {
     document.getElementById('answer0').innerHTML = "";
     document.getElementById('answer1').innerHTML = "";
@@ -105,7 +102,6 @@ socket.on('answeredUsers',(users) => {
   answeredUsersList.innerHTML = `
     ${users.map(user => `<li>user:${user.username} score:${user.score}</li>`).join('')}
   `;
-  console.log(users + ' hello ')
 });
 
 socket.on('singleAnswer', (ans) => {
@@ -123,7 +119,6 @@ socket.on('singleAnswer', (ans) => {
 // Get room and users
 socket.on('roomUsers', ({ room, users }) => {
   playerCount = users.length;
-
   outputRoomID(room);
   outputUsers(users);
 });
@@ -144,6 +139,7 @@ const outputUsers = (users) => {
 const outputRoomID = (room) => {
   roomID.innerText = room;
 }
+
 
 let timer;
 let currTime;

@@ -1,4 +1,4 @@
-const http = require("http");
+const https = require("https");
 const rooms = [];
 const grace = 4000;
 // Creates new room and room vars
@@ -15,15 +15,17 @@ const roomCreate = (id, username, room) => {
     "startTime": 0,
     //"totalTime": 15, Will be set during pack creation
     "questionNum": 0,
+    "roomUrl": ""
   };
   rooms.push(newroom);
   return rooms;
 }
-
-const setQuestionPack = async (room, questions) => {
+const setQuestionPack = async (room, questions, roomUrl) => {
   const index = rooms.findIndex(single_room => single_room.name === room);
+  console.log("room js " + roomUrl)
   if(questions.length > 0) {
     rooms[index].questions = questions;
+    rooms[index].roomUrl = roomUrl;
   }
 }
 // gets question ret question obj
@@ -39,14 +41,11 @@ const getQuestion = async (room) => {
     user.answered = false;
   });
   const query = rooms[index].questions[rooms[index].questionNum];
-  const url = "http://localhost:3000/questions/" + query;
-
+  const url = rooms[index].roomUrl + "questions/" + query;
   let promise = new Promise((res,rej) => {
-    http.get(url, function(response) {
-      console.log(response.statusCode);
+    https.get(url, function(response) {
       response.on("data", function(data) {
           const questionData = JSON.parse(data);
-          console.log(questionData);
           rooms[index].questions[0] = questionData;
           res (questionData);
       });

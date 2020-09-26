@@ -7,7 +7,7 @@ import LobbyView from './containers/LobbyView';
 import InGameView from './containers/InGameView';
 import { getPackByID } from '../../util/api';
 
-const ENDPOINT = 'http://localhost:3000';
+const ENDPOINT = 'https://8081-91891172-3c0c-414b-a09d-1528f4f97306.us-west1.cloudshell.dev/';
 const GameState = {
   Creating: 0,
   Loading: 1,
@@ -194,8 +194,12 @@ function createRoom(roomID) {
   });
 }
 
+//8081-91891172-3c0c-414b-a09d-1528f4f97306.us-west1.cloudshell.dev
+//8081-91891172-3c0c-414b-a09d-1528f4f97306.us-west1.cloudshell.dev/
+
 function startGame(pack) {
-  socket.emit('start', { q: pack.questions });
+  const roomUrl = window.location.href.substring(0,window.location.href.indexOf("host"));
+  socket.emit('start', { q: pack.questions, roomUrl: roomUrl});
 }
 
 function endQuestion() {
