@@ -1,37 +1,37 @@
 @import 'colors';
 
 .triangle {
-  color: $text-dark-color;
-  background-color: $triangle-color;
+  color: $purple-very-dark;
+  background-color: $orange;
 }
 
 .triangle.disabled {
-  background-color: $triangle-dark-color;
+  background-color: $orange-a-1;
 }
 
 .star {
-  color: $text-dark-color;
-  background-color: $star-color;
+  color: $purple-very-dark;
+  background-color: $blue;
 }
 
 .star.disabled {
-  background-color: $star-dark-color;
+  background-color: $blue-a-1;
 }
 
 .circle {
-  color: $text-dark-color;
-  background-color: $circle-color;
+  color: $purple-very-dark;
+  background-color: $pink;
 }
 
 .circle.disabled {
-  background-color: $circle-dark-color;
+  background-color: $pink-a-1;
 }
 
 .square {
-  color: $text-dark-color;
-  background-color: $square-color;
+  color: $purple-very-dark;
+  background-color: $aqua;
 }
 
 .square.disabled {
-  background-color: $square-dark-color;
+  background-color: $aqua-a-1;
 }

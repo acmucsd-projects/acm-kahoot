@@ -1,0 +1,29 @@
+$scroll-width: 12px;
+
+.scroller {
+  overflow-y: auto;
+  scrollbar-width: none;  
+}
+
+.scroller::-webkit-scrollbar,
+.scroller::-webkit-scrollbar-thumb {
+  color: adjust-color($color: #fff, $alpha: -1.0);
+  transition: color .2s ease;
+  border-radius: 13px;
+  background-clip: padding-box;
+  border: 3px solid transparent;
+  box-shadow: inset 0 0 0 10px;
+}
+
+.scroller::-webkit-scrollbar {
+  width: $scroll-width;
+}
+
+.scroller::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 0 10px;
+}
+
+.scroller:hover::-webkit-scrollbar-thumb {
+  color: adjust-color($color: #fff, $alpha: -0.8);
+  transition: color .2s ease;
+}

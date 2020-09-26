@@ -14,6 +14,57 @@ schemes:
 - "https"
 - "http"
 paths:
+  /questions:
+    get:
+      tags:
+      - "Questions"
+      summary: "Returns all questions"
+      description: "Returns all questions with ids, answers, points and time"
+      operationId: "getQuestion"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation *returns json model of pack"
+          schema:
+            type: object
+            properties:
+              answers:
+                type: "array"
+                items:
+                  type: object
+                  properties:
+                    answer:
+                      type: "string"
+                    _id:
+                      type: "string"
+                    correct:
+                      type: "boolean"
+              _id:
+                type: "string"
+              name:
+                type: "string"
+              __v:
+                type: "integer"
+              points:
+                type: "integer"
+              time:
+                type: "integer"
+                
+            example:
+              - name: "question1"
+                question: "are cats evil?"
+                answers: [{"answer":"no","correct":"true"},{"answer":"yes","correct":"false"}]
+                points: 1000
+                time: 20
+                
+              - name: "question2"
+                question: "are cats amazing?"
+                answers: [{"answer":"no","correct":"false"},{"answer":"yes","correct":"true"}]
+                points: 1000
+                time: 20
+        "400":
+          description: "Invalid"
   /packs/{id}:
     get:
       tags:
@@ -98,7 +149,7 @@ paths:
             type: "array"
             items:
               "type": "string"
-            example: [["Cat Pack", "this is a cat question pack"],["Dog Pack", "this is a dog question pack"]]
+            example: [["Cat Pack", "this is a cat question pack", "5f5cfd9f06cbba23c81affe3"],["Dog Pack", "this is a dog question pack", "5f5cfd9f06cbba23c81affe5"]]
 
               
         "400":
@@ -135,21 +186,26 @@ paths:
                       type: "string"
                     question:
                       type: "string"
-                    answer:
-                      type: "string"
-                    falseAnswers:
+                    answers:
                       type: "array"
-                      items:
-                        "type": "string"
+                      items: 
+                        type: object
+                    points:
+                      type: "string"
+                    time:
+                      type: "number"
                 example:
                   - name: "question1"
                     question: "are cats evil?"
-                    answer: "no"
-                    falseAnswers: ["obviously", "maybe", "sorta"]
+                    answers: [{"answer":"no","correct":"true"},{"answer":"yes","correct":"false"}]
+                    points: 1000
+                    time: 20
+                    
                   - name: "question2"
                     question: "are cats amazing?"
-                    answer: "obviously"
-                    falseAnswers: ["nope", "haha, no way!", "no"]
+                    answers: [{"answer":"no","correct":"false"},{"answer":"yes","correct":"true"}]
+                    points: 1000
+                    time: 20
     delete:
       tags:
       - "Questions"
@@ -195,12 +251,19 @@ definitions:
         type: "string"
       question:
         type: "string"
-      answer:
-        type: "string"
-      falseAnswers:
-        type: array
+      answers:
+        type: "array"
         items:
-          type: "string"
+          type: "object"
+          properties:
+            answer:
+              type: "string"
+            correct:
+              type: "string"
+      points:
+        type: "string"
+      time:
+        type: "number"      
     required:           
       - name
       - question
