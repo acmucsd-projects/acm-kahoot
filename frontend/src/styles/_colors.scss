@@ -1,14 +1,3 @@
-$bg-color:                #27163F;
-$text-color:              #fff;
-$text-dark-color:         #27163F;
-$triangle-color:          #f9bd25;
-$triangle-dark-color:     adjust-color($triangle-color, $alpha: -0.25);
-$star-color:              #2de2e6;
-$star-dark-color:         adjust-color($star-color, $alpha: -0.25);
-$circle-color:            #ff1493;
-$circle-dark-color:       adjust-color($circle-color, $alpha: -0.25);
-$square-color:            #16ffbd;
-$square-dark-color:       adjust-color($square-color, $alpha: -0.25);
 /* Colors */
 $white:             #ffffff;
 $black:             #000000;
@@ -23,7 +12,7 @@ $purple-dark:       #490066;
 $purple-very-dark:  #27163f;
 $magenta:           #c20292;
 $magenta-dark:      #970272;
-$red:               #ff184c;
+$red:               #ff0000;
 $green:             #7fff00;
 $neon:              #defe47;
 $neon-a-1:          adjust-color($neon, $alpha: -0.2);
