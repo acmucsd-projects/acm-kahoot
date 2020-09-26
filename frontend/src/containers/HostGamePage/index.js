@@ -5,6 +5,7 @@ import socketIO from 'socket.io-client';
 import styles from './styles.module.scss';
 import LobbyView from './containers/LobbyView';
 import InGameView from './containers/InGameView';
+import { getPackByID } from '../../util/api';
 
 const ENDPOINT = 'http://localhost:3000';
 const GameState = {
@@ -57,9 +58,10 @@ const questionReducer = (state, action) => {
 };
 
 // Replace pack with packID and fetch pack first.
-export default function HostGamePage({ pack = demoPack }) {
+export default function HostGamePage() {
   const { id } = useParams();
   const [gameState, setGameState] = useState(GameState.Creating);
+  const [roomID, setRoomID] = useState(0);
   const [users, setUsers] = useState([]);
   const [stats, dispatchStats] = useReducer(statsReducer, statsState);
   const [question, dispatchQuestion] = useReducer(questionReducer, questionState);
@@ -110,11 +112,16 @@ export default function HostGamePage({ pack = demoPack }) {
       setGameState(GameState.Answer);
     });
 
-    createRoom(id);
+    const randomID = `${Math.floor(Math.random() * 10000)}`;
+    setRoomID(randomID);
+    createRoom(randomID);
     setGameState(GameState.Waiting);
 
-    return () => socket.disconnect();
-  }, [id]);
+    return () => {
+      socket.disconnect();
+      socket = null;
+    }
+  }, []);
 
   function updateTime() {
     if (countdown <= 0) {
@@ -126,8 +133,12 @@ export default function HostGamePage({ pack = demoPack }) {
   }
 
   const handleStartGame = () => {
-    startGame(pack);
-    setGameState(GameState.Loading);
+    getPackByID(id).then((pack) => {
+      startGame(pack);
+      setGameState(GameState.Loading);
+    }).catch((e) => {
+      console.warn(e);
+    });
   };
 
   const handleShowAnswer = () => {
@@ -150,13 +161,13 @@ export default function HostGamePage({ pack = demoPack }) {
     case GameState.Loading:
       break;
     case GameState.Waiting:
-      content = <LobbyView roomID={id} users={users} onStartGame={handleStartGame} />;
+      content = <LobbyView roomID={roomID} users={users} onStartGame={handleStartGame} />;
       break;
     case GameState.Playing:
-      content = <InGameView roomID={id} questionState={question} answer={correctAns} time={timer} stats={stats} onAction={handleShowAnswer} />;
+      content = <InGameView roomID={roomID} questionState={question} answer={correctAns} time={timer} stats={stats} onAction={handleShowAnswer} />;
       break;
     case GameState.Answer:
-      content = <InGameView roomID={id} questionState={question} answer={correctAns} time={timer} stats={stats} onAction={handleNextQuestion} showAnswer />;
+      content = <InGameView roomID={roomID} questionState={question} answer={correctAns} time={timer} stats={stats} onAction={handleNextQuestion} showAnswer />;
       break;
     case GameState.Results:
       break;
