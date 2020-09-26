@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const express = require("express");
 const bodyParser = require('body-parser');
 
+const cors = require('cors');
+
 const path = require('path');
 const http = require('http');
 const socketio = require('socket.io');
@@ -14,6 +16,7 @@ const {
   roomAdminJoin,
   roomUserLeave,
   roomDelete,
+
   roomUsers,
   getQuestion,
   answerQuestion,
@@ -21,7 +24,9 @@ const {
   incrementQuestion,
   getResultsAnswered,
   roomAdmin,
-  setTime
+  setTime,
+  setQuestionPack
+
 } = require('./utils/room');
 
 const port = 3000;
@@ -49,10 +54,17 @@ mongoose.set('useCreateIndex', true);
 const server = http.createServer(app);
 const io = socketio(server);
 
+app.use(
+  cors({
+    origin: "http://localhost:3001", // restrict calls to those this address
+  })
+);
+
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use('/', indexRouter);
 
+// initial connection, join room
 io.on('connection', socket => {
   socket.on('joinRoomAdmin', ({ username, room }) => {
     socket.username = username;
@@ -93,28 +105,42 @@ io.on('connection', socket => {
       });
     }
   });
-  
-  socket.on('start', () => {
+
+  socket.on('start', (pack) => {
     const users = roomUsers(socket.room_name);
-    if(users.length > 0) {
-      setTime(socket.room_name);
-      io.to(users[0].room).emit('sendQuestion', getQuestion(socket.room_name))
-    }
+    const p = pack.q;
+    setQuestionPack(socket.room_name,p).then(()=> {
+        if(users.length > 0) {
+          getQuestion(socket.room_name).then((questio)=> {
+            io.to(users[0].room).emit('sendQuestion', questio);
+          });
+        }
+      }
+    )
+    console.log(p)
+
   });
   socket.on('nextQuestion', () => {
     const users = roomUsers(socket.room_name);
     if(users.length > 0) {
       incrementQuestion(socket.room_name);
-      setTime(socket.room_name);
-      io.to(users[0].room).emit('sendQuestion', getQuestion(socket.room_name))
+      getQuestion(socket.room_name).then((questio)=> {
+        io.to(users[0].room).emit('sendQuestion', questio);
+      });
     }
   });
+
+  socket.on('startTime', () =>{
+    setTime(socket.room_name);
+  });
+
   socket.on('answerQuestion', (ans) => {
     const adminId = roomAdmin(socket.room_name);
     const result = answerQuestion(socket.room_name, socket.id, ans.answer);
     console.log(result);
     socket.score = result.score;
     socket.correct = result.correct;
+    io.to(adminId).emit("singleAnswer", ans.answer);
     io.to(adminId).emit('answeredUsers',getResultsAnswered(socket.room_name));
   });
 
@@ -126,6 +152,7 @@ io.on('connection', socket => {
 
   socket.on("getPlayerResults", () => {
     io.to(socket.id).emit("myAnswer", {score : socket.score , correct : socket.correct});
+    socket.correct = false;
   });
 
   // Runs when client disconnects

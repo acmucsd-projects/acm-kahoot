@@ -1,25 +1,21 @@
 const userList = document.getElementById('users');
 const roomID = document.getElementById('room-id');
-<<<<<<< HEAD
 const score = document.getElementById('score');
 const correct = document.getElementById('correct');
+const difference = document.getElementById('difference');
 const response = document.getElementById('responseStatus');
-=======
-
-
->>>>>>> 693165bc150fdee4cba0ec9c9b0c2a995c9699c6
 
 const { username, room } = Qs.parse(location.search, {
   ignoreQueryPrefix: true
 });
 
 const socket = io();
+let currentPoints = 0;
 
-<<<<<<< HEAD
-// answer 
-function answerQuestion() {
+// answer
+const answerQuestion = (answer) => {
+  console.log(answer);
   response.innerHTML = "You Answered!";
-  const answer = document.getElementById('answers').value;
   console.log("answered " + answer)
   socket.emit('answerQuestion', {answer});
 }
@@ -30,43 +26,24 @@ socket.on('question_over', () => {
 
 socket.on('myAnswer', (data) => {
   correct.innerHTML = data.correct;
+  difference.innerHTML = data.score - currentPoints;
   score.innerHTML = data.score;
+
+  currentPoints = data.score;
 });
 
 // answers question
 socket.on('sendQuestion',(question) => {
   if(question != -1) {
     response.innerHTML = "New Question, pls answer!";
-    
-    let x = document.getElementById("answers");
-    x.options.length = 0;
-    
-    let example_array = {
-      ValueA : question.answer,
-      ValueB : question.falseAnswers[0],
-      ValueC : question.falseAnswers[1],
-      ValueD : question.falseAnswers[2]
-    };
-    for(index in example_array) {
-        x.options[x.options.length] = new Option(example_array[index], example_array[index]);
-    }
+
   }
   else {
-    let x = document.getElementById("answers");
-    x.options.length = 0;
-    let example_array = {
-      ValueA : 'Text A',
-      ValueB : 'Text B',
-      ValueC : 'Text C'
-    };
-    for(index in example_array) {
-        x.options[x.options.length] = new Option(example_array[index], index);
-    }
+    response.innerHTML = "No More Questions/Possible Err";
+    
   }
 });
 
-=======
->>>>>>> 693165bc150fdee4cba0ec9c9b0c2a995c9699c6
 // Join chatroom
 socket.emit('joinRoomPlayer', { username, room });
 
@@ -78,11 +55,7 @@ socket.on('roomUsers', ({ room, users }) => {
 
 socket.on('invalid',() => {
   outputRoomID("Room DNE");
-<<<<<<< HEAD
 });
-=======
-
->>>>>>> 693165bc150fdee4cba0ec9c9b0c2a995c9699c6
 
 // Add users to DOM
 const outputUsers = (users) => {

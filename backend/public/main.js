@@ -1,14 +1,9 @@
 const userList = document.getElementById('users');
-<<<<<<< HEAD
 const correctUserList = document.getElementById('correctUsers');
 const answeredUsersList = document.getElementById('answeredUsers');
+const questionList = document.getElementById('questionList');
 const roomID = document.getElementById('room-id');
 const countdown = document.getElementById('countdown');
-=======
-const roomID = document.getElementById('room-id');
-
-
->>>>>>> 693165bc150fdee4cba0ec9c9b0c2a995c9699c6
 
 const { username, room } = Qs.parse(location.search, {
   ignoreQueryPrefix: true
@@ -16,43 +11,86 @@ const { username, room } = Qs.parse(location.search, {
 
 const socket = io();
 
-<<<<<<< HEAD
-function start() {
-  socket.emit('start');
-  questionTimer(15);
+let answerCount = 0;
+let playerCount = 0;
+
+
+let counts = [0, 0, 0, 0];
+
+
+function start(packId) {
+  console.log(packId)
+  async function getData(url = '', data = {}) {
+    // Default options are marked with *
+    const response = await fetch(url);
+    return response.json(); // parses JSON response into native JavaScript objects
+  }
+
+  let u = 'http://localhost:3000/packs/'+packId;
+  getData(u, { })
+    .then(data => {
+      let q = data.questions
+      socket.emit('start',{q});
+    });
 }
 function nextQuestion() {
   socket.emit('nextQuestion');
-  //correctUserList.innerHTML = ``;
   answeredUsersList.innerHTML = ``;
-  questionTimer(15);
 }
 function seeResults() {
+  clearTime();
   socket.emit('seeResults');
 }
-=======
->>>>>>> 693165bc150fdee4cba0ec9c9b0c2a995c9699c6
+function getQuestions() {
+  async function getData(url = '', data = {}) {
+    // Default options are marked with *
+    const response = await fetch(url);
+    return response.json(); // parses JSON response into native JavaScript objects
+  }
+  getData('http://localhost:3000/packs/names', { })
+    .then(data => {
+      questionList.innerHTML = `
+        ${data.map(question => `<li>
+        ${question[0]} <input id=${question[0]} type="button" value="Start Game!" onclick="start(\'${question[2]}\');"/>
+        </li>`).join('')}`;
+    });
+}
 
 // Join chatroom
 socket.emit('joinRoomAdmin', { username, room });
 
-<<<<<<< HEAD
 // sends question
-socket.on('sendQuestion',(question) => {
+socket.on('sendQuestion',(q) => {
+  answerCount = 0;
+  document.getElementById('userCount').innerHTML = "Number of Answers Recieved: " + String(answerCount);
+
+  console.log(q);
   if(question != -1) {
-    document.getElementById('question').innerHTML = question.question;
-    document.getElementById('answer1').innerHTML = question.answer;
-    document.getElementById('answer2').innerHTML = question.falseAnswers[0];
-    document.getElementById('answer3').innerHTML = question.falseAnswers[1];
-    document.getElementById('answer4').innerHTML = question.falseAnswers[2];
-  }
-  else {
-    document.getElementById('question').innerHTML = "out of questions";
+    document.getElementById('answer0').innerHTML = "";
     document.getElementById('answer1').innerHTML = "";
     document.getElementById('answer2').innerHTML = "";
     document.getElementById('answer3').innerHTML = "";
-    document.getElementById('answer4').innerHTML = "";
+    document.getElementById('question').innerHTML = q.question;
+  
+    for (let i = 0; i < q.answers.length; i++) {
+        document.getElementById('answer' + String(i)).innerHTML = q.answers[i].answer;
+    }
+    questionTimer(q.time);
+    socket.emit('startTime');
   }
+  else {
+    document.getElementById('question').innerHTML = "out of questions";
+    document.getElementById('answer0').innerHTML = "";
+    document.getElementById('answer1').innerHTML = "";
+    document.getElementById('answer2').innerHTML = "";
+    document.getElementById('answer3').innerHTML = "";
+    clearTime();
+  }
+  counts = [0, 0, 0, 0];
+  document.getElementById('count1').innerHTML = "Answer 1: 0";
+  document.getElementById('count2').innerHTML = "Answer 2: 0";
+  document.getElementById('count3').innerHTML = "Answer 3: 0";
+  document.getElementById('count4').innerHTML = "Answer 4: 0";
 });
 
 // get correct users
@@ -62,6 +100,7 @@ socket.on('correctUsers',(users) => {
   `;
 });
 // get users who have answered
+
 socket.on('answeredUsers',(users) => {
   answeredUsersList.innerHTML = `
     ${users.map(user => `<li>user:${user.username} score:${user.score}</li>`).join('')}
@@ -69,25 +108,31 @@ socket.on('answeredUsers',(users) => {
   console.log(users + ' hello ')
 });
 
-=======
->>>>>>> 693165bc150fdee4cba0ec9c9b0c2a995c9699c6
+socket.on('singleAnswer', (ans) => {
+  counts[ans]++;
+  answerCount++;
+  document.getElementById('userCount').innerHTML = "Number of Answers Recieved: " + String(answerCount);
+  if (answerCount == playerCount) {
+    seeResults();
+  }
+
+  let answer = parseInt(ans) + 1;
+  document.getElementById('count' + String(answer)).innerHTML = "Answer " + String(parseInt(ans) + 1) + ": " + counts[ans];
+});
+
 // Get room and users
 socket.on('roomUsers', ({ room, users }) => {
+  playerCount = users.length;
+
   outputRoomID(room);
   outputUsers(users);
 });
 
 socket.on('invalid',() => {
   outputRoomID("ROOM ALREADY EXISTS/HAS ADMIN");
-<<<<<<< HEAD
 });
 
 
-=======
-
-});
-
->>>>>>> 693165bc150fdee4cba0ec9c9b0c2a995c9699c6
 // Add users to DOM
 const outputUsers = (users) => {
   userList.innerHTML = `
@@ -99,8 +144,6 @@ const outputUsers = (users) => {
 const outputRoomID = (room) => {
   roomID.innerText = room;
 }
-<<<<<<< HEAD
-
 
 let timer;
 let currTime;
@@ -119,5 +162,9 @@ const updateTime = () => {
     seeResults();
   }
 }
-=======
->>>>>>> 693165bc150fdee4cba0ec9c9b0c2a995c9699c6
+
+const clearTime = () => {
+  currTime = 0;
+  countdown.innerHTML = currTime;
+  clearInterval(timer);
+}

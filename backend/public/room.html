@@ -7,31 +7,39 @@
     <body>
       <h3><i class="fas fa-comments"></i> Room Name:</h3>
       <h2 id="room-id">??????</h2>
+
+      <input id="getQuestions" type="button" value="getQuestions!" onclick="getQuestions();"/>
+      <ul id="questionList"></ul>
+      <hr>
       <h2>Current Players</h2>
       <ul id="users">
       </ul>
 
-<<<<<<< HEAD
-      <input id="startButton" type="button" value="Start Game!" onclick="start();"/>
       <input id="nextButton" type="button" value="Next!" onclick="nextQuestion();"/>
-      <h4 id="question">Question</h4>
-      <h3 id="answer1">1st</h3>
-      <h3 id="answer2">2nd</h3>
-      <h3 id="answer3">3rd</h3>
-      <h3 id="answer4">4th</h3>
+      <input id="endButton" type="button" value="End Question!" onclick="seeResults();"/>
+      <h1 id="question">Question</h1>
+      <h3 id="answer0">1st</h3>
+      <h3 id="answer1">2nd</h3>
+      <h3 id="answer2">3rd</h3>
+      <h3 id="answer3">4th</h3>
 
       <hr>
       <h2>seconds left</h2>
       <h2 id="countdown">Start question to start countdown</h2>
-
       <hr>
-      <h2>users who have answered</h2>
+      <h2>Bar Graph Info</h2>
+      <h3 id="count1">Answer 1: 0</h3>
+      <h3 id="count2">Answer 2: 0</h3>
+      <h3 id="count3">Answer 3: 0</h3>
+      <h3 id="count4">Answer 4: 0</h3>
+      <hr>
+      <h1>users who have answered</h1>
+      <h2 id="userCount">Number of Answers Recieved:</h2>
       <ul id="answeredUsers"></ul>
       <hr>
       <h2>users correct (click results)</h2>
       <ul id="correctUsers"></ul>
-=======
->>>>>>> 693165bc150fdee4cba0ec9c9b0c2a995c9699c6
+
       <script
         src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
         integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
