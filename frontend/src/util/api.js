@@ -1,5 +1,15 @@
 const apiEndpoint = 'http://localhost:3000';
 
+export async function getQuestions() {
+  const res = await fetch(`${apiEndpoint}/questions`);
+  return await res.json();
+}
+
+export async function getQuestionByID(id) {
+  const res = await fetch(`${apiEndpoint}/questions/${id}`);
+  return await res.json();
+}
+
 export async function getPacks() {
   const res = await fetch(`${apiEndpoint}/packs/names`);
   return await res.json();

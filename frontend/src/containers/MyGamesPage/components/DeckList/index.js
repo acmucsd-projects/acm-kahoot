@@ -7,7 +7,7 @@ export default function DeckList({ packs = [] }) {
   return (
     <div className={styles.DeckList}>
       <div className={`${styles.content} ${styles.scroller}`}>
-        {packs ? packs.map((p, idx) => <DeckCard key={idx} id={p[2]} name={p[0]} />) : null}
+        {packs ? packs.map((pack, idx) => <DeckCard key={idx} id={pack[2]} name={pack[0]} />) : null}
       </div>
     </div>
   );
