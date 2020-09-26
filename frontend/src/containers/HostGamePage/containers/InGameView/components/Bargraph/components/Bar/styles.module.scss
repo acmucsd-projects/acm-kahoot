@@ -1,0 +1,19 @@
+@import '../../../../../../../../styles/answer';
+
+.Bar {
+  width: 6vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-end;
+  align-items: center;
+  justify-content: flex-end;
+  align-content: center;
+}
+
+.box {
+  width: 90%; /* dynamically scale this later */
+  height: 100%;
+  border-radius: 17px;
+  transition: height 0.1s linear;
+}
