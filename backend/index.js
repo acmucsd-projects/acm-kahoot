@@ -14,6 +14,7 @@ const {
   roomAdminJoin,
   roomUserLeave,
   roomDelete,
+<<<<<<< HEAD
   roomUsers,
   getQuestion,
   answerQuestion,
@@ -22,6 +23,9 @@ const {
   getResultsAnswered,
   roomAdmin,
   setTime
+=======
+  roomUsers
+>>>>>>> 693165bc150fdee4cba0ec9c9b0c2a995c9699c6
 } = require('./utils/room');
 
 const port = 3000;

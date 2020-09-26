@@ -1,8 +1,14 @@
 const userList = document.getElementById('users');
+<<<<<<< HEAD
 const correctUserList = document.getElementById('correctUsers');
 const answeredUsersList = document.getElementById('answeredUsers');
 const roomID = document.getElementById('room-id');
 const countdown = document.getElementById('countdown');
+=======
+const roomID = document.getElementById('room-id');
+
+
+>>>>>>> 693165bc150fdee4cba0ec9c9b0c2a995c9699c6
 
 const { username, room } = Qs.parse(location.search, {
   ignoreQueryPrefix: true
@@ -10,6 +16,7 @@ const { username, room } = Qs.parse(location.search, {
 
 const socket = io();
 
+<<<<<<< HEAD
 function start() {
   socket.emit('start');
   questionTimer(15);
@@ -23,10 +30,13 @@ function nextQuestion() {
 function seeResults() {
   socket.emit('seeResults');
 }
+=======
+>>>>>>> 693165bc150fdee4cba0ec9c9b0c2a995c9699c6
 
 // Join chatroom
 socket.emit('joinRoomAdmin', { username, room });
 
+<<<<<<< HEAD
 // sends question
 socket.on('sendQuestion',(question) => {
   if(question != -1) {
@@ -59,6 +69,8 @@ socket.on('answeredUsers',(users) => {
   console.log(users + ' hello ')
 });
 
+=======
+>>>>>>> 693165bc150fdee4cba0ec9c9b0c2a995c9699c6
 // Get room and users
 socket.on('roomUsers', ({ room, users }) => {
   outputRoomID(room);
@@ -67,9 +79,15 @@ socket.on('roomUsers', ({ room, users }) => {
 
 socket.on('invalid',() => {
   outputRoomID("ROOM ALREADY EXISTS/HAS ADMIN");
+<<<<<<< HEAD
 });
 
 
+=======
+
+});
+
+>>>>>>> 693165bc150fdee4cba0ec9c9b0c2a995c9699c6
 // Add users to DOM
 const outputUsers = (users) => {
   userList.innerHTML = `
@@ -81,6 +99,7 @@ const outputUsers = (users) => {
 const outputRoomID = (room) => {
   roomID.innerText = room;
 }
+<<<<<<< HEAD
 
 
 let timer;
@@ -100,3 +119,5 @@ const updateTime = () => {
     seeResults();
   }
 }
+=======
+>>>>>>> 693165bc150fdee4cba0ec9c9b0c2a995c9699c6

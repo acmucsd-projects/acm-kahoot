@@ -9,6 +9,7 @@ const roomCreate = (id, username, room) => {
       "id": id,
       "username": username
     },
+<<<<<<< HEAD
     "users":[],
     "questions": [
       {
@@ -45,11 +46,16 @@ const roomCreate = (id, username, room) => {
     "startTime": 0,
     "totalTime": 15, // TODO: MAKE SURE TO SET THIS LATER WITH ADDITIONAL ARG
     "questionNum": 0 
+=======
+    "users":[]
+
+>>>>>>> 693165bc150fdee4cba0ec9c9b0c2a995c9699c6
   };
   rooms.push(newroom);
   return rooms;
 }
 
+<<<<<<< HEAD
 // gets question ret question obj
 const getQuestion = (room) => {
   const index = rooms.findIndex(single_room => single_room.name === room);
@@ -115,12 +121,18 @@ const getResultsAnswered = (room) => {
   return res;
 }
 
+=======
+>>>>>>> 693165bc150fdee4cba0ec9c9b0c2a995c9699c6
 //Joins player to room
 const roomJoin = (id, username, room) => {
   const index = rooms.findIndex(single_room => single_room.name === room);
 
   if (index !== -1) {
+<<<<<<< HEAD
     const user = { id, username, room, correct:false, answered:false, score:0};
+=======
+    const user = { id, username, room};
+>>>>>>> 693165bc150fdee4cba0ec9c9b0c2a995c9699c6
     rooms[index].users.push(user);
     rooms[index].count++;
     return user;
@@ -191,6 +203,7 @@ const roomUsers = (room) => {
   }
 }
 
+<<<<<<< HEAD
 // Get room admin id
 const roomAdmin = (room) => {
   const index = rooms.findIndex(single_room => single_room.name === room);
@@ -208,12 +221,15 @@ const setTime = (room) => {
   }
 }
 
+=======
+>>>>>>> 693165bc150fdee4cba0ec9c9b0c2a995c9699c6
 module.exports = {
   roomCreate,
   roomJoin,
   roomAdminJoin,
   roomUserLeave,
   roomDelete,
+<<<<<<< HEAD
   roomUsers,
   getQuestion,
   answerQuestion,
@@ -222,4 +238,7 @@ module.exports = {
   getResultsAnswered,
   roomAdmin,
   setTime
+=======
+  roomUsers
+>>>>>>> 693165bc150fdee4cba0ec9c9b0c2a995c9699c6
 };

@@ -1,8 +1,13 @@
 const userList = document.getElementById('users');
 const roomID = document.getElementById('room-id');
+<<<<<<< HEAD
 const score = document.getElementById('score');
 const correct = document.getElementById('correct');
 const response = document.getElementById('responseStatus');
+=======
+
+
+>>>>>>> 693165bc150fdee4cba0ec9c9b0c2a995c9699c6
 
 const { username, room } = Qs.parse(location.search, {
   ignoreQueryPrefix: true
@@ -10,6 +15,7 @@ const { username, room } = Qs.parse(location.search, {
 
 const socket = io();
 
+<<<<<<< HEAD
 // answer 
 function answerQuestion() {
   response.innerHTML = "You Answered!";
@@ -59,6 +65,8 @@ socket.on('sendQuestion',(question) => {
   }
 });
 
+=======
+>>>>>>> 693165bc150fdee4cba0ec9c9b0c2a995c9699c6
 // Join chatroom
 socket.emit('joinRoomPlayer', { username, room });
 
@@ -70,7 +78,11 @@ socket.on('roomUsers', ({ room, users }) => {
 
 socket.on('invalid',() => {
   outputRoomID("Room DNE");
+<<<<<<< HEAD
 });
+=======
+
+>>>>>>> 693165bc150fdee4cba0ec9c9b0c2a995c9699c6
 
 // Add users to DOM
 const outputUsers = (users) => {
