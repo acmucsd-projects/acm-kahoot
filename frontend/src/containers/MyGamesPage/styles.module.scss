@@ -1,0 +1,22 @@
+@import '../../styles/colors';
+@import '../../styles/fonts';
+
+.DecksView {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  justify-items: flex-end;
+  align-items: center;
+}
+
+.header {
+  margin: 0 0 16px 0;
+  font-family: $font-header;
+  font-size: 6rem;
+  white-space: pre-wrap;
+}

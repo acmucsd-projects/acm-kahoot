@@ -6,6 +6,8 @@ import styles from './styles.module.scss';
 import ButtonsView from './containers/ButtonsView';
 import WaitingView from './containers/WaitingView';
 import AnswerView from './containers/AnswerView';
+import NicknameView from './containers/NicknameView';
+import LoadingView from '../LoadingView';
 
 const ENDPOINT = 'http://localhost:3000';
 const GameState = {
@@ -50,11 +52,16 @@ export default function PlayerGamePage() {
       setGameState(GameState.Results);
     });
 
-    joinGame('tester', id);
-    setGameState(GameState.Loading);
-
-    return () => socket.disconnect();
+    return () => {
+      socket.disconnect();
+      socket = null;
+    }
   }, [id]);
+
+  const handleJoinGame = (username) => {
+    joinGame(username, id);
+    setGameState(GameState.Loading);
+  }
 
   const handleAnswerClick = (answerIdx) => {
     setChoice(answerTable[answerIdx]);
@@ -65,8 +72,10 @@ export default function PlayerGamePage() {
   let content = null;
   switch (gameState) {
     case GameState.Joining:
+      content = <NicknameView roomID={id} onJoin={handleJoinGame} />;
       break;
     case GameState.Loading:
+        content = <LoadingView />
       break;
     case GameState.Waiting:
       content = <WaitingView shape={choice} />;

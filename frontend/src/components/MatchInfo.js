@@ -2,17 +2,15 @@ import React from 'react';
 
 import styles from '../styles/MatchInfo.module.scss';
 
-function MatchInfo(props) {
-  const gameCode = 123456;
-  const userName = 'Appa';
+function MatchInfo({ roomID, username, numQuestion }) {
   return (
     <div className={styles.MatchInfo}>
       <div className={styles['info-block']}>
-        <div>CODE: {gameCode}</div>
-        <div>Name: {userName}</div>
+        <div>CODE: {roomID}</div>
+        {username ? <div>Name: {username}</div> : null}
       </div>
       <div className={styles['info-block']}>
-        Q: # / 20
+        Q#: {numQuestion || 'N/A'}
       </div>
     </div>
   );

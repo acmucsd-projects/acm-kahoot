@@ -1,4 +1,4 @@
-@import 'colors';
+@import '../../styles/colors';
 
 .container {
     position: absolute;
@@ -43,7 +43,7 @@
     //text-shadow: 4px 0 0 #aaaaaa;
 }
 
-input {
+.container input {
     background-color: #eee;
     border: none;
     color: rebeccapurple;

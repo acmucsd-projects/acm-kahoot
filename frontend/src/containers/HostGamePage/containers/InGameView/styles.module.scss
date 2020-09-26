@@ -1,0 +1,39 @@
+.HostGameView {
+  width: 100%;
+  height: 100%;
+  padding: 0 0 1% 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: flex-start;
+}
+
+.main {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.grid {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: auto 36vw 36vw auto;
+  grid-template-rows: 47% 47%;
+  grid-template-areas: 
+    ". . bargraph side"
+    ". answers answers .";
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  column-gap: 3vw;
+  row-gap: 6%;
+}
+
+.side {
+  grid-area: side;
+}
