@@ -1,0 +1,37 @@
+@import 'colors';
+
+.triangle {
+  color: $purple-very-dark;
+  background-color: $orange;
+}
+
+.triangle.disabled {
+  background-color: $orange-a-1;
+}
+
+.star {
+  color: $purple-very-dark;
+  background-color: $blue;
+}
+
+.star.disabled {
+  background-color: $blue-a-1;
+}
+
+.circle {
+  color: $purple-very-dark;
+  background-color: $pink;
+}
+
+.circle.disabled {
+  background-color: $pink-a-1;
+}
+
+.square {
+  color: $purple-very-dark;
+  background-color: $aqua;
+}
+
+.square.disabled {
+  background-color: $aqua-a-1;
+}

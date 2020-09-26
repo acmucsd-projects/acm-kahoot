@@ -1,11 +1,10 @@
 import React from 'react';
-import '../styles/EnterNicknamePage.module.scss';
-import '../styles/GameCodePage.module.scss';
-import '../styles/Scoreboard.module.scss';
+
+import styles from '../styles/Button.module.scss';
 
 function Button(props) {
   return (
-    <button className={props.variant}>
+    <button className={props.variant || styles.Button} onClick={props.onClick}>
       {props.label}
     </button>
   );

@@ -1,0 +1,38 @@
+@import '../../../../styles/colors';
+
+.container {
+    height: 100%;
+}
+
+.header {
+    margin: 0 auto;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 6rem;
+    color: $white;
+    white-space: nowrap;
+}
+
+.board {
+    margin: 72px auto 0 auto;
+    width: 50.8125rem;
+    height: 100%;
+    border-radius: 17px 17px 0 0;
+    background: linear-gradient(90deg, #9796F0 0%, #FBC7D4 100%);
+}
+
+.nextbutton {
+    position: relative;
+    width: 9.375rem;
+    height: 6.25rem;
+    transform: translateY(-50%);
+    // left: 50%;
+    // transform: translateX(-50%);
+
+    background: $green;
+    border-radius: 17px;
+    border: none;
+
+    font-family: sans-serif;
+    font-size: 3rem;
+    color: $purple-very-dark;
+}

@@ -1,0 +1,13 @@
+.AnswerGrid {
+  width: 100%;
+  height: 100%;
+  grid-area: answers;
+  display: grid;
+  flex-direction: row;
+  grid-template-columns: 36vw 36vw;
+  grid-template-rows: auto auto;
+  justify-content: space-between;
+  align-content: space-between;
+  justify-items: center;
+  align-items: center;
+}

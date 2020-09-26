@@ -1,0 +1,34 @@
+@import 'colors';
+
+.HostMenuView {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  justify-items: flex-end;
+  align-items: center;
+}
+
+.buttons {
+  margin: 0 0 2vh 0;
+  height: 32vh;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  justify-items: flex-end;
+  align-items: stretch;
+}
+
+.blobright {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.blobleft {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
