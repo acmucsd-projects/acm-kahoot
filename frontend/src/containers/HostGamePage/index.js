@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useReducer } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import socketIO from 'socket.io-client';
+import { getPackByID } from '../../util/api';
 
 import styles from './styles.module.scss';
 import LobbyView from './containers/LobbyView';
 import InGameView from './containers/InGameView';
-import { getPackByID } from '../../util/api';
+import ScoreboardView from './containers/ScoreboardView';
+import LeaderboardView from './containers/LeaderboardView';
 
 const ENDPOINT = 'http://localhost:3000';
 const GameState = {
@@ -16,17 +18,6 @@ const GameState = {
   Answer: 4,
   Results: 5,
   Finished: 6,
-};
-
-const demoPack = {
-  "questions": [
-    "5f6d34ab7ea7fca4d4a404f2",
-    "5f6d34ab7ea7fca4d4a404f5"
-  ],
-  "_id": "5f6d34ab7ea7fca4d4a404f1",
-  "name": "Cats?",
-  "description": "meow!",
-  "__v": 0
 };
 
 let socket;
@@ -59,6 +50,7 @@ const questionReducer = (state, action) => {
 
 // Replace pack with packID and fetch pack first.
 export default function HostGamePage() {
+  const history = useHistory();
   const { id } = useParams();
   const [gameState, setGameState] = useState(GameState.Creating);
   const [roomID, setRoomID] = useState(0);
@@ -156,6 +148,10 @@ export default function HostGamePage() {
     setGameState(GameState.Loading);
   };
 
+  const handleReturnHome = () => {
+    history.push('/host');
+  };
+
   let content = null;
   switch (gameState) {
     case GameState.Loading:
@@ -167,14 +163,15 @@ export default function HostGamePage() {
       content = <InGameView roomID={roomID} questionState={question} answer={correctAns} time={timer} stats={stats} onAction={handleShowAnswer} />;
       break;
     case GameState.Answer:
-      content = <InGameView roomID={roomID} questionState={question} answer={correctAns} time={timer} stats={stats} onAction={handleNextQuestion} showAnswer />;
+      content = <InGameView roomID={roomID} questionState={question} answer={correctAns} time={timer} stats={stats} onAction={handleShowResults} showAnswer />;
       break;
     case GameState.Results:
+      content = <ScoreboardView roomID={roomID} questionState={question} results={users} onAction={handleNextQuestion} />
       break;
     case GameState.Finished:
+      content = <LeaderboardView results={users} onAction={handleReturnHome} />
       break;
     default:
-      // ERROR
       break;
   }
 

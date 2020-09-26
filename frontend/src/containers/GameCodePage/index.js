@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import styles from './styles.module.scss';
 import BlobTopLeft from '../../assets/Blob_TopLeft.svg';
@@ -7,7 +8,6 @@ import BlobTopRight from '../../assets/Blob_TopRight.svg';
 import BlobBottomLeft from '../../assets/Blob_BottomLeft.svg';
 import BlobBottomRight from '../../assets/Blob_BottomRight.svg';
 import Button from '../../components/Button';
-import { Link } from 'react-router-dom';
 
 export default function GameCodePage() {
     const [code, setCode] = useState(0);

@@ -16,6 +16,7 @@ function App() {
     <div className="App glow">
       <Switch>
         <Route path="/player/room/:id" component={PlayerGamePage} />
+        <Route path="/enter-code" component={GameCodePage}/>
         <Route path="/player" component={PlayerLandingPage} />
 
         <Route path="/host/edit/:id" component={HostEditView}/>
@@ -23,8 +24,6 @@ function App() {
         <Route path="/host/decks" component={MyGamesPage}/>
         <Route path="/host/room/:id" component={HostGamePage} />
         <Route path="/host" component={HostMenuView} />
-
-        <Route path="/enter-code" component={GameCodePage}/>
 
         <Route path="/" component={UniversalLandingPage} />
       </Switch>
