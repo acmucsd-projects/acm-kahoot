@@ -6,30 +6,46 @@
   line-height: 75px;
   text-align: center;
   letter-spacing: 0.1em;
-  color: #27163f;
+
+  color: #27163F;
+
   text-shadow: 2px 0 0 #aaaaaa;
 }
 
 .playerButton {
-  position: absolute;
+  position: flex;
   width: 321px;
   height: 100px;
-  left: 559px;
   top: 500px;
 
-  background: #fffbfb;
+  background: #FFFBFB;
   border-radius: 17px;
   border-width: 0px;
+
+  padding: 5px;
+  margin: 10px;
 }
 
 .hostButton {
-  position: absolute;
+  position: flex;
   width: 321px;
   height: 100px;
-  left: 559px;
+
   top: 625px;
 
-  background: #fffbfb;
+  background: #FFFBFB;
   border-radius: 17px;
   border-width: 0px;
+  padding: 5px;
+  margin: 10px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  top: 60vh;
+  flex-wrap: wrap;
 }
