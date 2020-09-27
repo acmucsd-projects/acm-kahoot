@@ -1,13 +1,10 @@
 import React from 'react';
-import '../styles/App.scss';
 
+import landingpagedesign from '../styles/UniversalLandingPage.module.scss';
 import TheButtons from '../components/UniversalLandingPageButton';
-
 import topDesign from '../assets/landingpagedesign.svg';
 import skylineLeft from '../assets/nightlineLeft.svg';
 import skylineRight from '../assets/nightlineRight.svg';
-
-import landingpagedesign from '../styles/UniversalLandingPage.module.scss';
 
 const designs = {
     top: topDesign,
@@ -15,27 +12,22 @@ const designs = {
     nightlineRight: skylineRight
 };
 
-function UniversalLandingPage() {
+export default function UniversalLandingPage() {
     return (
         <div>
-            <div className={landingpagedesign.title }>
-                ACM QUIZTIME
+            <img className={landingpagedesign.topDesignLove} src={designs.top} alt='top design' />
+            <div className={landingpagedesign.nightlineDesignLeft}>
+                <img src={designs.nightlineLeft} alt='nightlineLeft' />
             </div>
-            <div className={landingpagedesign.topDesignLove }>
-                <img src={designs.top} alt='top design'/>
+            <div className={landingpagedesign.nightlineDesignRight}>
+                <img src={designs.nightlineRight} alt='nightlineRightt' />
             </div>
             <div>
-            < TheButtons />
+                <TheButtons />
             </div>
-              <div className={landingpagedesign.nightlineDesignLeft }>
-                <img src={designs.nightlineLeft} alt='nightlineLeft'/>
-            </div>
-            <div className={landingpagedesign.nightlineDesignRight }>
-                <img src={designs.nightlineRight} alt='nightlineRightt'/>
+            <div className={landingpagedesign.title}>
+                ACM QUIZTIME
             </div>
         </div>
-  
     );
-  }
-  
-  export default UniversalLandingPage;
+}
